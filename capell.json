@@ -158,27 +158,27 @@
                 "caption": "Theme Liquid Glass free theme card."
             },
             {
-                "path": "docs/screenshots/liquid-glass-homepage.png",
+                "path": "docs/screenshots/liquid-glass-homepage.webp",
                 "alt": "Theme Liquid Glass homepage rendered through the package theme shell.",
                 "caption": "Runner-backed homepage preview with layered glass panels."
             },
             {
-                "path": "docs/screenshots/liquid-glass-directory.png",
+                "path": "docs/screenshots/liquid-glass-directory.webp",
                 "alt": "Theme Liquid Glass directory rendered with layered content cards.",
                 "caption": "Runner-backed directory with layered glass panels."
             },
             {
-                "path": "docs/screenshots/liquid-glass-detail.png",
+                "path": "docs/screenshots/liquid-glass-detail.webp",
                 "alt": "Theme Liquid Glass detail page rendered with translucent content cards.",
                 "caption": "Runner-backed detail preview with translucent cards."
             },
             {
-                "path": "docs/screenshots/liquid-glass-empty.png",
+                "path": "docs/screenshots/liquid-glass-empty.webp",
                 "alt": "Theme Liquid Glass empty state rendered inside a clear glass panel.",
                 "caption": "Runner-backed empty-state proof with a clear recovery path."
             },
             {
-                "path": "docs/screenshots/liquid-glass-contact.png",
+                "path": "docs/screenshots/liquid-glass-contact.webp",
                 "alt": "Theme Liquid Glass contact page rendered with conversion-focused actions.",
                 "caption": "Runner-backed contact preview with conversion-focused actions."
             }

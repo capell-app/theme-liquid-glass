@@ -33,9 +33,9 @@ Evidence: [`src/LiquidGlassThemeServiceProvider.php`](src/LiquidGlassThemeServic
 
 Screenshot contract: `docs/screenshots.json`.
 
-![Liquid Glass Homepage](docs/screenshots/liquid-glass-homepage.png)
+![Liquid Glass Homepage](docs/screenshots/liquid-glass-homepage.webp)
 
-![Liquid Glass Directory](docs/screenshots/liquid-glass-directory.png)
+![Liquid Glass Directory](docs/screenshots/liquid-glass-directory.webp)
 
 Desktop, tablet, and mobile variants remain defined in the screenshot contract; this list groups them by workflow.
 
