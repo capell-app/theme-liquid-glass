@@ -49,14 +49,56 @@ Desktop, tablet, and mobile variants remain defined in the screenshot contract; 
 
 ## Technical Shape
 
-- Service providers: `Capell\ThemeLiquidGlass\LiquidGlassThemeServiceProvider`.
-- Actions: `InstallLiquidGlassThemeDemoAction`.
-- Command signatures: `capell:theme-liquid-glass-demo`.
-- Console command classes: `DemoCommand`.
-- Manifest contributions: `admin-page: Capell\ThemeLiquidGlass\Manifest\ThemeManagementPageContribution`.
-- Health checks: `Capell\ThemeLiquidGlass\Health\ThemeLiquidGlassHealthCheck`.
-- Blade views: `packages/theme-liquid-glass/resources/views/footer.blade.php`, `packages/theme-liquid-glass/resources/views/header/index.blade.php`, `packages/theme-liquid-glass/resources/views/sections/content-listing.blade.php`, `packages/theme-liquid-glass/resources/views/sections/cta.blade.php`, `packages/theme-liquid-glass/resources/views/sections/features.blade.php`, `packages/theme-liquid-glass/resources/views/sections/footer.blade.php`, `packages/theme-liquid-glass/resources/views/sections/hero.blade.php`, `packages/theme-liquid-glass/resources/views/sections/navigation.blade.php`, `packages/theme-liquid-glass/resources/views/sections/presets.blade.php`, `packages/theme-liquid-glass/resources/views/sections/proof.blade.php`, `packages/theme-liquid-glass/resources/views/sections/showcase.blade.php`, `packages/theme-liquid-glass/resources/views/widget/cta.blade.php`, `and 7 more`.
-- Cache tags: `theme-liquid-glass`.
+### Service providers
+
+- `Capell\ThemeLiquidGlass\LiquidGlassThemeServiceProvider`
+
+### Actions
+
+- `InstallLiquidGlassThemeDemoAction`
+
+### Command signatures
+
+- `capell:theme-liquid-glass-demo`
+
+### Console command classes
+
+- `DemoCommand`
+
+### Manifest contributions
+
+- `admin-page: Capell\ThemeLiquidGlass\Manifest\ThemeManagementPageContribution`
+
+### Health checks
+
+- `Capell\ThemeLiquidGlass\Health\ThemeLiquidGlassHealthCheck`
+
+### Blade views
+
+- `packages/theme-liquid-glass/resources/views/footer.blade.php`
+- `packages/theme-liquid-glass/resources/views/header/index.blade.php`
+- `packages/theme-liquid-glass/resources/views/sections/content-listing.blade.php`
+- `packages/theme-liquid-glass/resources/views/sections/cta.blade.php`
+- `packages/theme-liquid-glass/resources/views/sections/features.blade.php`
+- `packages/theme-liquid-glass/resources/views/sections/footer.blade.php`
+- `packages/theme-liquid-glass/resources/views/sections/hero.blade.php`
+- `packages/theme-liquid-glass/resources/views/sections/navigation.blade.php`
+- `packages/theme-liquid-glass/resources/views/sections/presets.blade.php`
+- `packages/theme-liquid-glass/resources/views/sections/proof.blade.php`
+- `packages/theme-liquid-glass/resources/views/sections/showcase.blade.php`
+- `packages/theme-liquid-glass/resources/views/widget/cta.blade.php`
+- `packages/theme-liquid-glass/resources/views/widget/floating-glass-nav.blade.php`
+- `packages/theme-liquid-glass/resources/views/widget/glass-feature-card.blade.php`
+- `packages/theme-liquid-glass/resources/views/widget/layered-depth-hero.blade.php`
+- `packages/theme-liquid-glass/resources/views/widget/presets.blade.php`
+- `packages/theme-liquid-glass/resources/views/widget/refraction-grid.blade.php`
+- `packages/theme-liquid-glass/resources/views/widget/showcase.blade.php`
+- `packages/theme-liquid-glass/resources/views/widget/translucent-stat-band.blade.php`
+
+### Cache tags
+
+- `theme-liquid-glass`
+
 
 ## Data Model
 
@@ -67,7 +109,7 @@ This theme has no schema impact. It relies on core Capell site, page, locale, an
 - Required packages: `capell-app/core`, `capell-app/theme-foundation`, `capell-app/frontend`, `capell-app/layout-builder`.
 - Admin navigation: declares `admin-page: ThemeManagementPageContribution`; each Filament page or resource controls its own navigation visibility.
 - Admin/editor extensions: none declared.
-- Permissions: none declared in `capell.json`.
+- Permissions: no package permission declarations or Shield gates detected; host access rules still apply.
 - Public routes: none declared.
 - Database changes: no package migrations declared.
 - Config: no package config files.
@@ -92,7 +134,7 @@ This theme has no schema impact. It relies on core Capell site, page, locale, an
 ## Quick Start
 
 1. Install the package: `composer require capell-app/theme-liquid-glass`.
-2. No package-specific setup command or migrations are declared.
+2. See it working: run `php artisan capell:theme-liquid-glass-demo`.
 3. Open `/theme-liquid-glass` and confirm the public output renders without admin state.
 
 ## Next Steps
