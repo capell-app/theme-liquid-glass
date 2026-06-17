@@ -35,12 +35,33 @@ describe('theme Liquid Glass capell.json manifest', function (): void {
 
         expect(collect($screenshots)->pluck('path')->all())->toBe([
             'docs/assets/marketplace/extension-card.svg',
-            'docs/assets/marketplace/liquid-glass-homepage.svg',
-            'docs/assets/marketplace/liquid-glass-landing.svg',
-            'docs/assets/marketplace/liquid-glass-listing.svg',
-            'docs/assets/marketplace/liquid-glass-search.svg',
-            'docs/assets/marketplace/liquid-glass-contact.svg',
+            'docs/screenshots/liquid-glass-homepage.png',
+            'docs/screenshots/liquid-glass-landing.png',
+            'docs/screenshots/liquid-glass-listing.png',
+            'docs/screenshots/liquid-glass-search.png',
+            'docs/screenshots/liquid-glass-contact.png',
+            'docs/screenshots/liquid-glass-graphite-mobile.png',
         ]);
+    });
+
+    it('requires committed runner backed screenshot outputs', function (): void {
+        $manifest = json_decode(
+            File::get(__DIR__ . '/../../docs/screenshots.json'),
+            associative: true,
+            flags: JSON_THROW_ON_ERROR,
+        );
+
+        throw_unless(is_array($manifest), RuntimeException::class, 'Theme Liquid Glass screenshot manifest must decode to an array.');
+
+        $entries = liquidGlassThemeManifestArrayList($manifest['entries'] ?? null, 'screenshots.entries');
+
+        foreach ($entries as $entry) {
+            $screenshotPath = liquidGlassThemeManifestString($entry['screenshotPath'] ?? null, 'screenshots.entries.screenshotPath');
+
+            expect($entry['required'] ?? null)->toBeTrue()
+                ->and(str_starts_with($screenshotPath, 'packages/theme-liquid-glass/docs/screenshots/'))->toBeTrue()
+                ->and(File::exists(dirname(__DIR__, 4) . '/' . $screenshotPath))->toBeTrue();
+        }
     });
 
     it('declares its demo command for package demo installs', function (): void {
@@ -66,6 +87,8 @@ describe('theme Liquid Glass capell.json manifest', function (): void {
 
     it('declares public-output safety and theme metadata', function (): void {
         $manifest = liquidGlassThemeMarketplaceManifest();
+        $performance = liquidGlassThemeManifestArray($manifest['performance'] ?? null, 'performance');
+        $cacheSafety = liquidGlassThemeManifestArray($performance['cacheSafety'] ?? null, 'performance.cacheSafety');
 
         expect($manifest['kind'])->toBe('theme')
             ->and($manifest['themeKey'])->toBe('liquid-glass')
@@ -75,7 +98,11 @@ describe('theme Liquid Glass capell.json manifest', function (): void {
                 'forbidAuthoringSurface' => true,
                 'forbidSecrets' => true,
                 'forbidPublicBladeQueries' => true,
-            ]);
+            ])
+            ->and($cacheSafety['cacheable'] ?? null)->toBeTrue()
+            ->and($cacheSafety['variesBy'] ?? null)->toBe(['site', 'locale'])
+            ->and(liquidGlassThemeManifestArrayList($cacheSafety['invalidationSources'] ?? null, 'performance.cacheSafety.invalidationSources'))->toHaveCount(4)
+            ->and($cacheSafety['queueInvalidation'] ?? null)->toBeFalse();
     });
 });
 
