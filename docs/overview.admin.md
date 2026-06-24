@@ -1,7 +1,3 @@
-# Theme Liquid Glass
-
-<!-- prettier-ignore-start -->
-
 ## What this theme gives you
 
 A modern glass look with translucent panels, crisp type, and warm accent buttons. Three presets cover bright product launches, editorial glass pages, and darker graphite surfaces.
@@ -24,9 +20,3 @@ A modern glass look with translucent panels, crisp type, and warm accent buttons
 - Built on **Foundation Theme** - install that first.
 - A free, polished alternative to the Foundation and Corporate looks.
 - **Preview** to see it before visitors do.
-
----
-
-For developers: see the [README](../README.md).
-
-<!-- prettier-ignore-end -->
