@@ -2,7 +2,7 @@
     href="#main-content"
     class="site-theme-skip-link"
 >
-    {{ __('capell-theme-liquid-glass::generic.skip_to_content') }}
+    {{ __('capell-frontend::generic.skip_to_content') }}
 </a>
 
 <div
