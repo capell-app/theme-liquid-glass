@@ -17,7 +17,7 @@
     block guarded by `@supports (transform: translate3d(var(--x, 0px), var(--y, 0px), 0))`,
     so a reduced-motion visitor or any non-energetic-tier visitor both see
     the plain static resting composition — the CSS-only idiom already
-    established by theme-front-row's `featured-portfolios--parallax`
+    established by theme-agency's `featured-portfolios--parallax`
     variant (a scroll trigger there), applied here as a hover/focus trigger
     on the section itself, which is a real CSS pseudo-class interaction, not
     a JS pointer-move listener.
