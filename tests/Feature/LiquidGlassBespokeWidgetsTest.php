@@ -11,9 +11,9 @@ use Capell\FoundationTheme\Data\ThemeDemoInstallData;
 use Capell\FoundationTheme\Support\Demo\ThemeDemoPageInstaller;
 use Capell\LayoutBuilder\Models\Widget;
 use Capell\LayoutBuilder\Support\Creator\WidgetCreator;
-use Capell\ThemeStudio\LiquidGlass\Enums\WidgetComponentEnum;
-use Capell\ThemeStudio\LiquidGlass\LiquidGlassThemeServiceProvider;
-use Capell\ThemeStudio\LiquidGlass\Support\Demo\LiquidGlassDemoContent;
+use Capell\ThemeLiquidGlass\Enums\WidgetComponentEnum;
+use Capell\ThemeLiquidGlass\LiquidGlassThemeServiceProvider;
+use Capell\ThemeLiquidGlass\Support\Demo\LiquidGlassDemoContent;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\View;
 

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 use Capell\FoundationTheme\Contracts\InstallsThemeDemo;
 use Capell\FoundationTheme\Data\ThemeDemoInstallData;
-use Capell\ThemeStudio\LiquidGlass\Actions\InstallLiquidGlassThemeDemoAction;
-use Capell\ThemeStudio\LiquidGlass\Console\Commands\DemoCommand;
+use Capell\ThemeLiquidGlass\Actions\InstallLiquidGlassThemeDemoAction;
+use Capell\ThemeLiquidGlass\Console\Commands\DemoCommand;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 

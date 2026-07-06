@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Capell\ThemeStudio\LiquidGlass\Enums;
+namespace Capell\ThemeLiquidGlass\Enums;
 
-use Capell\ThemeStudio\LiquidGlass\LiquidGlassThemeServiceProvider;
+use Capell\ThemeLiquidGlass\LiquidGlassThemeServiceProvider;
 
 /**
  * Liquid Glass's own bespoke layout-builder widget component keys.

@@ -16,7 +16,7 @@ Status details:
 - Tier: free
 - Bundle: foundation
 - Composer package: `capell-app/theme-liquid-glass`
-- Namespace: `Capell\ThemeStudio\LiquidGlass`
+- Namespace: `Capell\ThemeLiquidGlass`
 - Theme key: `liquid-glass`
 
 ## Why It Matters
@@ -53,12 +53,12 @@ Screenshot contract: `docs/screenshots.json`.
 
 ## Technical Shape
 
-- Service providers: `Capell\ThemeStudio\LiquidGlass\LiquidGlassThemeServiceProvider`.
+- Service providers: `Capell\ThemeLiquidGlass\LiquidGlassThemeServiceProvider`.
 - Actions: `InstallLiquidGlassThemeDemoAction`.
 - Command signatures: `capell:theme-liquid-glass-demo`.
 - Console command classes: `DemoCommand`.
-- Manifest contributions: `admin-page: Capell\ThemeStudio\LiquidGlass\Manifest\ThemeManagementPageContribution`.
-- Health checks: `Capell\ThemeStudio\LiquidGlass\Health\ThemeLiquidGlassHealthCheck`.
+- Manifest contributions: `admin-page: Capell\ThemeLiquidGlass\Manifest\ThemeManagementPageContribution`.
+- Health checks: `Capell\ThemeLiquidGlass\Health\ThemeLiquidGlassHealthCheck`.
 - Blade views: `packages/theme-liquid-glass/resources/views/livewire/page/page.blade.php`, `packages/theme-liquid-glass/resources/views/page.blade.php`, `packages/theme-liquid-glass/resources/views/sections/content-listing.blade.php`, `packages/theme-liquid-glass/resources/views/sections/cta.blade.php`, `packages/theme-liquid-glass/resources/views/sections/features.blade.php`, `packages/theme-liquid-glass/resources/views/sections/footer.blade.php`, `packages/theme-liquid-glass/resources/views/sections/hero.blade.php`, `packages/theme-liquid-glass/resources/views/sections/navigation.blade.php`, `packages/theme-liquid-glass/resources/views/sections/presets.blade.php`, `packages/theme-liquid-glass/resources/views/sections/proof.blade.php`, `packages/theme-liquid-glass/resources/views/sections/showcase.blade.php`.
 - Cache tags: `theme-liquid-glass`.
 

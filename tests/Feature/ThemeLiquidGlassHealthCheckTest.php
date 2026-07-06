@@ -5,8 +5,8 @@ declare(strict_types=1);
 use Capell\Core\Data\Diagnostics\DoctorCheckResultData;
 use Capell\Core\Facades\CapellCore;
 use Capell\Core\ThemeStudio\Theme\ThemeRegistry;
-use Capell\ThemeStudio\LiquidGlass\Health\ThemeLiquidGlassHealthCheck;
-use Capell\ThemeStudio\LiquidGlass\LiquidGlassThemeServiceProvider;
+use Capell\ThemeLiquidGlass\Health\ThemeLiquidGlassHealthCheck;
+use Capell\ThemeLiquidGlass\LiquidGlassThemeServiceProvider;
 
 beforeEach(function (): void {
     CapellCore::clearPackages();

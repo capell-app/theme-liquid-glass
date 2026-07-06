@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Capell\ThemeStudio\LiquidGlass\Console\Commands;
+namespace Capell\ThemeLiquidGlass\Console\Commands;
 
 use Capell\FoundationTheme\Contracts\InstallsThemeDemo;
 use Capell\FoundationTheme\Data\ThemeDemoInstallData;
-use Capell\ThemeStudio\LiquidGlass\Actions\InstallLiquidGlassThemeDemoAction;
+use Capell\ThemeLiquidGlass\Actions\InstallLiquidGlassThemeDemoAction;
 use Illuminate\Console\Command;
 use RuntimeException;
 

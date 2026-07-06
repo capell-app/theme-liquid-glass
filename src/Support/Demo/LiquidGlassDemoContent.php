@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Capell\ThemeStudio\LiquidGlass\Support\Demo;
+namespace Capell\ThemeLiquidGlass\Support\Demo;
 
 use Capell\Core\Enums\LayoutEnum;
 use Capell\Core\Enums\PageTypeEnum;
 use Capell\FoundationTheme\Contracts\ProvidesThemeDemoContent;
 use Capell\FoundationTheme\Support\Demo\ThemeDemoMedia;
 use Capell\FoundationTheme\Support\Demo\ThemeDemoPageDefinition;
-use Capell\ThemeStudio\LiquidGlass\Enums\WidgetComponentEnum;
-use Capell\ThemeStudio\LiquidGlass\LiquidGlassThemeServiceProvider;
+use Capell\ThemeLiquidGlass\Enums\WidgetComponentEnum;
+use Capell\ThemeLiquidGlass\LiquidGlassThemeServiceProvider;
 
 /**
  * Complete, vertical-authentic demo content for the Liquid Glass theme.

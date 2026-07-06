@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Capell\ThemeStudio\LiquidGlass;
+namespace Capell\ThemeLiquidGlass;
 
 use Capell\Core\Data\RenderableDefinitionData;
 use Capell\Core\Data\VendorAssetData;
@@ -16,9 +16,9 @@ use Capell\Core\ThemeStudio\Data\ThemePresetData;
 use Capell\Core\ThemeStudio\Theme\ThemeRegistry;
 use Capell\FoundationTheme\Support\Editor\StandardThemeEditorSchema;
 use Capell\FoundationTheme\Support\Providers\RegistersLayoutNativeThemeDefaults;
-use Capell\ThemeStudio\LiquidGlass\Console\Commands\DemoCommand;
-use Capell\ThemeStudio\LiquidGlass\Enums\WidgetComponentEnum;
-use Capell\ThemeStudio\LiquidGlass\Support\Interceptors\Themes\LiquidGlassThemeInterceptor;
+use Capell\ThemeLiquidGlass\Console\Commands\DemoCommand;
+use Capell\ThemeLiquidGlass\Enums\WidgetComponentEnum;
+use Capell\ThemeLiquidGlass\Support\Interceptors\Themes\LiquidGlassThemeInterceptor;
 use Illuminate\Support\ServiceProvider;
 use Override;
 

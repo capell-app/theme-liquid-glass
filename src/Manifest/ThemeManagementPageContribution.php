@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Capell\ThemeStudio\LiquidGlass\Manifest;
+namespace Capell\ThemeLiquidGlass\Manifest;
 
 use Capell\Core\Contracts\Extensions\ExtensionContribution;
 

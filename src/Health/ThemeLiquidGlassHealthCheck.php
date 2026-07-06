@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Capell\ThemeStudio\LiquidGlass\Health;
+namespace Capell\ThemeLiquidGlass\Health;
 
 use Capell\Core\Contracts\Extensions\ChecksExtensionHealth;
 use Capell\Core\Data\Diagnostics\DoctorCheckResultData;
 use Capell\Core\ThemeStudio\Theme\ThemeRegistry;
-use Capell\ThemeStudio\LiquidGlass\LiquidGlassThemeServiceProvider;
+use Capell\ThemeLiquidGlass\LiquidGlassThemeServiceProvider;
 use Illuminate\Support\Collection;
 
 final class ThemeLiquidGlassHealthCheck implements ChecksExtensionHealth

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Capell\ThemeStudio\LiquidGlass\Support\Interceptors\Themes;
+namespace Capell\ThemeLiquidGlass\Support\Interceptors\Themes;
 
 use Capell\Core\Contracts\ModelInterceptors\ThemeInterceptorInterface;
 use Capell\Core\Models\Theme;

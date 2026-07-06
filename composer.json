@@ -16,18 +16,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Capell\\ThemeStudio\\LiquidGlass\\": "src/"
+            "Capell\\ThemeLiquidGlass\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Capell\\ThemeStudio\\LiquidGlass\\Tests\\": "tests/"
+            "Capell\\ThemeLiquidGlass\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Capell\\ThemeStudio\\LiquidGlass\\LiquidGlassThemeServiceProvider"
+                "Capell\\ThemeLiquidGlass\\LiquidGlassThemeServiceProvider"
             ]
         },
         "branch-alias": {
