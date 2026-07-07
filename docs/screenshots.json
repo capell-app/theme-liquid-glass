@@ -190,7 +190,7 @@
             "useCase": "A buyer reviews the Liquid Glass contact surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": ".theme-demo-contact-page",
+            "waitFor": ".liquid-glass-shell",
             "colorSchemes": ["light", "dark"],
             "viewport": "desktop",
             "fullPage": true
@@ -209,7 +209,7 @@
             "useCase": "A buyer reviews the Liquid Glass contact surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": ".theme-demo-contact-page",
+            "waitFor": ".liquid-glass-shell",
             "colorSchemes": ["light", "dark"],
             "viewport": "tablet",
             "fullPage": true
@@ -228,7 +228,7 @@
             "useCase": "A buyer reviews the Liquid Glass contact surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": ".theme-demo-contact-page",
+            "waitFor": ".liquid-glass-shell",
             "colorSchemes": ["light", "dark"],
             "viewport": "mobile",
             "fullPage": true
@@ -304,7 +304,7 @@
             "useCase": "A buyer reviews the Liquid Glass page not found surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": "body",
+            "waitFor": ".liquid-glass-shell",
             "colorSchemes": ["light", "dark"],
             "viewport": "desktop",
             "fullPage": true
@@ -323,7 +323,7 @@
             "useCase": "A buyer reviews the Liquid Glass page not found surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": "body",
+            "waitFor": ".liquid-glass-shell",
             "colorSchemes": ["light", "dark"],
             "viewport": "tablet",
             "fullPage": true
@@ -342,7 +342,7 @@
             "useCase": "A buyer reviews the Liquid Glass page not found surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": "body",
+            "waitFor": ".liquid-glass-shell",
             "colorSchemes": ["light", "dark"],
             "viewport": "mobile",
             "fullPage": true
