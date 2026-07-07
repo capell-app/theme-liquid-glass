@@ -19,7 +19,7 @@
             "useCase": "A buyer reviews the Liquid Glass homepage surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": ".site-theme-shell",
+            "waitFor": ".liquid-glass-shell",
             "colorSchemes": ["light", "dark"],
             "viewport": "desktop",
             "fullPage": true
@@ -38,7 +38,7 @@
             "useCase": "A buyer reviews the Liquid Glass homepage surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": ".site-theme-shell",
+            "waitFor": ".liquid-glass-shell",
             "colorSchemes": ["light", "dark"],
             "viewport": "tablet",
             "fullPage": true
@@ -57,7 +57,7 @@
             "useCase": "A buyer reviews the Liquid Glass homepage surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": ".site-theme-shell",
+            "waitFor": ".liquid-glass-shell",
             "colorSchemes": ["light", "dark"],
             "viewport": "mobile",
             "fullPage": true
@@ -76,7 +76,7 @@
             "useCase": "A buyer reviews the Liquid Glass directory surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": ".site-theme-shell",
+            "waitFor": ".liquid-glass-shell",
             "colorSchemes": ["light", "dark"],
             "viewport": "desktop",
             "fullPage": true
@@ -95,7 +95,7 @@
             "useCase": "A buyer reviews the Liquid Glass directory surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": ".site-theme-shell",
+            "waitFor": ".liquid-glass-shell",
             "colorSchemes": ["light", "dark"],
             "viewport": "tablet",
             "fullPage": true
@@ -114,7 +114,7 @@
             "useCase": "A buyer reviews the Liquid Glass directory surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": ".site-theme-shell",
+            "waitFor": ".liquid-glass-shell",
             "colorSchemes": ["light", "dark"],
             "viewport": "mobile",
             "fullPage": true
@@ -133,7 +133,7 @@
             "useCase": "A buyer reviews the Liquid Glass detail article surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": ".site-theme-shell",
+            "waitFor": ".liquid-glass-shell",
             "colorSchemes": ["light", "dark"],
             "viewport": "desktop",
             "fullPage": true
@@ -152,7 +152,7 @@
             "useCase": "A buyer reviews the Liquid Glass detail article surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": ".site-theme-shell",
+            "waitFor": ".liquid-glass-shell",
             "colorSchemes": ["light", "dark"],
             "viewport": "tablet",
             "fullPage": true
@@ -171,7 +171,7 @@
             "useCase": "A buyer reviews the Liquid Glass detail article surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": ".site-theme-shell",
+            "waitFor": ".liquid-glass-shell",
             "colorSchemes": ["light", "dark"],
             "viewport": "mobile",
             "fullPage": true
@@ -190,7 +190,7 @@
             "useCase": "A buyer reviews the Liquid Glass contact surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": ".site-theme-shell",
+            "waitFor": ".theme-demo-contact-page",
             "colorSchemes": ["light", "dark"],
             "viewport": "desktop",
             "fullPage": true
@@ -209,7 +209,7 @@
             "useCase": "A buyer reviews the Liquid Glass contact surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": ".site-theme-shell",
+            "waitFor": ".theme-demo-contact-page",
             "colorSchemes": ["light", "dark"],
             "viewport": "tablet",
             "fullPage": true
@@ -228,7 +228,7 @@
             "useCase": "A buyer reviews the Liquid Glass contact surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": ".site-theme-shell",
+            "waitFor": ".theme-demo-contact-page",
             "colorSchemes": ["light", "dark"],
             "viewport": "mobile",
             "fullPage": true
@@ -247,7 +247,7 @@
             "useCase": "A buyer reviews the Liquid Glass empty state surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": ".site-theme-shell",
+            "waitFor": ".liquid-glass-shell",
             "colorSchemes": ["light", "dark"],
             "viewport": "desktop",
             "fullPage": true
@@ -266,7 +266,7 @@
             "useCase": "A buyer reviews the Liquid Glass empty state surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": ".site-theme-shell",
+            "waitFor": ".liquid-glass-shell",
             "colorSchemes": ["light", "dark"],
             "viewport": "tablet",
             "fullPage": true
@@ -285,7 +285,7 @@
             "useCase": "A buyer reviews the Liquid Glass empty state surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": ".site-theme-shell",
+            "waitFor": ".liquid-glass-shell",
             "colorSchemes": ["light", "dark"],
             "viewport": "mobile",
             "fullPage": true
@@ -361,7 +361,7 @@
             "useCase": "A buyer reviews the Liquid Glass call to action surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": ".site-theme-shell",
+            "waitFor": ".liquid-glass-shell",
             "colorSchemes": ["light", "dark"],
             "viewport": "desktop",
             "fullPage": true
@@ -380,7 +380,7 @@
             "useCase": "A buyer reviews the Liquid Glass call to action surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": ".site-theme-shell",
+            "waitFor": ".liquid-glass-shell",
             "colorSchemes": ["light", "dark"],
             "viewport": "tablet",
             "fullPage": true
@@ -399,7 +399,7 @@
             "useCase": "A buyer reviews the Liquid Glass call to action surface before selecting theme-liquid-glass.",
             "package": "theme-liquid-glass",
             "scenario": "frontend-page",
-            "waitFor": ".site-theme-shell",
+            "waitFor": ".liquid-glass-shell",
             "colorSchemes": ["light", "dark"],
             "viewport": "mobile",
             "fullPage": true

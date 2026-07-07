@@ -190,6 +190,44 @@
         font-size: calc(1.5rem * var(--heading-scale-factor, 1));
     }
 
+    /*
+     * Layout-native pages render their editable body through Foundation's
+     * shared `.content-component`, not Liquid Glass section views. Scope the
+     * readable foreground fixes from the theme header marker so dark captures
+     * do not inherit light-only utility text colours from generic content.
+     */
+    .liquid-glass-shell ~ main .content-component,
+    .liquid-glass-shell ~ main .content-component :is(h1, h2, h3, h4, h5, h6) {
+        color: var(--theme-foreground, #10202a) !important;
+    }
+
+    .liquid-glass-shell ~ main .content-component :is(p, li) {
+        color: color-mix(
+            in srgb,
+            var(--theme-foreground, #10202a) 78%,
+            transparent
+        );
+    }
+
+    @media (prefers-color-scheme: dark) {
+        body:has(.liquid-glass-shell) {
+            --theme-foreground: #f8fafc;
+            --theme-surface: #111827;
+        }
+
+        .liquid-glass-shell ~ main .content-component,
+        .liquid-glass-shell
+            ~ main
+            .content-component
+            :is(h1, h2, h3, h4, h5, h6) {
+            color: #f8fafc !important;
+        }
+
+        .liquid-glass-shell ~ main .content-component :is(p, li) {
+            color: rgb(226 232 240 / 0.82);
+        }
+    }
+
     /* Gap between cards in a showcase/presets grid — lives on the grid
        wrapper rather than the individual cards (the grid wrapper is the
        flex/grid formatting context; the individual `.glass-surface-card`
