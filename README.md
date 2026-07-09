@@ -2,7 +2,7 @@
 
 <!-- prettier-ignore-start -->
 
-## What This Plugin Adds
+## What This Extension Adds
 
 Theme Liquid Glass is an **Available**, **No schema impact** Capell theme in the **Capell Foundation** product group. It ships as `capell-app/theme-liquid-glass` and extends these surfaces: frontend.
 
