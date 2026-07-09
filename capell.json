@@ -12,7 +12,7 @@
         "tier": "free",
         "bundle": "foundation"
     },
-    "namespace": "Capell\\ThemeStudio\\LiquidGlass",
+    "namespace": "Capell\\ThemeLiquidGlass",
     "surfaces": ["frontend"],
     "dependencies": {
         "requires": [
@@ -28,7 +28,7 @@
         "metadata": [],
         "install": [],
         "runtime": [
-            "Capell\\ThemeStudio\\LiquidGlass\\LiquidGlassThemeServiceProvider"
+            "Capell\\ThemeLiquidGlass\\LiquidGlassThemeServiceProvider"
         ],
         "admin": [],
         "frontend": []
@@ -36,7 +36,7 @@
     "contributes": [
         {
             "type": "admin-page",
-            "class": "Capell\\ThemeStudio\\LiquidGlass\\Manifest\\ThemeManagementPageContribution",
+            "class": "Capell\\ThemeLiquidGlass\\Manifest\\ThemeManagementPageContribution",
             "pageClass": "Capell\\Marketplace\\Filament\\Pages\\ThemeExtensionPage",
             "pageParameters": {
                 "themeKey": "liquid-glass"
@@ -137,7 +137,7 @@
         {
             "key": "theme-liquid-glass.package-health",
             "label": "Theme Liquid Glass package surfaces, providers, and install health are discoverable by Diagnostics.",
-            "class": "Capell\\ThemeStudio\\LiquidGlass\\Health\\ThemeLiquidGlassHealthCheck",
+            "class": "Capell\\ThemeLiquidGlass\\Health\\ThemeLiquidGlassHealthCheck",
             "severity": "critical",
             "surface": "frontend"
         }

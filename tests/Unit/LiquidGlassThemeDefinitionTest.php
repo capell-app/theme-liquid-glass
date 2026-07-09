@@ -18,9 +18,9 @@ use Capell\Core\ThemeStudio\Theme\ThemeRegistry;
 use Capell\FoundationTheme\Data\ThemeDemoInstallData;
 use Capell\FoundationTheme\Support\Demo\ThemeDemoPageInstaller;
 use Capell\LayoutBuilder\Models\Widget;
-use Capell\ThemeStudio\LiquidGlass\Health\ThemeLiquidGlassHealthCheck;
-use Capell\ThemeStudio\LiquidGlass\LiquidGlassThemeServiceProvider;
-use Capell\ThemeStudio\LiquidGlass\Support\Demo\LiquidGlassDemoContent;
+use Capell\ThemeLiquidGlass\Health\ThemeLiquidGlassHealthCheck;
+use Capell\ThemeLiquidGlass\LiquidGlassThemeServiceProvider;
+use Capell\ThemeLiquidGlass\Support\Demo\LiquidGlassDemoContent;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\View;
 
