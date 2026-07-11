@@ -316,6 +316,21 @@
             --liquid-glass-overlay-opacity: 0;
         }
     }
+    @container style(--theme-glass-depth: restrained) {
+        .glass-surface {
+            --liquid-glass-refraction-blur: 3px;
+        }
+    }
+    @container style(--theme-glass-depth: balanced) {
+        .glass-surface {
+            --liquid-glass-refraction-blur: 8px;
+        }
+    }
+    @container style(--theme-glass-depth: prismatic) {
+        .glass-surface {
+            --liquid-glass-refraction-blur: 14px;
+        }
+    }
 }
 
 /* View Transitions (Wave 6.5): opt every same-origin navigation into a smooth

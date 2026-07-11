@@ -4,8 +4,8 @@
     "slug": "theme-liquid-glass",
     "displayName": "Theme Liquid Glass",
     "kind": "theme",
-    "capellApiVersion": "^4.0",
-    "version": "4.x-dev",
+    "capellApiVersion": "^1.0",
+    "version": "1.x-dev",
     "description": "Theme Liquid Glass gives Capell sites a free modern glass interface with translucent panels, crisp typography, and warm accent actions. Three presets cover bright product launches, editorial glass pages, and darker graphite surfaces while staying fully driven by Theme Studio tokens. It renders through the shared layout-builder container pipeline, keeps public output cache-safe and editor-free, and adds a polished alternative to the Foundation and Corporate free lanes.",
     "product": {
         "group": "Capell Foundation",
@@ -163,29 +163,24 @@
                 "caption": "Runner-backed homepage preview with layered glass panels."
             },
             {
-                "path": "docs/screenshots/liquid-glass-landing.png",
-                "alt": "Theme Liquid Glass landing sections rendered with hero, feature, proof, and CTA rhythm.",
-                "caption": "Runner-backed landing sections with product-focused glass panels."
+                "path": "docs/screenshots/liquid-glass-directory.png",
+                "alt": "Theme Liquid Glass directory rendered with layered content cards.",
+                "caption": "Runner-backed directory with layered glass panels."
             },
             {
-                "path": "docs/screenshots/liquid-glass-listing.png",
-                "alt": "Theme Liquid Glass listing page rendered with translucent content cards.",
-                "caption": "Runner-backed listing preview with translucent cards."
+                "path": "docs/screenshots/liquid-glass-detail.png",
+                "alt": "Theme Liquid Glass detail page rendered with translucent content cards.",
+                "caption": "Runner-backed detail preview with translucent cards."
             },
             {
-                "path": "docs/screenshots/liquid-glass-search.png",
-                "alt": "Theme Liquid Glass detail and search-style page rendered inside clear glass panels.",
-                "caption": "Runner-backed detail/search proof with clear result grouping."
+                "path": "docs/screenshots/liquid-glass-empty.png",
+                "alt": "Theme Liquid Glass empty state rendered inside a clear glass panel.",
+                "caption": "Runner-backed empty-state proof with a clear recovery path."
             },
             {
                 "path": "docs/screenshots/liquid-glass-contact.png",
                 "alt": "Theme Liquid Glass contact page rendered with conversion-focused actions.",
                 "caption": "Runner-backed contact preview with conversion-focused actions."
-            },
-            {
-                "path": "docs/screenshots/liquid-glass-graphite-mobile.png",
-                "alt": "Theme Liquid Glass Graphite preset rendered in a mobile viewport with compact navigation.",
-                "caption": "Mobile Graphite preset proof with dark glass surfaces and compact navigation."
             }
         ],
         "categories": ["frontend", "themes"]

@@ -66,6 +66,7 @@ class LiquidGlassThemeServiceProvider extends ServiceProvider
                         'headingScale' => 'balanced',
                         'cardDensity' => 'comfortable',
                         'overlayTreatment' => 'subtle',
+                        'glassDepth' => 'balanced',
                     ],
                 ),
                 new ThemePresetData(
@@ -82,15 +83,16 @@ class LiquidGlassThemeServiceProvider extends ServiceProvider
                         'headingFont' => 'sora',
                         'bodyFont' => 'inter',
                         'spacing' => 'spacious',
-                        'cardStyle' => 'layered',
+                        'cardStyle' => 'raised',
                         'navigationStyle' => 'prominent',
-                        'layoutPresentation' => 'immersive',
+                        'layoutPresentation' => 'full-bleed',
                         'motionIntensity' => 'subtle',
                         'mediaTreatment' => 'framed',
                         'radius' => 'xl',
                         'headingScale' => 'expressive',
                         'cardDensity' => 'spacious',
                         'overlayTreatment' => 'subtle',
+                        'glassDepth' => 'prismatic',
                     ],
                 ),
                 new ThemePresetData(
@@ -116,11 +118,15 @@ class LiquidGlassThemeServiceProvider extends ServiceProvider
                         'headingScale' => 'compact',
                         'cardDensity' => 'compact',
                         'overlayTreatment' => 'strong',
+                        'glassDepth' => 'restrained',
                     ],
                 ),
             ],
             frontend: [
-                'editor' => StandardThemeEditorSchema::definition(),
+                'editor' => StandardThemeEditorSchema::withExtraTokens(
+                    groups: ['identity' => ['glassDepth']],
+                    tokens: ['glassDepth' => ['options' => ['restrained', 'balanced', 'prismatic']]],
+                ),
             ],
             assets: ['css' => 'vendor/capell/themes/liquid-glass.css'],
             runtime: FrontendRuntime::Blade,
@@ -166,7 +172,7 @@ class LiquidGlassThemeServiceProvider extends ServiceProvider
         // ThemeRenderer or section renderers. Public pages render through
         // the shared `x-capell::layout` + layout-builder container pipeline
         // instead of this package's own page shell, so
-        // ThemeRegistry::hasRenderer(self::THEME_KEY) is false from here on.
+        // ThemeRegistry::has(self::THEME_KEY) is false from here on.
         $registry->register(definition: self::definition());
     }
 
