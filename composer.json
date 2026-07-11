@@ -5,10 +5,10 @@
     "license": "MIT",
     "require": {
         "php": "^8.4",
-        "capell-app/core": "^0.0.2 || 0.0.x-dev",
-        "capell-app/theme-foundation": "^0.0.2 || 0.0.x-dev",
-        "capell-app/frontend": "^0.0.2 || 0.0.x-dev",
-        "capell-app/layout-builder": "^0.0.2 || 0.0.x-dev"
+        "capell-app/core": "^0.0.1 || 0.0.x-dev",
+        "capell-app/theme-foundation": "^0.0.1 || 0.0.x-dev",
+        "capell-app/frontend": "^0.0.1 || 0.0.x-dev",
+        "capell-app/layout-builder": "^0.0.1 || 0.0.x-dev"
     },
     "require-dev": {
         "pestphp/pest": "^3.0|^4.0",
