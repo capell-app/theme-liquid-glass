@@ -39,6 +39,11 @@ it('defines the Liquid Glass free renderer contract', function (): void {
         ->and($definition->runtime->value)->toBe('blade')
         ->and($definition->extends)->toBe('default')
         ->and($definition->tags)->toContain('Glass')
+        ->and(data_get($definition->frontend, 'editor.groups.identity'))->toBe(['glassDepth'])
+        ->and(data_get($definition->frontend, 'editor.tokens.glassDepth.options'))->toBe(['restrained', 'balanced', 'prismatic'])
+        ->and($definition->presets[0]->values['glassDepth'])->toBe('balanced')
+        ->and($definition->presets[1]->values['glassDepth'])->toBe('prismatic')
+        ->and($definition->presets[2]->values['glassDepth'])->toBe('restrained')
         ->and(ThemeLiquidGlassHealthCheck::compatibleCapellApiVersion())->toBe('^4.0');
 });
 

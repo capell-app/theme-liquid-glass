@@ -66,6 +66,7 @@ class LiquidGlassThemeServiceProvider extends ServiceProvider
                         'headingScale' => 'balanced',
                         'cardDensity' => 'comfortable',
                         'overlayTreatment' => 'subtle',
+                        'glassDepth' => 'balanced',
                     ],
                 ),
                 new ThemePresetData(
@@ -91,6 +92,7 @@ class LiquidGlassThemeServiceProvider extends ServiceProvider
                         'headingScale' => 'expressive',
                         'cardDensity' => 'spacious',
                         'overlayTreatment' => 'subtle',
+                        'glassDepth' => 'prismatic',
                     ],
                 ),
                 new ThemePresetData(
@@ -116,11 +118,15 @@ class LiquidGlassThemeServiceProvider extends ServiceProvider
                         'headingScale' => 'compact',
                         'cardDensity' => 'compact',
                         'overlayTreatment' => 'strong',
+                        'glassDepth' => 'restrained',
                     ],
                 ),
             ],
             frontend: [
-                'editor' => StandardThemeEditorSchema::definition(),
+                'editor' => StandardThemeEditorSchema::withExtraTokens(
+                    groups: ['identity' => ['glassDepth']],
+                    tokens: ['glassDepth' => ['options' => ['restrained', 'balanced', 'prismatic']]],
+                ),
             ],
             assets: ['css' => 'vendor/capell/themes/liquid-glass.css'],
             runtime: FrontendRuntime::Blade,
