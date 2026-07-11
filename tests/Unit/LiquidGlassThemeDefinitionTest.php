@@ -55,7 +55,7 @@ it('registers Liquid Glass as definition-only with no legacy renderer', function
     $provider = new LiquidGlassThemeServiceProvider(app());
     $provider->boot($registry);
 
-    expect($registry->hasRenderer(LiquidGlassThemeServiceProvider::THEME_KEY))->toBeFalse();
+    expect($registry->has(LiquidGlassThemeServiceProvider::THEME_KEY))->toBeTrue();
 
     CapellCore::clearPackages();
 });

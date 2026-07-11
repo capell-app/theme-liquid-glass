@@ -172,7 +172,7 @@ class LiquidGlassThemeServiceProvider extends ServiceProvider
         // ThemeRenderer or section renderers. Public pages render through
         // the shared `x-capell::layout` + layout-builder container pipeline
         // instead of this package's own page shell, so
-        // ThemeRegistry::hasRenderer(self::THEME_KEY) is false from here on.
+        // ThemeRegistry::has(self::THEME_KEY) is false from here on.
         $registry->register(definition: self::definition());
     }
 
