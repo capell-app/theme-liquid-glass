@@ -14,5 +14,5 @@ it('keeps the @php block count within the frozen baseline and static calls white
     // Wave 4c (§D "glassmorphism showcase") added 5 new widget views, raising
     // the count from 12 to 20 (see PhpBlockPolicyTest.php's fleet baseline,
     // updated in the same commit as this one, for the corresponding sum).
-    $this->assertPhpBlockPolicy(__DIR__ . '/../../resources/views', 20, ['Frontend']);
+    $this->assertPhpBlockPolicy(__DIR__ . '/../../resources/views', 19, ['Frontend']);
 });
