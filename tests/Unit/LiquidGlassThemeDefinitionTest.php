@@ -34,7 +34,7 @@ it('defines the Liquid Glass free renderer contract', function (): void {
         ->and($definition->presets[0]->values['glassDepth'])->toBe('balanced')
         ->and($definition->presets[1]->values['glassDepth'])->toBe('prismatic')
         ->and($definition->presets[2]->values['glassDepth'])->toBe('restrained')
-        ->and(ThemeLiquidGlassHealthCheck::compatibleCapellApiVersion())->toBe('^0.0');
+        ->and(ThemeLiquidGlassHealthCheck::compatibleCapellApiVersion())->toBe('^4.0');
 });
 
 it('registers Liquid Glass as definition-only with no legacy renderer', function (): void {
@@ -100,6 +100,11 @@ it('seeds real Layout containers and a page-content Widget through ThemeDemoPage
             'main' => [
                 'widgets' => [
                     ['widget_key' => 'page-content', 'occurrence' => 1],
+                    ['widget_key' => 'liquid-glass-floating-glass-nav-homepage-1', 'occurrence' => 1],
+                    ['widget_key' => 'liquid-glass-layered-depth-hero-homepage-1', 'occurrence' => 1],
+                    ['widget_key' => 'liquid-glass-glass-feature-card-homepage-1', 'occurrence' => 1],
+                    ['widget_key' => 'liquid-glass-translucent-stat-band-homepage-1', 'occurrence' => 1],
+                    ['widget_key' => 'liquid-glass-refraction-grid-homepage-1', 'occurrence' => 1],
                     ['widget_key' => 'liquid-glass-showcase-homepage-1', 'occurrence' => 1],
                     ['widget_key' => 'liquid-glass-presets-homepage-1', 'occurrence' => 1],
                     ['widget_key' => 'liquid-glass-cta-homepage-1', 'occurrence' => 1],
@@ -135,34 +140,52 @@ it('preserves the real, previously-authored section copy per surface for later w
 
     $homepageCopy = $content->sectionCopy('homepage');
 
-    expect($homepageCopy)->toHaveCount(6);
+    expect($homepageCopy)->toHaveCount(11);
 
     $types = array_column($homepageCopy, 'type');
 
-    expect($types)->toBe(['features', 'showcase', 'presets', 'proof', 'content-listing', 'cta']);
+    expect($types)->toBe([
+        'floating-glass-nav',
+        'layered-depth-hero',
+        'glass-feature-card',
+        'translucent-stat-band',
+        'refraction-grid',
+        'features',
+        'showcase',
+        'presets',
+        'proof',
+        'content-listing',
+        'cta',
+    ]);
 
-    $features = $homepageCopy[0];
+    $copyByType = collect($homepageCopy)->keyBy('type');
+
+    $features = $copyByType->get('features');
+    throw_unless(is_array($features), RuntimeException::class, 'Expected homepage feature copy.');
     $featureItems = is_array($features['features'] ?? null) ? $features['features'] : [];
     $firstFeature = is_array($featureItems[0] ?? null) ? $featureItems[0] : [];
 
     expect($features['heading'])->toBe('Surfaces that stay legible through the glass')
         ->and($firstFeature['title'])->toBe('Frosted panels with depth');
 
-    $showcase = $homepageCopy[1];
+    $showcase = $copyByType->get('showcase');
+    throw_unless(is_array($showcase), RuntimeException::class, 'Expected homepage showcase copy.');
     $showcaseItems = is_array($showcase['items'] ?? null) ? $showcase['items'] : [];
     $firstShowcaseItem = is_array($showcaseItems[0] ?? null) ? $showcaseItems[0] : [];
 
     expect($showcase['heading'])->toBe('Teams that ship on the glass')
         ->and($firstShowcaseItem['title'])->toBe('Marlow Studio launch');
 
-    $presets = $homepageCopy[2];
+    $presets = $copyByType->get('presets');
+    throw_unless(is_array($presets), RuntimeException::class, 'Expected homepage preset copy.');
     $presetItems = is_array($presets['presets'] ?? null) ? $presets['presets'] : [];
     $firstPreset = is_array($presetItems[0] ?? null) ? $presetItems[0] : [];
 
     expect($presets['heading'])->toBe('One glass system, three token-driven presets')
         ->and($firstPreset['name'])->toBe('Clarity');
 
-    $proof = $homepageCopy[3];
+    $proof = $copyByType->get('proof');
+    throw_unless(is_array($proof), RuntimeException::class, 'Expected homepage proof copy.');
     $proofItems = is_array($proof['items'] ?? null) ? $proof['items'] : [];
     $firstProofItem = is_array($proofItems[0] ?? null) ? $proofItems[0] : [];
 
