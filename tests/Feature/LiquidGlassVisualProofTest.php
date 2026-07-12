@@ -43,7 +43,7 @@ it('injects real theme tokens and renders seeded content on the real Liquid Glas
 
     [$pageUrl, $title] = layoutNativeThemeCreatePage(LiquidGlassThemeServiceProvider::THEME_KEY, 'Visual Proof');
 
-    expect($registry->hasRenderer(LiquidGlassThemeServiceProvider::THEME_KEY))->toBeFalse();
+    expect($registry->has(LiquidGlassThemeServiceProvider::THEME_KEY))->toBeTrue();
 
     $response = get($pageUrl->full_url);
 
