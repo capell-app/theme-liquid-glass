@@ -194,12 +194,22 @@ it('creates distinctly-keyed cta widgets per surface so copy does not clobber ac
 
     $homepageCta = Widget::query()->firstWhere('key', 'liquid-glass-cta-homepage-1');
     $contactCta = Widget::query()->firstWhere('key', 'liquid-glass-cta-contact-1');
+    $homepageComponents = Widget::query()
+        ->where('key', 'like', 'liquid-glass-%-homepage-%')
+        ->pluck('component');
 
     expect($homepageCta)->toBeInstanceOf(Widget::class)
         ->and($contactCta)->toBeInstanceOf(Widget::class)
         ->and($homepageCta->meta['heading'] ?? null)->toBe('Bring your pages onto the glass')
         ->and($contactCta->meta['heading'] ?? null)->toBe('Bring your pages onto the glass')
-        ->and($homepageCta->getKey())->not->toBe($contactCta->getKey());
+        ->and($homepageCta->getKey())->not->toBe($contactCta->getKey())
+        ->and($homepageComponents)->toContain(
+            WidgetComponentEnum::GlassFeatureCard->value,
+            WidgetComponentEnum::TranslucentStatBand->value,
+            WidgetComponentEnum::LayeredDepthHero->value,
+            WidgetComponentEnum::RefractionGrid->value,
+            WidgetComponentEnum::FloatingGlassNav->value,
+        );
 
     // Both surfaces render the same recovered copy today (see sectionCopy()),
     // but through genuinely distinct Widget rows, not a shared singleton —

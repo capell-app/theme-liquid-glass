@@ -66,6 +66,11 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
         'cta' => WidgetComponentEnum::Cta,
         'showcase' => WidgetComponentEnum::Showcase,
         'presets' => WidgetComponentEnum::Presets,
+        'glass-feature-card' => WidgetComponentEnum::GlassFeatureCard,
+        'translucent-stat-band' => WidgetComponentEnum::TranslucentStatBand,
+        'layered-depth-hero' => WidgetComponentEnum::LayeredDepthHero,
+        'refraction-grid' => WidgetComponentEnum::RefractionGrid,
+        'floating-glass-nav' => WidgetComponentEnum::FloatingGlassNav,
     ];
 
     /**
@@ -106,6 +111,61 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
 
         return match ($surface) {
             'homepage' => [
+                [
+                    'type' => 'floating-glass-nav',
+                    'label' => 'Explore Liquid Glass',
+                    'variant' => 'pill',
+                    'items' => [
+                        ['label' => 'Depth', 'url' => '#depth'],
+                        ['label' => 'Features', 'url' => '#features'],
+                        ['label' => 'Proof', 'url' => '#proof'],
+                    ],
+                ],
+                [
+                    'type' => 'layered-depth-hero',
+                    'eyebrow' => 'Depth, without noise',
+                    'heading' => 'A launch surface with real visual hierarchy',
+                    'summary' => 'Three translucent panes create depth while keeping the content readable and motion optional.',
+                    'variant' => 'layered',
+                    'panes' => [
+                        ['label' => 'Backdrop', 'image' => $media['hero'][0], 'imageAlt' => 'Soft glass backdrop'],
+                        ['label' => 'Product layer', 'image' => $media['detail'][0], 'imageAlt' => 'Product interface through glass'],
+                        ['label' => 'Action layer', 'image' => $media['proof'][0], 'imageAlt' => 'Focused glass action panel'],
+                    ],
+                ],
+                [
+                    'type' => 'glass-feature-card',
+                    'eyebrow' => 'The glass system',
+                    'heading' => 'Distinct surfaces, one readable rhythm',
+                    'variant' => 'standard',
+                    'items' => [
+                        ['eyebrow' => '01', 'title' => 'Layered depth', 'summary' => 'Composed panes establish hierarchy without hiding content.', 'variant' => 'spotlight'],
+                        ['eyebrow' => '02', 'title' => 'Clear actions', 'summary' => 'Warm accent controls remain legible across every preset.'],
+                        ['eyebrow' => '03', 'title' => 'Quiet motion', 'summary' => 'Reduced-motion visitors keep the full static composition.'],
+                    ],
+                ],
+                [
+                    'type' => 'translucent-stat-band',
+                    'eyebrow' => 'Measured clarity',
+                    'heading' => 'Proof that reads through the glass',
+                    'variant' => 'band',
+                    'stats' => [
+                        ['value' => 7, 'label' => 'canonical surfaces'],
+                        ['value' => 3, 'label' => 'curated presets'],
+                        ['value' => 0, 'label' => 'required motion'],
+                    ],
+                ],
+                [
+                    'type' => 'refraction-grid',
+                    'eyebrow' => 'Refraction gallery',
+                    'heading' => 'Media stays recognisable inside the treatment',
+                    'variant' => 'featured',
+                    'tiles' => [
+                        ['title' => 'Launch story', 'summary' => 'A lead image with controlled depth.', 'image' => $media['listing'][0], 'imageAlt' => 'Launch story preview'],
+                        ['title' => 'Product detail', 'summary' => 'Dense information remains crisp.', 'image' => $media['detail'][0], 'imageAlt' => 'Product detail preview'],
+                        ['title' => 'Conversion path', 'summary' => 'Actions retain strong contrast.', 'image' => $media['cta'][0], 'imageAlt' => 'Conversion path preview'],
+                    ],
+                ],
                 $this->featuresSection(),
                 $this->showcaseSection($media),
                 $this->presetsSection(),

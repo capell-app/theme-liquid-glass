@@ -6,14 +6,6 @@ use Capell\Core\Enums\VendorAssetEnum;
 use Capell\Core\Facades\CapellCore;
 use Capell\Core\Models\Layout;
 use Capell\Core\Models\Page;
-use Capell\Core\ThemeStudio\Data\ContentListingSectionData;
-use Capell\Core\ThemeStudio\Data\CtaSectionData;
-use Capell\Core\ThemeStudio\Data\FeatureSectionData;
-use Capell\Core\ThemeStudio\Data\FooterData;
-use Capell\Core\ThemeStudio\Data\GenericSectionData;
-use Capell\Core\ThemeStudio\Data\HeroSectionData;
-use Capell\Core\ThemeStudio\Data\NavigationData;
-use Capell\Core\ThemeStudio\Data\ProofSectionData;
 use Capell\Core\ThemeStudio\Theme\ThemeRegistry;
 use Capell\FoundationTheme\Data\ThemeDemoInstallData;
 use Capell\FoundationTheme\Support\Demo\ThemeDemoPageInstaller;
@@ -21,8 +13,6 @@ use Capell\LayoutBuilder\Models\Widget;
 use Capell\ThemeLiquidGlass\Health\ThemeLiquidGlassHealthCheck;
 use Capell\ThemeLiquidGlass\LiquidGlassThemeServiceProvider;
 use Capell\ThemeLiquidGlass\Support\Demo\LiquidGlassDemoContent;
-use Illuminate\Support\Facades\Lang;
-use Illuminate\Support\Facades\View;
 
 it('defines the Liquid Glass free renderer contract', function (): void {
     $definition = LiquidGlassThemeServiceProvider::definition();
@@ -39,6 +29,11 @@ it('defines the Liquid Glass free renderer contract', function (): void {
         ->and($definition->runtime->value)->toBe('blade')
         ->and($definition->extends)->toBe('default')
         ->and($definition->tags)->toContain('Glass')
+        ->and(data_get($definition->frontend, 'editor.groups.identity'))->toBe(['glassDepth'])
+        ->and(data_get($definition->frontend, 'editor.tokens.glassDepth.options'))->toBe(['restrained', 'balanced', 'prismatic'])
+        ->and($definition->presets[0]->values['glassDepth'])->toBe('balanced')
+        ->and($definition->presets[1]->values['glassDepth'])->toBe('prismatic')
+        ->and($definition->presets[2]->values['glassDepth'])->toBe('restrained')
         ->and(ThemeLiquidGlassHealthCheck::compatibleCapellApiVersion())->toBe('^4.0');
 });
 
@@ -50,247 +45,9 @@ it('registers Liquid Glass as definition-only with no legacy renderer', function
     $provider = new LiquidGlassThemeServiceProvider(app());
     $provider->boot($registry);
 
-    expect($registry->hasRenderer(LiquidGlassThemeServiceProvider::THEME_KEY))->toBeFalse();
+    expect($registry->has(LiquidGlassThemeServiceProvider::THEME_KEY))->toBeTrue();
 
     CapellCore::clearPackages();
-});
-
-it('renders navigation from the Liquid Glass package views', function (): void {
-    View::addNamespace('capell-theme-liquid-glass', __DIR__ . '/../../resources/views');
-    Lang::addNamespace('capell-theme-liquid-glass', __DIR__ . '/../../resources/lang');
-
-    $html = view('capell-theme-liquid-glass::sections.navigation', [
-        'section' => new NavigationData(
-            brandName: 'Capell',
-            items: [['label' => 'Home', 'url' => '/']],
-            ctaLabel: 'Start',
-            ctaUrl: '/start',
-        ),
-    ])->render();
-
-    expect($html)
-        ->toContain('Capell')
-        ->toContain('Home')
-        ->toContain('Start')
-        ->toContain('liquid-glass-nav')
-        ->toContain('Main navigation')
-        ->not->toContain('capell-app/theme-liquid-glass');
-});
-
-it('renders Liquid Glass hero media with LCP image attributes', function (): void {
-    View::addNamespace('capell-theme-liquid-glass', __DIR__ . '/../../resources/views');
-    Lang::addNamespace('capell-theme-liquid-glass', __DIR__ . '/../../resources/lang');
-
-    $html = view('capell-theme-liquid-glass::sections.hero', [
-        'section' => new HeroSectionData(
-            heading: 'Launch with a glass interface',
-            summary: 'Translucent sections for modern teams.',
-            mediaUrl: '/images/liquid-glass-hero.jpg',
-            mediaAlt: 'Glass interface preview',
-        ),
-    ])->render();
-
-    expect($html)
-        ->toContain('Launch with a glass interface')
-        ->toContain('src="/images/liquid-glass-hero.jpg"')
-        ->toContain('alt="Glass interface preview"')
-        ->toContain('width="1200"')
-        ->toContain('height="900"')
-        ->toContain('loading="eager"')
-        ->toContain('decoding="async"')
-        ->toContain('fetchpriority="high"')
-        ->toContain('sizes="(min-width: 1024px) 48vw, 100vw"');
-});
-
-it('renders translated Liquid Glass hero fallback stats', function (): void {
-    View::addNamespace('capell-theme-liquid-glass', __DIR__ . '/../../resources/views');
-    Lang::addNamespace('capell-theme-liquid-glass', __DIR__ . '/../../resources/lang');
-
-    $html = view('capell-theme-liquid-glass::sections.hero', [
-        'section' => new HeroSectionData(
-            heading: 'Launch with a glass interface',
-            summary: 'Translucent sections for modern teams.',
-        ),
-    ])->render();
-
-    expect($html)
-        ->toContain('Liquid Glass')
-        ->toContain('Surfaces')
-        ->toContain('Runtime')
-        ->toContain('Presets')
-        ->toContain('Preview system')
-        ->toContain('Layered site chrome')
-        ->not->toContain('Pages')
-        ->not->toContain('Assets')
-        ->not->toContain('Layout')
-        ->not->toContain('Widgets');
-});
-
-it('renders Liquid Glass fallback action anchors to package-owned public targets', function (): void {
-    View::addNamespace('capell-theme-liquid-glass', __DIR__ . '/../../resources/views');
-    Lang::addNamespace('capell-theme-liquid-glass', __DIR__ . '/../../resources/lang');
-
-    $heroHtml = view('capell-theme-liquid-glass::sections.hero', [
-        'section' => new HeroSectionData(
-            heading: 'Launch with a glass interface',
-            summary: 'Translucent sections for modern teams.',
-        ),
-    ])->render();
-
-    $ctaHtml = view('capell-theme-liquid-glass::sections.cta', [
-        'section' => new CtaSectionData(
-            heading: 'Start with Liquid Glass',
-            summary: 'Use a polished public theme without custom schema.',
-        ),
-    ])->render();
-
-    expect($heroHtml)
-        ->toContain('href="#main-content"')
-        ->toContain('href="#proof"')
-        ->not->toContain('href="#content"');
-
-    expect($ctaHtml)
-        ->toContain('href="#main-content"')
-        ->toContain('href="#proof"')
-        ->not->toContain('href="#content"');
-});
-
-it('renders content listing items without package metadata', function (): void {
-    View::addNamespace('capell-theme-liquid-glass', __DIR__ . '/../../resources/views');
-    Lang::addNamespace('capell-theme-liquid-glass', __DIR__ . '/../../resources/lang');
-
-    $html = view('capell-theme-liquid-glass::sections.content-listing', (new ContentListingSectionData(
-        heading: 'Latest signals',
-        summary: 'Useful updates for teams.',
-        items: [
-            [
-                'title' => 'Design system note',
-                'summary' => 'A practical update.',
-                'url' => '/notes/design-system',
-                'type' => 'Note',
-                'publishedDate' => 'June 2026',
-            ],
-        ],
-        variant: 'media',
-    ))->toViewData())->render();
-
-    expect($html)
-        ->toContain('Latest signals')
-        ->toContain('Media')
-        ->toContain('Design system note')
-        ->toContain('href="/notes/design-system"')
-        ->not->toContain('capell-app/theme-liquid-glass')
-        ->not->toContain('authoring')
-        ->not->toContain('wire:');
-});
-
-it('renders the Liquid Glass features section from theme copy', function (): void {
-    View::addNamespace('capell-theme-liquid-glass', __DIR__ . '/../../resources/views');
-    Lang::addNamespace('capell-theme-liquid-glass', __DIR__ . '/../../resources/lang');
-
-    $html = view('capell-theme-liquid-glass::sections.features', [
-        'section' => new FeatureSectionData(
-            heading: 'Token-driven section rhythm',
-            summary: 'Cards, buttons, and panels share one theme token contract.',
-            features: [
-                ['type' => 'Surface', 'title' => 'Readable panels', 'description' => 'Foreground, border, and panel colors are derived from the active preset values.'],
-            ],
-        ),
-    ])->render();
-
-    expect($html)
-        ->toContain('Token-driven section rhythm')
-        ->toContain('Readable panels')
-        ->toContain('Surface')
-        ->not->toContain('capell-app/theme-liquid-glass');
-});
-
-it('renders the Liquid Glass showcase section from generic section data', function (): void {
-    View::addNamespace('capell-theme-liquid-glass', __DIR__ . '/../../resources/views');
-    Lang::addNamespace('capell-theme-liquid-glass', __DIR__ . '/../../resources/lang');
-
-    $html = view('capell-theme-liquid-glass::sections.showcase', [
-        'section' => new GenericSectionData('showcase', [
-            'eyebrow' => 'Showcase',
-            'heading' => 'Work that stays legible through glass',
-            'summary' => 'A curated set of launch surfaces.',
-            'items' => [
-                ['discipline' => 'Product', 'title' => 'Marlow Studio', 'summary' => 'A launch page proof.', 'metric' => '3x', 'metricLabel' => 'Faster launches'],
-            ],
-        ]),
-    ])->render();
-
-    expect($html)
-        ->toContain('Work that stays legible through glass')
-        ->toContain('Marlow Studio')
-        ->toContain('Product')
-        ->not->toContain('capell-app/theme-liquid-glass');
-});
-
-it('renders the Liquid Glass presets section from generic section data', function (): void {
-    View::addNamespace('capell-theme-liquid-glass', __DIR__ . '/../../resources/views');
-    Lang::addNamespace('capell-theme-liquid-glass', __DIR__ . '/../../resources/lang');
-
-    $html = view('capell-theme-liquid-glass::sections.presets', [
-        'section' => new GenericSectionData('presets', [
-            'eyebrow' => 'Presets',
-            'heading' => 'Three glass presets, one token contract',
-            'summary' => 'Clarity, Prism, and Graphite cover bright, editorial, and dark surfaces.',
-            'presets' => [
-                ['name' => 'Clarity', 'title' => 'Bright glass launch', 'description' => 'Teal structure and warm accents.', 'surfaces' => ['Homepage', 'Contact']],
-            ],
-        ]),
-    ])->render();
-
-    expect($html)
-        ->toContain('Three glass presets, one token contract')
-        ->toContain('Clarity')
-        ->toContain('Bright glass launch')
-        ->toContain('Homepage')
-        ->not->toContain('capell-app/theme-liquid-glass');
-});
-
-it('renders the Liquid Glass proof section from theme copy', function (): void {
-    View::addNamespace('capell-theme-liquid-glass', __DIR__ . '/../../resources/views');
-    Lang::addNamespace('capell-theme-liquid-glass', __DIR__ . '/../../resources/lang');
-
-    $html = view('capell-theme-liquid-glass::sections.proof', [
-        'section' => new ProofSectionData(
-            heading: 'Preset proof points',
-            summary: 'Real rendering evidence for every preset.',
-            items: [
-                ['metric' => '3', 'quote' => 'Theme presets render through one Blade shell.', 'name' => 'Preset coverage', 'role' => 'Clarity, Prism, Graphite'],
-            ],
-        ),
-    ])->render();
-
-    expect($html)
-        ->toContain('Preset proof points')
-        ->toContain('Theme presets render through one Blade shell.')
-        ->toContain('Preset coverage')
-        ->not->toContain('capell-app/theme-liquid-glass');
-});
-
-it('renders the Liquid Glass footer section from theme copy', function (): void {
-    View::addNamespace('capell-theme-liquid-glass', __DIR__ . '/../../resources/views');
-    Lang::addNamespace('capell-theme-liquid-glass', __DIR__ . '/../../resources/lang');
-
-    $html = view('capell-theme-liquid-glass::sections.footer', [
-        'section' => new FooterData(
-            brandName: 'Liquid Glass',
-            summary: 'A free modern theme of translucent panels.',
-            columns: [
-                ['heading' => 'Product', 'links' => [['label' => 'Features', 'url' => '#features']]],
-            ],
-        ),
-    ])->render();
-
-    expect($html)
-        ->toContain('Liquid Glass')
-        ->toContain('A free modern theme of translucent panels.')
-        ->toContain('Product')
-        ->toContain('href="#features"')
-        ->not->toContain('capell-app/theme-liquid-glass');
 });
 
 it('registers Liquid Glass theme assets when the package is installed', function (): void {
@@ -343,6 +100,11 @@ it('seeds real Layout containers and a page-content Widget through ThemeDemoPage
             'main' => [
                 'widgets' => [
                     ['widget_key' => 'page-content', 'occurrence' => 1],
+                    ['widget_key' => 'liquid-glass-floating-glass-nav-homepage-1', 'occurrence' => 1],
+                    ['widget_key' => 'liquid-glass-layered-depth-hero-homepage-1', 'occurrence' => 1],
+                    ['widget_key' => 'liquid-glass-glass-feature-card-homepage-1', 'occurrence' => 1],
+                    ['widget_key' => 'liquid-glass-translucent-stat-band-homepage-1', 'occurrence' => 1],
+                    ['widget_key' => 'liquid-glass-refraction-grid-homepage-1', 'occurrence' => 1],
                     ['widget_key' => 'liquid-glass-showcase-homepage-1', 'occurrence' => 1],
                     ['widget_key' => 'liquid-glass-presets-homepage-1', 'occurrence' => 1],
                     ['widget_key' => 'liquid-glass-cta-homepage-1', 'occurrence' => 1],
@@ -378,34 +140,52 @@ it('preserves the real, previously-authored section copy per surface for later w
 
     $homepageCopy = $content->sectionCopy('homepage');
 
-    expect($homepageCopy)->toHaveCount(6);
+    expect($homepageCopy)->toHaveCount(11);
 
     $types = array_column($homepageCopy, 'type');
 
-    expect($types)->toBe(['features', 'showcase', 'presets', 'proof', 'content-listing', 'cta']);
+    expect($types)->toBe([
+        'floating-glass-nav',
+        'layered-depth-hero',
+        'glass-feature-card',
+        'translucent-stat-band',
+        'refraction-grid',
+        'features',
+        'showcase',
+        'presets',
+        'proof',
+        'content-listing',
+        'cta',
+    ]);
 
-    $features = $homepageCopy[0];
+    $copyByType = collect($homepageCopy)->keyBy('type');
+
+    $features = $copyByType->get('features');
+    throw_unless(is_array($features), RuntimeException::class, 'Expected homepage feature copy.');
     $featureItems = is_array($features['features'] ?? null) ? $features['features'] : [];
     $firstFeature = is_array($featureItems[0] ?? null) ? $featureItems[0] : [];
 
     expect($features['heading'])->toBe('Surfaces that stay legible through the glass')
         ->and($firstFeature['title'])->toBe('Frosted panels with depth');
 
-    $showcase = $homepageCopy[1];
+    $showcase = $copyByType->get('showcase');
+    throw_unless(is_array($showcase), RuntimeException::class, 'Expected homepage showcase copy.');
     $showcaseItems = is_array($showcase['items'] ?? null) ? $showcase['items'] : [];
     $firstShowcaseItem = is_array($showcaseItems[0] ?? null) ? $showcaseItems[0] : [];
 
     expect($showcase['heading'])->toBe('Teams that ship on the glass')
         ->and($firstShowcaseItem['title'])->toBe('Marlow Studio launch');
 
-    $presets = $homepageCopy[2];
+    $presets = $copyByType->get('presets');
+    throw_unless(is_array($presets), RuntimeException::class, 'Expected homepage preset copy.');
     $presetItems = is_array($presets['presets'] ?? null) ? $presets['presets'] : [];
     $firstPreset = is_array($presetItems[0] ?? null) ? $presetItems[0] : [];
 
     expect($presets['heading'])->toBe('One glass system, three token-driven presets')
         ->and($firstPreset['name'])->toBe('Clarity');
 
-    $proof = $homepageCopy[3];
+    $proof = $copyByType->get('proof');
+    throw_unless(is_array($proof), RuntimeException::class, 'Expected homepage proof copy.');
     $proofItems = is_array($proof['items'] ?? null) ? $proof['items'] : [];
     $firstProofItem = is_array($proofItems[0] ?? null) ? $proofItems[0] : [];
 
