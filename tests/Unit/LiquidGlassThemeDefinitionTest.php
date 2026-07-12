@@ -39,7 +39,7 @@ it('defines the Liquid Glass free renderer contract', function (): void {
         ->and($definition->runtime->value)->toBe('blade')
         ->and($definition->extends)->toBe('default')
         ->and($definition->tags)->toContain('Glass')
-        ->and(ThemeLiquidGlassHealthCheck::compatibleCapellApiVersion())->toBe('^0.0');
+        ->and(ThemeLiquidGlassHealthCheck::compatibleCapellApiVersion())->toBe('^4.0');
 });
 
 it('registers Liquid Glass as definition-only with no legacy renderer', function (): void {
