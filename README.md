@@ -29,10 +29,6 @@ Status details:
 
 Screenshot contract: `docs/screenshots.json`.
 
-![Liquid Glass Homepage](docs/screenshots/liquid-glass-homepage.png)
-
-![Liquid Glass Directory](docs/screenshots/liquid-glass-directory.png)
-
 - Liquid Glass Homepage (frontend, required).
 - Liquid Glass Homepage - Tablet (frontend, optional).
 - Liquid Glass Homepage - Mobile (frontend, optional).
