@@ -34,7 +34,7 @@ it('defines the Liquid Glass free renderer contract', function (): void {
         ->and($definition->presets[0]->values['glassDepth'])->toBe('balanced')
         ->and($definition->presets[1]->values['glassDepth'])->toBe('prismatic')
         ->and($definition->presets[2]->values['glassDepth'])->toBe('restrained')
-        ->and(ThemeLiquidGlassHealthCheck::compatibleCapellApiVersion())->toBe('^4.0');
+        ->and(ThemeLiquidGlassHealthCheck::compatibleCapellApiVersion())->toBe('^1.0');
 });
 
 it('registers Liquid Glass as definition-only with no legacy renderer', function (): void {
