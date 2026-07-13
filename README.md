@@ -4,7 +4,7 @@
 
 ## What This Plugin Adds
 
-Theme Liquid Glass is an **Available**, **No schema impact** Capell theme in the **Capell Foundation** product group. It ships as `capell-app/theme-liquid-glass` and extends these surfaces: frontend.
+Theme Liquid Glass is an **Available**, **No schema impact** Capell theme in the **Capell Themes** product group. It ships as `capell-app/theme-liquid-glass` and extends these surfaces: frontend.
 
 Theme Liquid Glass gives Capell sites a free modern glass interface with translucent panels, crisp typography, and warm accent actions. Three presets cover bright product launches, editorial glass pages, and darker graphite surfaces while staying fully driven by Theme Studio tokens. It renders through the shared layout-builder container pipeline, keeps public output cache-safe and editor-free, and adds a polished alternative to the Foundation and Corporate free lanes.
 
@@ -14,7 +14,7 @@ Status details:
 
 - Status: Available
 - Tier: free
-- Bundle: foundation
+- Bundle: themes
 - Composer package: `capell-app/theme-liquid-glass`
 - Namespace: `Capell\ThemeLiquidGlass`
 - Theme key: `liquid-glass`
@@ -28,6 +28,10 @@ Status details:
 ## Screens And Workflow
 
 Screenshot contract: `docs/screenshots.json`.
+
+![Liquid Glass Homepage](docs/screenshots/liquid-glass-homepage.png)
+
+![Liquid Glass Directory](docs/screenshots/liquid-glass-directory.png)
 
 - Liquid Glass Homepage (frontend, required).
 - Liquid Glass Homepage - Tablet (frontend, optional).
