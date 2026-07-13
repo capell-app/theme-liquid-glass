@@ -89,11 +89,13 @@ it('seeds real Layout containers and a page-content Widget through ThemeDemoPage
     $homepage = Page::query()
         ->where('meta->theme_demo->theme_key', LiquidGlassThemeServiceProvider::THEME_KEY)
         ->where('meta->theme_demo->surface', 'homepage')
-        ->first();
+        ->firstOrFail();
 
     expect($homepage)->toBeInstanceOf(Page::class);
 
     $layout = $homepage->layout;
+
+    throw_unless($layout instanceof Layout, RuntimeException::class, 'Expected homepage layout.');
 
     expect($layout)->toBeInstanceOf(Layout::class)
         ->and($layout->containers)->toBe([
@@ -112,23 +114,23 @@ it('seeds real Layout containers and a page-content Widget through ThemeDemoPage
             ],
         ]);
 
-    $widget = Widget::query()->firstWhere('key', 'page-content');
+    $widget = Widget::query()->where('key', 'page-content')->firstOrFail();
 
     expect($widget)->toBeInstanceOf(Widget::class);
 
-    $ctaWidget = Widget::query()->firstWhere('key', 'liquid-glass-cta-homepage-1');
+    $ctaWidget = Widget::query()->where('key', 'liquid-glass-cta-homepage-1')->firstOrFail();
 
     expect($ctaWidget)->toBeInstanceOf(Widget::class)
         ->and($ctaWidget->component)->toBe('capell.widget.liquid-glass.cta')
         ->and($ctaWidget->meta['heading'] ?? null)->toBe('Bring your pages onto the glass');
 
-    $showcaseWidget = Widget::query()->firstWhere('key', 'liquid-glass-showcase-homepage-1');
+    $showcaseWidget = Widget::query()->where('key', 'liquid-glass-showcase-homepage-1')->firstOrFail();
 
     expect($showcaseWidget)->toBeInstanceOf(Widget::class)
         ->and($showcaseWidget->component)->toBe('capell.widget.liquid-glass.showcase')
         ->and($showcaseWidget->meta['heading'] ?? null)->toBe('Teams that ship on the glass');
 
-    $presetsWidget = Widget::query()->firstWhere('key', 'liquid-glass-presets-homepage-1');
+    $presetsWidget = Widget::query()->where('key', 'liquid-glass-presets-homepage-1')->firstOrFail();
 
     expect($presetsWidget)->toBeInstanceOf(Widget::class)
         ->and($presetsWidget->component)->toBe('capell.widget.liquid-glass.presets')
@@ -223,9 +225,12 @@ it('preserves the real, previously-authored hero copy per surface for later widg
         ->and($detailHero['mediaAlt'])->toBe('A launch page rebuilt on the glass section rhythm');
 
     $contactHero = $content->heroCopy('contact');
+    $contactActions = $contactHero['actions'] ?? null;
+
+    throw_unless(is_array($contactActions), RuntimeException::class, 'Expected contact hero actions.');
 
     expect($contactHero['eyebrow'])->toBe('Contact')
-        ->and($contactHero['actions'][0])->toBe(['label' => 'Get in touch', 'url' => 'mailto:studio@liquidglass.example', 'style' => 'primary'])
+        ->and($contactActions[0] ?? null)->toBe(['label' => 'Get in touch', 'url' => 'mailto:studio@liquidglass.example', 'style' => 'primary'])
         ->and($contactHero['mediaAlt'])->toBe('A polished glass lead journey');
 
     $emptyHero = $content->heroCopy('empty');
@@ -235,11 +240,14 @@ it('preserves the real, previously-authored hero copy per surface for later widg
         ->and($emptyHero['summary'])->toBe('Nothing matches the current filter. Clear it to see every card on the glass, or jump straight to the features.');
 
     $notFoundHero = $content->heroCopy('not-found');
+    $notFoundActions = $notFoundHero['actions'] ?? null;
+
+    throw_unless(is_array($notFoundActions), RuntimeException::class, 'Expected not-found hero actions.');
 
     expect($notFoundHero['eyebrow'])->toBe('404')
         ->and($notFoundHero['heading'])->toBe('This page slipped through the glass')
         ->and($notFoundHero['summary'])->toBe('The link is broken or the page has moved. Head back to the features, or start a conversation.')
-        ->and($notFoundHero['actions'][0])->toBe(['label' => 'Back to home', 'url' => '/', 'style' => 'primary']);
+        ->and($notFoundActions[0] ?? null)->toBe(['label' => 'Back to home', 'url' => '/', 'style' => 'primary']);
 
     $ctaHero = $content->heroCopy('cta');
 

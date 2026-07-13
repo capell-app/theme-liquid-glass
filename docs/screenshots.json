@@ -22,8 +22,7 @@
             "waitFor": "#main",
             "colorSchemes": ["light", "dark"],
             "viewport": "desktop",
-            "fullPage": true,
-            "surfaceName": "homepage"
+            "fullPage": true
         },
         {
             "id": "liquid-glass-homepage-tablet",
@@ -42,8 +41,7 @@
             "waitFor": "#main",
             "colorSchemes": ["light", "dark"],
             "viewport": "tablet",
-            "fullPage": true,
-            "surfaceName": "homepage"
+            "fullPage": true
         },
         {
             "id": "liquid-glass-homepage-mobile",
@@ -62,8 +60,7 @@
             "waitFor": "#main",
             "colorSchemes": ["light", "dark"],
             "viewport": "mobile",
-            "fullPage": true,
-            "surfaceName": "homepage"
+            "fullPage": true
         },
         {
             "id": "liquid-glass-directory",
@@ -310,8 +307,7 @@
             "waitFor": "#main",
             "colorSchemes": ["light", "dark"],
             "viewport": "desktop",
-            "fullPage": true,
-            "surfaceName": "not-found"
+            "fullPage": true
         },
         {
             "id": "liquid-glass-not-found-tablet",
@@ -330,8 +326,7 @@
             "waitFor": "#main",
             "colorSchemes": ["light", "dark"],
             "viewport": "tablet",
-            "fullPage": true,
-            "surfaceName": "not-found"
+            "fullPage": true
         },
         {
             "id": "liquid-glass-not-found-mobile",
@@ -350,8 +345,7 @@
             "waitFor": "#main",
             "colorSchemes": ["light", "dark"],
             "viewport": "mobile",
-            "fullPage": true,
-            "surfaceName": "not-found"
+            "fullPage": true
         },
         {
             "id": "liquid-glass-cta",
@@ -370,8 +364,7 @@
             "waitFor": "#main",
             "colorSchemes": ["light", "dark"],
             "viewport": "desktop",
-            "fullPage": true,
-            "surfaceName": "cta"
+            "fullPage": true
         },
         {
             "id": "liquid-glass-cta-tablet",
@@ -390,8 +383,7 @@
             "waitFor": "#main",
             "colorSchemes": ["light", "dark"],
             "viewport": "tablet",
-            "fullPage": true,
-            "surfaceName": "cta"
+            "fullPage": true
         },
         {
             "id": "liquid-glass-cta-mobile",
@@ -410,8 +402,7 @@
             "waitFor": "#main",
             "colorSchemes": ["light", "dark"],
             "viewport": "mobile",
-            "fullPage": true,
-            "surfaceName": "cta"
+            "fullPage": true
         }
     ]
 }
