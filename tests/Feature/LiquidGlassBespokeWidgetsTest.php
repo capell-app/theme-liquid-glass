@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Capell\Core\Facades\CapellCore;
 use Capell\Core\Models\Page;
+use Capell\Core\Models\PageUrl;
 use Capell\Core\Models\Theme;
 use Capell\Core\Support\Renderables\RenderableRegistry;
 use Capell\Core\ThemeStudio\Theme\ThemeRegistry;
@@ -103,8 +104,11 @@ it('renders real header and footer chrome on the seeded homepage through the hea
         ->firstOrFail();
 
     $homepage->loadMissing(['pageUrl.siteDomain', 'translations']);
+    $pageUrl = $homepage->pageUrl;
 
-    $response = get($homepage->pageUrl->full_url);
+    throw_unless($pageUrl instanceof PageUrl, RuntimeException::class, 'Expected the seeded homepage to have a URL.');
+
+    $response = get($pageUrl->full_url);
 
     $response->assertOk();
 
@@ -135,6 +139,8 @@ it('renders each bespoke widget view with real seeded copy and expected content 
     $showcaseSection = collect($homepageCopy)->firstWhere('type', 'showcase');
     $presetsSection = collect($homepageCopy)->firstWhere('type', 'presets');
     $ctaSection = collect($homepageCopy)->firstWhere('type', 'cta');
+
+    throw_unless(is_array($showcaseSection) && is_array($presetsSection) && is_array($ctaSection), RuntimeException::class, 'Expected Liquid Glass bespoke demo sections.');
 
     $ctaWidget = resolve(WidgetCreator::class)->bespokeContentWidget(
         key: 'liquid-glass-cta-render-test-1',
@@ -197,6 +203,8 @@ it('creates distinctly-keyed cta widgets per surface so copy does not clobber ac
     $homepageComponents = Widget::query()
         ->where('key', 'like', 'liquid-glass-%-homepage-%')
         ->pluck('component');
+
+    throw_unless($homepageCta instanceof Widget && $contactCta instanceof Widget, RuntimeException::class, 'Expected distinct seeded CTA widgets.');
 
     expect($homepageCta)->toBeInstanceOf(Widget::class)
         ->and($contactCta)->toBeInstanceOf(Widget::class)
