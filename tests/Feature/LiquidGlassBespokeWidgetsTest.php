@@ -123,6 +123,10 @@ it('renders real header and footer chrome on the seeded homepage through the hea
         ->toContain('<header')
         ->toContain('<footer')
         ->toContain('id="main-content"')
+        ->toContain('liquid-glass-brand')
+        ->toContain('liquid-glass-brand__mark')
+        ->toContain('liquid-glass-footer__home')
+        ->toContain('All rights reserved')
         ->toContain('Liquid Glass Chrome Render Test')
         ->not->toContain('capell-app/theme-liquid-glass')
         ->not->toContain('authoring');

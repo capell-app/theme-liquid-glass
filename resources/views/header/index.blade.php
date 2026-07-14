@@ -26,9 +26,30 @@
     >
         <a
             href="{{ $site?->siteDomain?->url ?? '/' }}"
-            class="text-lg font-black text-(--theme-foreground)"
+            aria-label="{{ __('capell-theme-liquid-glass::generic.home') }}"
+            class="liquid-glass-brand flex min-w-0 items-center gap-3 text-lg font-black text-(--theme-foreground)"
         >
-            {{ $siteTitle }}
+            @if ($site?->logo || $site?->logoInverted)
+                @if ($site?->logoInverted)
+                    <x-capell::logo
+                        :media="$site->logoInverted"
+                        :class="'h-9 max-h-9 w-auto' . ($site?->logo ? ' hidden dark:block' : '')"
+                    />
+                @endif
+
+                @if ($site?->logo)
+                    <x-capell::logo
+                        :media="$site->logo"
+                        :class="'h-9 max-h-9 w-auto' . ($site?->logoInverted ? ' dark:hidden' : '')"
+                    />
+                @endif
+            @else
+                <span
+                    class="liquid-glass-brand__mark"
+                    aria-hidden="true"
+                ></span>
+                <span class="truncate">{{ $siteTitle }}</span>
+            @endif
         </a>
 
         <x-capell::layout.area

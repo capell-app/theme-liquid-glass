@@ -23,15 +23,37 @@
     </h2>
 
     <div class="mx-auto max-w-7xl">
-        <p class="text-2xl font-black text-(--theme-foreground)">
-            {{ $siteTitle }}
-        </p>
+        <div
+            class="grid gap-5 sm:grid-cols-[minmax(0,1fr)_minmax(16rem,0.7fr)] sm:items-end"
+        >
+            <div>
+                <p class="text-2xl font-black text-(--theme-foreground)">
+                    {{ $siteTitle }}
+                </p>
+                <p class="mt-2 max-w-xl text-sm leading-6 text-(--theme-foreground)/65">
+                    {{ __('capell-theme-liquid-glass::generic.footer_tagline') }}
+                </p>
+            </div>
+
+            <a
+                href="{{ $site?->siteDomain?->url ?? '/' }}"
+                class="liquid-glass-footer__home justify-self-start text-sm font-bold text-(--theme-foreground) sm:justify-self-end"
+            >
+                {{ __('capell-theme-liquid-glass::generic.back_home') }}
+            </a>
+        </div>
 
         <div class="mt-8">
             <x-capell::layout.area
                 area="footer"
                 :layout="$layout"
             />
+        </div>
+
+        <div
+            class="mt-10 border-t border-(--theme-foreground)/10 pt-5 text-xs text-(--theme-foreground)/55"
+        >
+            {{ __('capell-theme-liquid-glass::generic.copyright', ['year' => now()->year, 'site' => $siteTitle]) }}
         </div>
     </div>
 </footer>
