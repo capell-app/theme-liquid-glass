@@ -1,0 +1,37 @@
+{
+    "whatThisPluginAdds": {
+        "text": "Theme Liquid Glass adds translucent layers, depth, refraction grids, and floating navigation to Capell page presentation. Capell and Layout Builder retain ownership of the page data.",
+        "evidence": [
+            "src/LiquidGlassThemeServiceProvider.php",
+            "resources/views/widget/layered-depth-hero.blade.php",
+            "resources/views/widget/refraction-grid.blade.php",
+            "resources/views/widget/floating-glass-nav.blade.php"
+        ]
+    },
+    "surfaceOutcome": {
+        "text": "When selected, Layout Builder pages render with the theme's glass-layered visual system while preserving the existing content structure.",
+        "evidence": [
+            "capell.json",
+            "tests/Feature/LiquidGlassBespokeWidgetsTest.php",
+            "tests/Feature/LiquidGlassVisualProofTest.php"
+        ]
+    },
+    "whyItMatters": {
+        "developers": {
+            "text": "Typed widget keys and a layout-native provider connect bespoke presentation to the shared Layout Builder container pipeline.",
+            "evidence": [
+                "src/LiquidGlassThemeServiceProvider.php",
+                "src/Enums/WidgetComponentEnum.php",
+                "tests/Unit/LiquidGlassThemeDefinitionTest.php"
+            ]
+        },
+        "teams": {
+            "text": "Design teams can apply a consistent glass treatment across hero, grid, and navigation sections without relocating content into theme-specific storage.",
+            "evidence": [
+                "resources/views/widget/layered-depth-hero.blade.php",
+                "resources/views/widget/refraction-grid.blade.php",
+                "resources/views/widget/floating-glass-nav.blade.php"
+            ]
+        }
+    }
+}
