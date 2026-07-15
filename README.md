@@ -6,9 +6,11 @@
 
 Theme Liquid Glass is an **Available**, **No schema impact** Capell theme in the **Capell Themes** product group. It ships as `capell-app/theme-liquid-glass` and extends these surfaces: frontend.
 
-Theme Liquid Glass gives Capell sites a free modern glass interface with translucent panels, crisp typography, and warm accent actions. Three presets cover bright product launches, editorial glass pages, and darker graphite surfaces while staying fully driven by Theme Studio tokens. It renders through the shared layout-builder container pipeline, keeps public output cache-safe and editor-free, and adds a polished alternative to the Foundation and Corporate free lanes.
+Theme Liquid Glass adds translucent layers, depth, refraction grids, and floating navigation to Capell page presentation. Capell and Layout Builder retain ownership of the page data.
 
-After install, admins can select the theme through the core theme management surface. Editors keep using normal Capell content workflows while the package controls public presentation.
+When selected, Layout Builder pages render with the theme's glass-layered visual system while preserving the existing content structure.
+
+Evidence: [`src/LiquidGlassThemeServiceProvider.php`](src/LiquidGlassThemeServiceProvider.php), [`resources/views/widget/layered-depth-hero.blade.php`](resources/views/widget/layered-depth-hero.blade.php), [`resources/views/widget/refraction-grid.blade.php`](resources/views/widget/refraction-grid.blade.php), [`resources/views/widget/floating-glass-nav.blade.php`](resources/views/widget/floating-glass-nav.blade.php), [`capell.json`](capell.json), [`tests/Feature/LiquidGlassBespokeWidgetsTest.php`](tests/Feature/LiquidGlassBespokeWidgetsTest.php), [`tests/Feature/LiquidGlassVisualProofTest.php`](tests/Feature/LiquidGlassVisualProofTest.php).
 
 Status details:
 
@@ -21,9 +23,11 @@ Status details:
 
 ## Why It Matters
 
-**For developers:** The package gives developers package-owned service providers, Actions, and Blade views instead of pushing this behaviour into core or application code.
+**For developers:** Typed widget keys and a layout-native provider connect bespoke presentation to the shared Layout Builder container pipeline.
 
-**For teams:** A free glass interface theme for modern Capell sites with translucent panels, sharp content rhythm, and three token-driven presets.
+**For teams:** Design teams can apply a consistent glass treatment across hero, grid, and navigation sections without relocating content into theme-specific storage.
+
+Evidence: [`src/LiquidGlassThemeServiceProvider.php`](src/LiquidGlassThemeServiceProvider.php), [`src/Enums/WidgetComponentEnum.php`](src/Enums/WidgetComponentEnum.php), [`tests/Unit/LiquidGlassThemeDefinitionTest.php`](tests/Unit/LiquidGlassThemeDefinitionTest.php), [`resources/views/widget/layered-depth-hero.blade.php`](resources/views/widget/layered-depth-hero.blade.php), [`resources/views/widget/refraction-grid.blade.php`](resources/views/widget/refraction-grid.blade.php), [`resources/views/widget/floating-glass-nav.blade.php`](resources/views/widget/floating-glass-nav.blade.php).
 
 ## Screens And Workflow
 
@@ -33,27 +37,15 @@ Screenshot contract: `docs/screenshots.json`.
 
 ![Liquid Glass Directory](docs/screenshots/liquid-glass-directory.png)
 
+Desktop, tablet, and mobile variants remain defined in the screenshot contract; this list groups them by workflow.
+
 - Liquid Glass Homepage (frontend, required).
-- Liquid Glass Homepage - Tablet (frontend, optional).
-- Liquid Glass Homepage - Mobile (frontend, optional).
 - Liquid Glass Directory (frontend, required).
-- Liquid Glass Directory - Tablet (frontend, optional).
-- Liquid Glass Directory - Mobile (frontend, optional).
 - Liquid Glass Detail Article (frontend, required).
-- Liquid Glass Detail Article - Tablet (frontend, optional).
-- Liquid Glass Detail Article - Mobile (frontend, optional).
 - Liquid Glass Contact (frontend, required).
-- Liquid Glass Contact - Tablet (frontend, optional).
-- Liquid Glass Contact - Mobile (frontend, optional).
 - Liquid Glass Empty State (frontend, required).
-- Liquid Glass Empty State - Tablet (frontend, optional).
-- Liquid Glass Empty State - Mobile (frontend, optional).
 - Liquid Glass Page Not Found (frontend, optional).
-- Liquid Glass Page Not Found - Tablet (frontend, optional).
-- Liquid Glass Page Not Found - Mobile (frontend, optional).
 - Liquid Glass Call To Action (frontend, optional).
-- Liquid Glass Call To Action - Tablet (frontend, optional).
-- Liquid Glass Call To Action - Mobile (frontend, optional).
 
 ## Technical Shape
 
@@ -72,38 +64,42 @@ This theme has no schema impact. It relies on core Capell site, page, locale, an
 
 ## Install Impact
 
-- Admin navigation: contributes admin extension points through `capell.json`.
+- Required packages: `capell-app/core`, `capell-app/theme-foundation`, `capell-app/frontend`, `capell-app/layout-builder`.
+- Admin navigation: declares `admin-page: ThemeManagementPageContribution`; each Filament page or resource controls its own navigation visibility.
+- Admin/editor extensions: none declared.
 - Permissions: none declared in `capell.json`.
-- Public routes: none detected in package route files.
+- Public routes: none declared.
 - Database changes: no package migrations declared.
+- Config: no package config files.
 - Settings: no package settings declared.
-- Queues or schedules: none detected in standard package paths.
+- Queues or schedules: none declared.
 - Cache tags: `theme-liquid-glass`.
 - Commands: `capell:theme-liquid-glass-demo`.
 
 ## Common Pitfalls
 
+- Keep required Capell packages on compatible v4 releases: `capell-app/core`, `capell-app/theme-foundation`, `capell-app/frontend`, `capell-app/layout-builder`.
 - Keep public Blade and cached HTML free of authoring markers, model IDs, permissions, signed editor URLs, and lazy database queries.
-- Keep `composer.json`, `composer.local.json`, `capell.json`, docs, screenshots, and tests aligned when the package surface changes.
+- Custom write integrations must preserve invalidation for `theme-liquid-glass` cache tags.
 
 ## Troubleshooting
 
 | Symptom | Likely cause | Check | Fix |
 | --- | --- | --- | --- |
 | Package surface is missing after install | Provider or manifest is not loaded | Confirm `capell.json`, package `composer.json`, and provider registration | Reinstall the package, refresh Composer autoload, and clear host caches |
-| Background work does not run | Queue worker or scheduled command is not active | Check package jobs, commands, and host scheduler configuration | Start the queue or scheduler, then run the focused command or package test |
 | Public output leaks unexpected state | Render data, cache variation, or authoring boundary has regressed | Check public Blade, cache tags, and public-output safety tests | Move data loading out of Blade and rerun the package public-output tests |
 
 ## Quick Start
 
 1. Install the package: `composer require capell-app/theme-liquid-glass`.
-2. Run the required setup: `php artisan capell:theme-liquid-glass-demo`.
-3. Verify the package provider is registered and the related frontend, command, or extension point is active.
+2. No package-specific setup command or migrations are declared.
+3. Open the Liquid Glass Homepage and confirm the public output renders without admin state.
 
 ## Next Steps
 
 - [Package docs](docs/README.md)
 - [Overview](docs/overview.md)
+- [Troubleshooting](#troubleshooting)
 - [Screenshot contract](docs/screenshots.json)
 - [Marketplace assets](docs/assets/marketplace/)
 - [Capell content language plan](../../docs/CONTENT_LANGUAGE_PLAN.md)
