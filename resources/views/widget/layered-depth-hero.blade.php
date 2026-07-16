@@ -2,7 +2,7 @@
     layered-depth-hero (Wave 4c signature widget, §D "glassmorphism
     showcase"): a z-depth layered composition — a backdrop pane, a midground
     glass pane, and a foreground glass pane, each carrying a genuinely
-    different `translate`/`scale` resting position so the stack reads as
+    different logical offset and inline size so the stack reads as
     real depth even before anything moves (§0.6 "none/minimal/subtle" tiers:
     a STATIC but composed layout, never an absence of design).
 
@@ -46,6 +46,9 @@
 @endphp
 
 <section
+    @if (filled($widget->getMeta('anchorId')))
+        id="{{ $widget->getMeta('anchorId') }}"
+    @endif
     @class ([
         'layered-depth-hero relative px-5 py-16 sm:px-6 lg:px-8',
         'layered-depth-hero--flat' => $variant === 'flat-fallback',
@@ -81,11 +84,11 @@
                 @endphp
 
                 <div
-                    class="glass-surface layered-depth-hero-pane"
+                    class="layered-depth-hero-pane"
                     style="--layered-depth-hero-pane-index: {{ $depthIndex }}"
                     data-pane-depth="{{ $depthIndex }}"
                 >
-                    @if (filled($paneImage))
+                    @if (filled($paneImage) && $loop->last)
                         <img
                             src="{{ $paneImage }}"
                             alt="{{ data_get($pane, 'imageAlt', '') }}"

@@ -4,10 +4,10 @@ A modern glass look with translucent panels, crisp type, and warm accent buttons
 
 ## How to use it
 
-1. Go to **Appearance > Themes** (or **Settings > Theme**).
-2. Choose **Theme Liquid Glass** and **Activate**.
-3. Open **Theme settings** to set your logo, colours, and fonts, and pick a preset.
-4. **Preview** before making it live.
+1. Open the theme-management extension entry for **Theme Liquid Glass** and activate it for the intended site.
+2. Use the shared Theme Studio editor to choose an available preset and adjust the standard theme controls.
+3. Build the page with the theme's Layout Builder sections.
+4. Preview before making it live.
 
 ## What it adds
 

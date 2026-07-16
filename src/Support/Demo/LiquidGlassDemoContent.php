@@ -123,6 +123,7 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
                 ],
                 [
                     'type' => 'layered-depth-hero',
+                    'anchorId' => 'depth',
                     'eyebrow' => 'Depth, without noise',
                     'heading' => 'A launch surface with real visual hierarchy',
                     'summary' => 'Three translucent panes create depth while keeping the content readable and motion optional.',
@@ -135,6 +136,7 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
                 ],
                 [
                     'type' => 'glass-feature-card',
+                    'anchorId' => 'features',
                     'eyebrow' => 'The glass system',
                     'heading' => 'Distinct surfaces, one readable rhythm',
                     'variant' => 'standard',
@@ -146,6 +148,7 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
                 ],
                 [
                     'type' => 'translucent-stat-band',
+                    'anchorId' => 'proof',
                     'eyebrow' => 'Measured clarity',
                     'heading' => 'Proof that reads through the glass',
                     'variant' => 'band',
@@ -652,14 +655,14 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
             'brandName' => self::BRAND,
             'brand' => self::BRAND,
             'items' => [
-                ['label' => 'Features', 'url' => '#features'],
-                ['label' => 'Proof', 'url' => '#proof'],
-                ['label' => 'Listing', 'url' => '#content-listing'],
-                ['label' => 'Contact', 'url' => '#contact'],
+                ['label' => 'Features', 'url' => '/theme-liquid-glass#features'],
+                ['label' => 'Proof', 'url' => '/theme-liquid-glass#proof'],
+                ['label' => 'Listing', 'url' => '/theme-liquid-glass-directory'],
+                ['label' => 'Contact', 'url' => '/theme-liquid-glass-contact'],
             ],
             'ctaLabel' => 'Get in touch',
-            'ctaUrl' => '#contact',
-            'consultationUrl' => '#contact',
+            'ctaUrl' => '/theme-liquid-glass-contact',
+            'consultationUrl' => '/theme-liquid-glass-contact',
         ];
     }
 
@@ -676,22 +679,22 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
                 [
                     'heading' => 'Product',
                     'links' => [
-                        ['label' => 'Features', 'url' => '#features'],
-                        ['label' => 'Proof', 'url' => '#proof'],
+                        ['label' => 'Features', 'url' => '/theme-liquid-glass#features'],
+                        ['label' => 'Proof', 'url' => '/theme-liquid-glass#proof'],
                     ],
                 ],
                 [
                     'heading' => 'Browse',
                     'links' => [
-                        ['label' => 'Listing', 'url' => '#content-listing'],
-                        ['label' => 'Detail', 'url' => '#content-listing'],
+                        ['label' => 'Listing', 'url' => '/theme-liquid-glass-directory'],
+                        ['label' => 'Detail', 'url' => '/theme-liquid-glass-detail'],
                     ],
                 ],
                 [
                     'heading' => 'Company',
                     'links' => [
-                        ['label' => 'Contact', 'url' => '#contact'],
-                        ['label' => 'Get in touch', 'url' => '#contact'],
+                        ['label' => 'Contact', 'url' => '/theme-liquid-glass-contact'],
+                        ['label' => 'Get in touch', 'url' => '/theme-liquid-glass-contact'],
                     ],
                 ],
             ],
@@ -877,8 +880,8 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
             'heading' => $heading,
             'summary' => $summary,
             'actions' => [
-                ['label' => 'View features', 'url' => '#features', 'style' => 'primary'],
-                ['label' => 'Get in touch', 'url' => '#contact', 'style' => 'secondary'],
+                ['label' => 'View examples', 'url' => '/theme-liquid-glass-directory', 'style' => 'primary'],
+                ['label' => 'Get in touch', 'url' => '/theme-liquid-glass-contact', 'style' => 'secondary'],
             ],
         ];
     }

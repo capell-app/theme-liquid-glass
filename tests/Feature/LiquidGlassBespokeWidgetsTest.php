@@ -354,15 +354,32 @@ it('renders the layered-depth-hero widget with a static resting depth stack and 
         ->toContain('data-pane-depth="0"')
         ->toContain('data-pane-depth="2"')
         ->toContain('data-variant="layered"')
+        ->not->toContain('glass-surface layered-depth-hero-pane')
         ->not->toContain('pointermove')
         ->not->toContain('<script')
         ->not->toContain('capell-app/theme-liquid-glass');
+
+    expect(substr_count($layeredHtml, '<img'))->toBe(1)
+        ->and($layeredHtml)->toContain('Foreground pane');
 
     expect($flatHtml)
         ->toContain('data-variant="flat-fallback"')
         ->toContain('layered-depth-hero--flat');
 
     CapellCore::clearPackages();
+});
+
+it('keeps layered depth pane labels inside the foreground composition', function (): void {
+    $styles = file_get_contents(dirname(__DIR__, 2) . '/resources/css/theme-liquid-glass.css');
+
+    expect($styles)->not->toBeFalse()
+        ->and($styles)->toContain('z-index: calc(10 + var(--layered-depth-hero-pane-index, 0));')
+        ->and($styles)->not->toContain('translate3d(')
+        ->and($styles)->not->toContain('perspective: 1200px;')
+        ->and($styles)->not->toMatch('/\.refraction-grid-tile img\s*\{[^}]*filter:/s')
+        ->and($styles)->toMatch('/\.layered-depth-hero-pane-label\s*\{[^}]*position:\s*absolute;/s')
+        ->and($styles)->toMatch('/\.layered-depth-hero-pane-label\s*\{[^}]*inset-block-end:/s')
+        ->and($styles)->toContain('.layered-depth-hero-pane:last-child .layered-depth-hero-pane-label');
 });
 
 it('renders the refraction-grid widget with backdrop-filter treatment and both variants', function (): void {

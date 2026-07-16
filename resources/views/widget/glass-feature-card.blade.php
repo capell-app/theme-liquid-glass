@@ -26,7 +26,12 @@
     $variant = (string) ($widget->getMeta('variant') ?? 'standard');
 @endphp
 
-<section class="px-5 py-16 sm:px-6 lg:px-8">
+<section
+    @if (filled($widget->getMeta('anchorId')))
+        id="{{ $widget->getMeta('anchorId') }}"
+    @endif
+    class="px-5 py-16 sm:px-6 lg:px-8"
+>
     <div class="mx-auto max-w-7xl">
         <div class="max-w-3xl">
             @if ($eyebrow !== '')

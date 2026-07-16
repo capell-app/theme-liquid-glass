@@ -19,7 +19,7 @@ it('defines the Liquid Glass free renderer contract', function (): void {
 
     expect($definition->package)->toBe('capell-app/theme-liquid-glass')
         ->and($definition->key)->toBe(LiquidGlassThemeServiceProvider::THEME_KEY)
-        ->and($definition->assets)->toBe(['css' => 'vendor/capell/themes/liquid-glass.css'])
+        ->and($definition->assets)->toBe([])
         ->and($definition->presets)->toHaveCount(3)
         ->and($definition->presetOptions())->toBe([
             'clarity' => 'Clarity',
@@ -35,6 +35,27 @@ it('defines the Liquid Glass free renderer contract', function (): void {
         ->and($definition->presets[1]->values['glassDepth'])->toBe('prismatic')
         ->and($definition->presets[2]->values['glassDepth'])->toBe('restrained')
         ->and(ThemeLiquidGlassHealthCheck::compatibleCapellApiVersion())->toBe('^1.0');
+});
+
+it('captures commercial screenshot proof from the real seeded routes', function (): void {
+    $manifest = capell_json_file_array(dirname(__DIR__, 2) . '/docs/screenshots.json');
+    $entries = $manifest['entries'] ?? [];
+
+    expect($entries)->toHaveCount(21);
+
+    foreach ($entries as $entry) {
+        expect($entry)->toBeArray()
+            ->and($entry['url'] ?? null)->toBe($entry['target'] ?? null)
+            ->and($entry['url'] ?? null)->not->toStartWith('/screenshot-fixtures/');
+
+        if (str_starts_with((string) ($entry['id'] ?? ''), 'liquid-glass-homepage')) {
+            expect($entry['interactions'] ?? null)->toBe([
+                ['type' => 'scrollIntoView', 'selector' => '.layered-depth-hero-pane:last-child'],
+                ['type' => 'scrollIntoView', 'selector' => '.refraction-grid'],
+                ['type' => 'scrollIntoView', 'selector' => '.liquid-glass-footer__home'],
+            ]);
+        }
+    }
 });
 
 it('registers Liquid Glass as definition-only with no legacy renderer', function (): void {
@@ -142,7 +163,10 @@ it('preserves the real, previously-authored section copy per surface for later w
 
     $homepageCopy = $content->sectionCopy('homepage');
 
-    expect($homepageCopy)->toHaveCount(11);
+    expect($homepageCopy)->toHaveCount(11)
+        ->and(data_get($homepageCopy, '1.anchorId'))->toBe('depth')
+        ->and(data_get($homepageCopy, '2.anchorId'))->toBe('features')
+        ->and(data_get($homepageCopy, '3.anchorId'))->toBe('proof');
 
     $types = array_column($homepageCopy, 'type');
 

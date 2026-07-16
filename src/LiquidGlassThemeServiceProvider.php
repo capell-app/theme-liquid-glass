@@ -128,7 +128,7 @@ class LiquidGlassThemeServiceProvider extends ServiceProvider
                     tokens: ['glassDepth' => ['options' => ['restrained', 'balanced', 'prismatic']]],
                 ),
             ],
-            assets: ['css' => 'vendor/capell/themes/liquid-glass.css'],
+            assets: [],
             runtime: FrontendRuntime::Blade,
             extends: 'default',
         );

@@ -92,17 +92,17 @@ final class ThemeLiquidGlassHealthCheck implements ChecksExtensionHealth
         $valid = $definition->key === LiquidGlassThemeServiceProvider::THEME_KEY
             && $definition->package === LiquidGlassThemeServiceProvider::$packageName
             && $definition->extends === 'default'
-            && ($definition->assets['css'] ?? null) === 'vendor/capell/themes/liquid-glass.css';
+            && $definition->assets === [];
 
         return new DoctorCheckResultData(
             label: 'Theme Liquid Glass renderer alignment',
             passed: $valid,
             message: $valid
-                ? 'Theme definition, inherited renderer, and CSS asset path are aligned.'
-                : 'Theme definition, inherited renderer, or CSS asset path is misaligned.',
+                ? 'Theme definition, inherited renderer, and split CSS registration are aligned.'
+                : 'Theme definition, inherited renderer, or split CSS registration is misaligned.',
             remediation: $valid
                 ? null
-                : 'Align LiquidGlassThemeServiceProvider::definition(), capell.json, and the published CSS asset path.',
+                : 'Align LiquidGlassThemeServiceProvider::definition(), capell.json, and the registered split CSS asset.',
         );
     }
 
