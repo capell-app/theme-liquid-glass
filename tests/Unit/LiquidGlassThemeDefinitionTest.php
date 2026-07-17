@@ -40,15 +40,20 @@ it('defines the Liquid Glass free renderer contract', function (): void {
 it('captures commercial screenshot proof from the real seeded routes', function (): void {
     $manifest = capell_json_file_array(dirname(__DIR__, 2) . '/docs/screenshots.json');
     $entries = $manifest['entries'] ?? [];
+    throw_unless(is_array($entries), RuntimeException::class, 'Expected screenshot entries to be an array.');
 
     expect($entries)->toHaveCount(21);
 
     foreach ($entries as $entry) {
+        throw_unless(is_array($entry), RuntimeException::class, 'Expected each screenshot entry to be an array.');
+
         expect($entry)->toBeArray()
             ->and($entry['url'] ?? null)->toBe($entry['target'] ?? null)
             ->and($entry['url'] ?? null)->not->toStartWith('/screenshot-fixtures/');
 
-        if (str_starts_with((string) ($entry['id'] ?? ''), 'liquid-glass-homepage')) {
+        $entryId = $entry['id'] ?? null;
+
+        if (is_string($entryId) && str_starts_with($entryId, 'liquid-glass-homepage')) {
             expect($entry['interactions'] ?? null)->toBe([
                 ['type' => 'scrollIntoView', 'selector' => '.layered-depth-hero-pane:last-child'],
                 ['type' => 'scrollIntoView', 'selector' => '.refraction-grid'],
