@@ -6,6 +6,7 @@ use Capell\Core\Enums\VendorAssetEnum;
 use Capell\Core\Facades\CapellCore;
 use Capell\Core\Models\Layout;
 use Capell\Core\Models\Page;
+use Capell\Core\ThemeStudio\Data\ThemeFrontendBuildAssetsData;
 use Capell\Core\ThemeStudio\Theme\ThemeRegistry;
 use Capell\FoundationTheme\Data\ThemeDemoInstallData;
 use Capell\FoundationTheme\Support\Demo\ThemeDemoPageInstaller;
@@ -20,6 +21,10 @@ it('defines the Liquid Glass free renderer contract', function (): void {
     expect($definition->package)->toBe('capell-app/theme-liquid-glass')
         ->and($definition->key)->toBe(LiquidGlassThemeServiceProvider::THEME_KEY)
         ->and($definition->assets)->toBe([])
+        ->and($definition->frontendBuildAssets())->toBeInstanceOf(ThemeFrontendBuildAssetsData::class)
+        ->and($definition->frontendBuildAssets()?->cssSource)->toBe('resources/css/theme-liquid-glass.css')
+        ->and($definition->frontendBuildAssets()?->cssBuildInput)->toBe('resources/css/capell/themes/liquid-glass.css')
+        ->and($definition->frontendBuildAssets()?->condition)->toBe('theme-css:liquid-glass')
         ->and($definition->presets)->toHaveCount(3)
         ->and($definition->presetOptions())->toBe([
             'clarity' => 'Clarity',

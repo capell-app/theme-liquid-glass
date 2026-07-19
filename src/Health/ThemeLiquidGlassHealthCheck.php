@@ -92,7 +92,9 @@ final class ThemeLiquidGlassHealthCheck implements ChecksExtensionHealth
         $valid = $definition->key === LiquidGlassThemeServiceProvider::THEME_KEY
             && $definition->package === LiquidGlassThemeServiceProvider::$packageName
             && $definition->extends === 'default'
-            && $definition->assets === [];
+            && $definition->assets === []
+            && $definition->frontendBuildAssets()?->cssSource === 'resources/css/theme-liquid-glass.css'
+            && $definition->frontendBuildAssets()?->cssBuildInput === 'resources/css/capell/themes/liquid-glass.css';
 
         return new DoctorCheckResultData(
             label: 'Theme Liquid Glass renderer alignment',

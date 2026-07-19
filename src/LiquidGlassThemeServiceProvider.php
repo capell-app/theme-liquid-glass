@@ -12,6 +12,7 @@ use Capell\Core\Facades\CapellCore;
 use Capell\Core\Models\Theme;
 use Capell\Core\Support\Renderables\RenderableRegistry;
 use Capell\Core\ThemeStudio\Data\ThemeDefinitionData;
+use Capell\Core\ThemeStudio\Data\ThemeFrontendBuildAssetsData;
 use Capell\Core\ThemeStudio\Data\ThemePresetData;
 use Capell\Core\ThemeStudio\Theme\ThemeRegistry;
 use Capell\FoundationTheme\Support\Editor\StandardThemeEditorSchema;
@@ -27,6 +28,12 @@ class LiquidGlassThemeServiceProvider extends ServiceProvider
     use RegistersLayoutNativeThemeDefaults;
 
     public const string THEME_KEY = 'liquid-glass';
+
+    public const string CSS_SOURCE = 'resources/css/theme-liquid-glass.css';
+
+    public const string CSS_BUILD_INPUT = 'resources/css/capell/themes/liquid-glass.css';
+
+    public const string CSS_CONDITION = 'theme-css:liquid-glass';
 
     public const string PUBLIC_PREVIEW_IMAGE = '/vendor/capell/themes/liquid-glass.svg';
 
@@ -127,6 +134,11 @@ class LiquidGlassThemeServiceProvider extends ServiceProvider
                     groups: ['identity' => ['glassDepth']],
                     tokens: ['glassDepth' => ['options' => ['restrained', 'balanced', 'prismatic']]],
                 ),
+                'assets' => new ThemeFrontendBuildAssetsData(
+                    cssSource: self::CSS_SOURCE,
+                    cssBuildInput: self::CSS_BUILD_INPUT,
+                    condition: self::CSS_CONDITION,
+                ),
             ],
             assets: [],
             runtime: FrontendRuntime::Blade,
@@ -181,9 +193,9 @@ class LiquidGlassThemeServiceProvider extends ServiceProvider
         CapellCore::registerVendorAsset(
             new VendorAssetData(
                 type: VendorAssetEnum::TailwindImport,
-                value: 'resources/css/theme-liquid-glass.css',
+                value: self::CSS_SOURCE,
                 packageName: self::$packageName,
-                condition: 'theme-css:liquid-glass',
+                condition: self::CSS_CONDITION,
             ),
         );
 
