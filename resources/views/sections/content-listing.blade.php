@@ -25,9 +25,7 @@
                 </div>
 
                 @if ($summary)
-                    <p
-                        class="text-lg leading-8 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_72%,transparent)]"
-                    >
+                    <p class="text-lg leading-8 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_72%,transparent)]">
                         {{ $summary }}
                     </p>
                 @endif
@@ -49,7 +47,7 @@
                                 />
                             @endif
 
-                            <div @class (['pt-5' => ! empty($item['image'])])>
+                            <div @class(['pt-5' => ! empty($item['image'])])>
                                 <div
                                     class="flex flex-wrap gap-2 text-xs font-bold tracking-wide text-[color-mix(in_srgb,var(--liquid-glass-foreground)_58%,transparent)] uppercase"
                                 >
@@ -82,9 +80,7 @@
                                 </h3>
 
                                 @if (! empty($item['summary']))
-                                    <p
-                                        class="mt-4 text-sm leading-7 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_70%,transparent)]"
-                                    >
+                                    <p class="mt-4 text-sm leading-7 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_70%,transparent)]">
                                         {{ $item['summary'] }}
                                     </p>
                                 @endif
@@ -94,12 +90,8 @@
                 </div>
             @else
                 <div class="liquid-glass-card mt-10">
-                    <p class="text-lg font-bold">
-                        {{ __('capell-theme-liquid-glass::generic.listing_empty_title') }}
-                    </p>
-                    <p
-                        class="mt-2 text-sm leading-7 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_70%,transparent)]"
-                    >
+                    <p class="text-lg font-bold">{{ __('capell-theme-liquid-glass::generic.listing_empty_title') }}</p>
+                    <p class="mt-2 text-sm leading-7 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_70%,transparent)]">
                         {{ __('capell-theme-liquid-glass::generic.listing_empty_summary') }}
                     </p>
                 </div>

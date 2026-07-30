@@ -14,9 +14,7 @@
                 {{ $section->heading }}
             </h2>
             @if ($section->summary)
-                <p
-                    class="mt-5 text-lg leading-8 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_72%,transparent)]"
-                >
+                <p class="mt-5 text-lg leading-8 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_72%,transparent)]">
                     {{ $section->summary }}
                 </p>
             @endif
@@ -38,23 +36,17 @@
                     @endif
 
                     <div class="p-6">
-                        <p
-                            class="text-sm font-bold tracking-wide text-[var(--theme-primary)] uppercase"
-                        >
+                        <p class="text-sm font-bold tracking-wide text-[var(--theme-primary)] uppercase">
                             {{ $item['discipline'] ?? '' }}
                         </p>
                         <h3 class="mt-3 text-2xl leading-tight font-black">
                             {{ $item['title'] ?? '' }}
                         </h3>
-                        <p
-                            class="mt-4 text-sm leading-7 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_70%,transparent)]"
-                        >
+                        <p class="mt-4 text-sm leading-7 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_70%,transparent)]">
                             {{ $item['summary'] ?? '' }}
                         </p>
                         @if (! empty($item['metric']))
-                            <p
-                                class="mt-5 text-3xl font-black text-[var(--theme-primary)]"
-                            >
+                            <p class="mt-5 text-3xl font-black text-[var(--theme-primary)]">
                                 {{ $item['metric'] }}
                                 <span
                                     class="block text-xs font-bold tracking-wide text-[color-mix(in_srgb,var(--liquid-glass-foreground)_56%,transparent)] uppercase"

@@ -24,7 +24,7 @@
 @endphp
 
 <nav
-    @class ([
+    @class([
         'glass-surface floating-glass-nav sticky top-4 z-10 mx-auto flex w-fit items-center gap-1 border border-(--theme-foreground)/10 bg-(--theme-surface)/75 px-2 py-2',
         'floating-glass-nav--bar w-full justify-start' => $variant === 'bar',
     ])

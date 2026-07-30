@@ -49,7 +49,7 @@
     @if (filled($widget->getMeta('anchorId')))
         id="{{ $widget->getMeta('anchorId') }}"
     @endif
-    @class ([
+    @class([
         'layered-depth-hero relative px-5 py-16 sm:px-6 lg:px-8',
         'layered-depth-hero--flat' => $variant === 'flat-fallback',
     ])
@@ -58,9 +58,7 @@
     <div class="relative mx-auto max-w-7xl">
         <div class="max-w-3xl">
             @if ($eyebrow !== '')
-                <p class="text-xs font-black tracking-[0.08em] text-(--theme-primary) uppercase">
-                    {{ $eyebrow }}
-                </p>
+                <p class="text-xs font-black tracking-[0.08em] text-(--theme-primary) uppercase">{{ $eyebrow }}</p>
             @endif
 
             <h2
@@ -70,9 +68,7 @@
             </h2>
 
             @if ($summary)
-                <p class="mt-5 text-lg leading-8 text-(--theme-foreground)/75">
-                    {{ $summary }}
-                </p>
+                <p class="mt-5 text-lg leading-8 text-(--theme-foreground)/75">{{ $summary }}</p>
             @endif
         </div>
 
@@ -101,9 +97,7 @@
                     @endif
 
                     @if (filled(data_get($pane, 'label')))
-                        <p class="layered-depth-hero-pane-label">
-                            {{ data_get($pane, 'label') }}
-                        </p>
+                        <p class="layered-depth-hero-pane-label">{{ data_get($pane, 'label') }}</p>
                     @endif
                 </div>
             @endforeach

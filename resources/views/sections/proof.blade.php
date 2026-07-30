@@ -30,9 +30,7 @@
     <div class="mx-auto max-w-7xl">
         <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
             <div>
-                <p class="liquid-glass-eyebrow">
-                    {{ __('capell-theme-liquid-glass::generic.proof_eyebrow') }}
-                </p>
+                <p class="liquid-glass-eyebrow">{{ __('capell-theme-liquid-glass::generic.proof_eyebrow') }}</p>
                 <h2
                     class="mt-4 text-4xl leading-tight font-black text-balance sm:text-5xl"
                 >
@@ -40,9 +38,7 @@
                 </h2>
             </div>
             @if ($section->summary)
-                <p
-                    class="text-lg leading-8 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_72%,transparent)]"
-                >
+                <p class="text-lg leading-8 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_72%,transparent)]">
                     {{ $section->summary }}
                 </p>
             @endif

@@ -35,9 +35,7 @@
     <div class="mx-auto max-w-7xl">
         <div class="max-w-3xl">
             @if ($eyebrow !== '')
-                <p class="text-xs font-black tracking-[0.08em] text-(--theme-primary) uppercase">
-                    {{ $eyebrow }}
-                </p>
+                <p class="text-xs font-black tracking-[0.08em] text-(--theme-primary) uppercase">{{ $eyebrow }}</p>
             @endif
 
             <h2
@@ -47,9 +45,7 @@
             </h2>
 
             @if ($summary)
-                <p class="mt-5 text-lg leading-8 text-(--theme-foreground)/75">
-                    {{ $summary }}
-                </p>
+                <p class="mt-5 text-lg leading-8 text-(--theme-foreground)/75">{{ $summary }}</p>
             @endif
         </div>
 
@@ -60,7 +56,7 @@
                 @endphp
 
                 <article
-                    @class ([
+                    @class([
                         'glass-surface glass-surface-card glass-feature-card overflow-hidden border border-(--theme-foreground)/10 bg-(--theme-surface)/80',
                         'glass-feature-card--spotlight' => $cardVariant === 'spotlight',
                     ])

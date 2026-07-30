@@ -7,9 +7,7 @@
         <div>
             <p class="text-2xl font-black">{{ $section->brandName }}</p>
             @if ($section->summary)
-                <p
-                    class="mt-3 max-w-sm text-sm leading-7 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_68%,transparent)]"
-                >
+                <p class="mt-3 max-w-sm text-sm leading-7 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_68%,transparent)]">
                     {{ $section->summary }}
                 </p>
             @endif

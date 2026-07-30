@@ -27,9 +27,7 @@
             class="grid gap-5 sm:grid-cols-[minmax(0,1fr)_minmax(16rem,0.7fr)] sm:items-end"
         >
             <div>
-                <p class="text-2xl font-black text-(--theme-foreground)">
-                    {{ $siteTitle }}
-                </p>
+                <p class="text-2xl font-black text-(--theme-foreground)">{{ $siteTitle }}</p>
                 <p class="mt-2 max-w-xl text-sm leading-6 text-(--theme-foreground)/65">
                     {{ __('capell-theme-liquid-glass::generic.footer_tagline') }}
                 </p>

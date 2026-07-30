@@ -37,9 +37,7 @@
             </h1>
 
             @if ($section->summary)
-                <p
-                    class="mt-6 max-w-2xl text-lg leading-8 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_76%,transparent)] sm:text-xl"
-                >
+                <p class="mt-6 max-w-2xl text-lg leading-8 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_76%,transparent)] sm:text-xl">
                     {{ $section->summary }}
                 </p>
             @endif
@@ -48,7 +46,7 @@
                 @foreach ($actions as $action)
                     <a
                         href="{{ $action['url'] }}"
-                        @class ([
+                        @class([
                             'liquid-glass-button' => ($action['style'] ?? 'primary') === 'primary',
                             'liquid-glass-button-secondary' => ($action['style'] ?? 'primary') !== 'primary',
                         ])
@@ -91,9 +89,7 @@
                 <div class="liquid-glass-panel liquid-glass-preview p-5 sm:p-7">
                     <div class="flex items-center justify-between gap-4">
                         <div>
-                            <p
-                                class="text-sm font-bold tracking-wide text-[var(--theme-primary)] uppercase"
-                            >
+                            <p class="text-sm font-bold tracking-wide text-[var(--theme-primary)] uppercase">
                                 {{ __('capell-theme-liquid-glass::generic.preview_label') }}
                             </p>
                             <p class="mt-2 text-2xl font-black">
@@ -107,10 +103,10 @@
 
                     <div class="mt-8 grid gap-4">
                         @foreach ([
-                                      __('capell-theme-liquid-glass::generic.preview_layer_content'),
-                                      __('capell-theme-liquid-glass::generic.preview_layer_navigation'),
-                                      __('capell-theme-liquid-glass::generic.preview_layer_conversion'),
-                                  ] as $layer)
+                            __('capell-theme-liquid-glass::generic.preview_layer_content'),
+                            __('capell-theme-liquid-glass::generic.preview_layer_navigation'),
+                            __('capell-theme-liquid-glass::generic.preview_layer_conversion'),
+                        ] as $layer)
                             <div class="liquid-glass-layer">
                                 <span>{{ $layer }}</span>
                                 <span>

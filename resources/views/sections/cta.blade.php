@@ -19,9 +19,7 @@
                 {{ $section->heading }}
             </h2>
             @if ($section->summary)
-                <p
-                    class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_74%,transparent)]"
-                >
+                <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_74%,transparent)]">
                     {{ $section->summary }}
                 </p>
             @endif
@@ -30,7 +28,7 @@
                 @foreach ($actions as $action)
                     <a
                         href="{{ $action['url'] }}"
-                        @class ([
+                        @class([
                             'liquid-glass-button' => ($action['style'] ?? 'primary') === 'primary',
                             'liquid-glass-button-secondary' => ($action['style'] ?? 'primary') !== 'primary',
                         ])

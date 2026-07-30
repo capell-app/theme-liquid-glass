@@ -25,9 +25,7 @@
     <div class="mx-auto max-w-7xl">
         <div class="max-w-3xl">
             @if ($eyebrow !== '')
-                <p class="text-xs font-black tracking-[0.08em] text-(--theme-primary) uppercase">
-                    {{ $eyebrow }}
-                </p>
+                <p class="text-xs font-black tracking-[0.08em] text-(--theme-primary) uppercase">{{ $eyebrow }}</p>
             @endif
 
             <h2
@@ -37,14 +35,12 @@
             </h2>
 
             @if ($summary)
-                <p class="mt-5 text-lg leading-8 text-(--theme-foreground)/75">
-                    {{ $summary }}
-                </p>
+                <p class="mt-5 text-lg leading-8 text-(--theme-foreground)/75">{{ $summary }}</p>
             @endif
         </div>
 
         <div
-            @class ([
+            @class([
                 'refraction-grid mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3',
                 'refraction-grid--featured' => $variant === 'featured',
             ])
@@ -52,10 +48,10 @@
         >
             @foreach ($tiles as $tile)
                 <article
-                    @class ([
-                        'refraction-grid-tile relative overflow-hidden border border-(--theme-foreground)/10',
-                        'refraction-grid-tile--lead' => $variant === 'featured' && $loop->first,
-                    ])
+                    @class([
+                    'refraction-grid-tile relative overflow-hidden border border-(--theme-foreground)/10',
+                    'refraction-grid-tile--lead' => $variant === 'featured' && $loop->first,
+                ])
                 >
                     @if (filled(data_get($tile, 'image')))
                         <img

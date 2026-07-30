@@ -9,11 +9,7 @@
     <div class="mx-auto max-w-7xl">
         <div class="max-w-3xl">
             @if ($eyebrow !== '')
-                <p
-                    class="text-xs font-black tracking-[0.08em] text-(--theme-primary) uppercase"
-                >
-                    {{ $eyebrow }}
-                </p>
+                <p class="text-xs font-black tracking-[0.08em] text-(--theme-primary) uppercase">{{ $eyebrow }}</p>
             @endif
 
             <h2
@@ -23,9 +19,7 @@
             </h2>
 
             @if ($summary)
-                <p class="mt-5 text-lg leading-8 text-(--theme-foreground)/75">
-                    {{ $summary }}
-                </p>
+                <p class="mt-5 text-lg leading-8 text-(--theme-foreground)/75">{{ $summary }}</p>
             @endif
         </div>
 
@@ -47,9 +41,7 @@
                     @endif
 
                     <div class="glass-surface-body">
-                        <p
-                            class="text-sm font-bold tracking-wide text-(--theme-primary) uppercase"
-                        >
+                        <p class="text-sm font-bold tracking-wide text-(--theme-primary) uppercase">
                             {{ $item['discipline'] ?? '' }}
                         </p>
                         <h3
@@ -57,9 +49,7 @@
                         >
                             {{ $item['title'] ?? '' }}
                         </h3>
-                        <p class="mt-4 text-sm leading-7 text-(--theme-foreground)/70">
-                            {{ $item['summary'] ?? '' }}
-                        </p>
+                        <p class="mt-4 text-sm leading-7 text-(--theme-foreground)/70">{{ $item['summary'] ?? '' }}</p>
                         @if (! empty($item['metric']))
                             <p class="mt-5 text-3xl font-black text-(--theme-primary)">
                                 {{ $item['metric'] }}

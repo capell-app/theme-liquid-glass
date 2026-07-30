@@ -16,9 +16,7 @@
         <div
             class="glass-surface glass-surface-card bg-linear-to-br from-(--theme-primary)/18 to-(--theme-accent)/14 text-center"
         >
-            <p
-                class="inline-flex items-center justify-center text-xs font-black tracking-[0.08em] text-(--theme-primary) uppercase"
-            >
+            <p class="inline-flex items-center justify-center text-xs font-black tracking-[0.08em] text-(--theme-primary) uppercase">
                 {{ __('capell-theme-liquid-glass::generic.cta_eyebrow') }}
             </p>
 
@@ -29,18 +27,14 @@
             </h2>
 
             @if ($summary)
-                <p
-                    class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-(--theme-foreground)/75"
-                >
-                    {{ $summary }}
-                </p>
+                <p class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-(--theme-foreground)/75">{{ $summary }}</p>
             @endif
 
             <div class="mt-8 flex flex-wrap justify-center gap-3">
                 @foreach ($actions as $action)
                     <a
                         href="{{ $action['url'] ?? '#' }}"
-                        @class ([
+                        @class([
                             'inline-flex min-h-11 items-center justify-center rounded-full px-5 py-3 text-sm font-black' => true,
                             'bg-(--theme-primary) text-white shadow-lg shadow-(--theme-primary)/25' => ($action['style'] ?? 'primary') === 'primary',
                             'border border-(--theme-foreground)/15 bg-(--theme-surface)/70 text-(--theme-foreground)' => ($action['style'] ?? 'primary') !== 'primary',

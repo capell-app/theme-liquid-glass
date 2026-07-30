@@ -26,18 +26,14 @@
 >
     <div class="mx-auto max-w-7xl">
         <div class="max-w-3xl">
-            <p class="liquid-glass-eyebrow">
-                {{ __('capell-theme-liquid-glass::generic.features_eyebrow') }}
-            </p>
+            <p class="liquid-glass-eyebrow">{{ __('capell-theme-liquid-glass::generic.features_eyebrow') }}</p>
             <h2
                 class="mt-4 text-4xl leading-tight font-black text-balance sm:text-5xl"
             >
                 {{ $section->heading }}
             </h2>
             @if ($section->summary)
-                <p
-                    class="mt-5 text-lg leading-8 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_72%,transparent)]"
-                >
+                <p class="mt-5 text-lg leading-8 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_72%,transparent)]">
                     {{ $section->summary }}
                 </p>
             @endif
@@ -52,9 +48,7 @@
                     <h3 class="mt-5 text-2xl leading-tight font-black">
                         {{ $feature['title'] }}
                     </h3>
-                    <p
-                        class="mt-4 text-sm leading-7 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_70%,transparent)]"
-                    >
+                    <p class="mt-4 text-sm leading-7 text-[color-mix(in_srgb,var(--liquid-glass-foreground)_70%,transparent)]">
                         {{ $feature['description'] }}
                     </p>
 
