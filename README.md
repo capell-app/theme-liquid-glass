@@ -39,13 +39,13 @@ Screenshot contract: `docs/screenshots.json`.
 
 Desktop, tablet, and mobile variants remain defined in the screenshot contract; this list groups them by workflow.
 
-- Liquid Glass Homepage (frontend, required).
-- Liquid Glass Directory (frontend, required).
-- Liquid Glass Detail Article (frontend, required).
-- Liquid Glass Contact (frontend, required).
-- Liquid Glass Empty State (frontend, required).
-- Liquid Glass Page Not Found (frontend, optional).
-- Liquid Glass Call To Action (frontend, optional).
+- Liquid Glass Homepage (frontend, required evidence).
+- Liquid Glass Directory (frontend, required evidence).
+- Liquid Glass Detail Article (frontend, required evidence).
+- Liquid Glass Contact (frontend, required evidence).
+- Liquid Glass Empty State (frontend, required evidence).
+- Liquid Glass Page Not Found (frontend, supplementary evidence).
+- Liquid Glass Call To Action (frontend, supplementary evidence).
 
 ## Technical Shape
 
@@ -93,7 +93,7 @@ This theme has no schema impact. It relies on core Capell site, page, locale, an
 
 1. Install the package: `composer require capell-app/theme-liquid-glass`.
 2. No package-specific setup command or migrations are declared.
-3. Open the Liquid Glass Homepage and confirm the public output renders without admin state.
+3. Open `/theme-liquid-glass` and confirm the public output renders without admin state.
 
 ## Next Steps
 
