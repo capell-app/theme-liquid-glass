@@ -1,9 +1,10 @@
 {{--
     refraction-grid (Wave 4c signature widget, §D "glassmorphism showcase"):
     a grid whose tiles carry a refraction/distortion visual treatment,
-    achieved with `backdrop-filter: blur() saturate()` plus a subtle
-    `filter: blur() saturate()` combination on the tile's own background
-    layer (see `.refraction-grid-tile` in
+    achieved with a denser translucent surface and layered border treatment.
+    Tiles deliberately do not use per-item `backdrop-filter`: a CMS author can
+    add an arbitrary number of them, so the glass depth lives on bounded
+    standalone surfaces instead (see `.refraction-grid-tile` in
     `resources/css/theme-liquid-glass.css`) — no WebGL/canvas, per §D.
 
     Variant contract (see glass-feature-card.blade.php's docblock for why

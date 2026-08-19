@@ -24,12 +24,13 @@
  * fixture in `ThemeEditorSchemaConsumptionTest` /
  * `ThemeTokenConsumptionTest` (theme-foundation).
  *
- * Two classes back the glass idiom: `.glass-surface` is the shared
- * backdrop-filter blur/saturation effect (applied to header/footer chrome
- * AND widget cards alike), while `.glass-surface-card` layers card-shaped
- * defaults (radius, padding, scrim, heading size) on top of it for the
- * CTA/presets/showcase widget cards only — header/footer intentionally omit
- * `.glass-surface-card` so they keep the blur but not the card shape.
+ * Two classes back the glass idiom: `.glass-surface` is the bounded
+ * backdrop-filter treatment for standalone content surfaces, while
+ * `.glass-surface-card` layers card-shaped defaults (radius, padding, scrim,
+ * heading size) on top of it. Header/footer chrome deliberately uses the
+ * opaque `.liquid-glass-chrome` surface instead: the shared Foundation
+ * navigation may already provide its own lightweight blur, so a second theme
+ * blur there costs compositing work without improving legibility.
  *
  * What remains is genuinely inexpressible as Tailwind utility classes:
  *
@@ -58,24 +59,22 @@
 
 @layer components {
     /*
-     * Shared backdrop-filter glass-effect stack ONLY — blur/saturation plus
-     * the non-supporting-browser fallback. Applied via `class="glass-surface"`
-     * alongside Tailwind utilities (e.g. `bg-(--theme-surface)/70 backdrop-blur-lg`)
-     * on EVERY translucent panel in the theme: header/footer chrome
-     * (`resources/views/header/index.blade.php`, `resources/views/footer.blade.php`)
-     * as well as widget cards (see `.glass-surface-card` below). See file
-     * header, point 1.
+     * Bounded backdrop-filter treatment for standalone content surfaces only.
+     * Applied via `class="glass-surface"` to widget cards and the compact
+     * floating navigation; header/footer chrome intentionally does not opt in.
+     * A 6px default has a materially lower sampling cost than the prior 16px
+     * saturated stack while retaining the soft glass distinction on surfaces
+     * that are not nested inside Foundation chrome.
      *
      * Deliberately carries no `border-radius`, `padding`, or scrim — those
      * are card-shaped defaults that only make sense for the CTA/presets/
-     * showcase widget cards, not for full-bleed sticky header/footer chrome
-     * (which already sets its own radius-less, padding-via-utility layout).
-     * See `.glass-surface-card` below for those.
+     * showcase widget cards. See `.glass-surface-card` below for those.
      */
     .glass-surface {
         position: relative;
-        backdrop-filter: blur(16px) saturate(160%);
-        -webkit-backdrop-filter: blur(16px) saturate(160%);
+        --liquid-glass-surface-blur: 6px;
+        backdrop-filter: blur(var(--liquid-glass-surface-blur));
+        -webkit-backdrop-filter: blur(var(--liquid-glass-surface-blur));
     }
 
     @supports not (backdrop-filter: blur(1px)) {
@@ -84,20 +83,34 @@
         }
     }
 
+    /* Header and footer are deliberately opaque enough to remain legible
+       without adding another backdrop-filter layer around Foundation's shared
+       navigation. This keeps the theme's glass treatment on discrete content
+       surfaces, where it is visually useful and has a bounded layer count. */
+    .liquid-glass-chrome {
+        position: relative;
+        background-color: var(--theme-surface, #f3fbfa);
+        background-color: color-mix(
+            in srgb,
+            var(--theme-surface, #f3fbfa) 92%,
+            transparent
+        );
+    }
+
     /*
      * Card-shaped extension of `.glass-surface`, applied alongside it on the
      * CTA/presets/showcase widget `<article>`/wrapper elements only — never
-     * on header/footer chrome, which wants the blur effect but not a card
-     * shape (see file header, point 3, and the defect this class was split
-     * out to fix: header/footer previously inherited `.glass-surface`'s
+     * on header/footer chrome, which keeps its opaque, full-bleed surface
+     * (see file header, point 3, and the defect this class was split out to
+     * fix: header/footer previously inherited `.glass-surface`'s
      * radius/padding/scrim and ended up with an unwanted rounded corner,
      * doubled-up padding, and a legibility-dimming scrim on top of their own
      * `px-*`/`py-*` utilities).
      *
-     * Also declared as a style-query container (`container-type: style` does
-     * not require size containment) so the `@container style(--theme-*: ...)`
-     * rules below can react to Theme Studio's :root-level preset tokens. See
-     * file header, point 3.
+     * Theme Studio writes preset tokens on `:root`; style queries use that
+     * normal ancestor context, so the `@container style(--theme-*: ...)`
+     * rules below reach these descendant surfaces without markup-level
+     * variants. See file header, point 3.
      *
      * `border-radius` and `padding` carry base defaults here (rather than as
      * Tailwind utilities on each `.glass-surface-card` element in the Blade
@@ -107,7 +120,6 @@
      * element — see file header note above the `@layer components` block.
      */
     .glass-surface-card {
-        container-type: style;
         border-radius: var(--theme-radius-value, 1rem);
         padding: 1.25rem;
     }
@@ -318,17 +330,17 @@
     }
     @container style(--theme-glass-depth: restrained) {
         .glass-surface {
-            --liquid-glass-refraction-blur: 3px;
+            --liquid-glass-surface-blur: 4px;
         }
     }
     @container style(--theme-glass-depth: balanced) {
         .glass-surface {
-            --liquid-glass-refraction-blur: 8px;
+            --liquid-glass-surface-blur: 6px;
         }
     }
     @container style(--theme-glass-depth: prismatic) {
         .glass-surface {
-            --liquid-glass-refraction-blur: 14px;
+            --liquid-glass-surface-blur: 8px;
         }
     }
 }
@@ -355,8 +367,9 @@
  * refraction-grid, floating-glass-nav. See each widget's own Blade view for
  * its variant contract and payload shape; this block is the CSS these five
  * views cannot express as Tailwind utility classes (the same three reasons
- * documented in this file's header apply again here: the backdrop-filter
- * refraction stack, prefers-reduced-motion-gated pointer-parallax, and
+ * documented in this file's header apply again here: bounded backdrop-filter
+ * treatment on standalone glass surfaces, paint-only refraction tiles,
+ * prefers-reduced-motion-gated pointer-parallax, and
  * `@container style(...)` token consumption).
  *
  * Dark-mode inversion (programme doc: "Dark mode inverts the effect — less
@@ -364,13 +377,10 @@
  * `--theme-foreground` custom properties, never a hardcoded hex, so
  * Foundation's shared `:root.dark` token swap (ResolveFoundationThemeTokensAction
  * / tokens.blade.php) is what actually inverts the effect — no separate
- * dark-specific widget or duplicated rule set is needed. The one
- * genuinely-different-under-dark declaration is `--liquid-glass-refraction-blur`
- * below, which theme-foundation's dark-mode media query overrides to a
- * smaller value (less blur) while `.glass-surface-card::before`'s existing
- * `--liquid-glass-overlay-opacity` token (declared above) already provides
- * "more contrast" once dark tokens are active, since the same scrim reads
- * darker against light dark-mode text.
+ * dark-specific widget or duplicated rule set is needed. The modest shared
+ * surface blur stays on isolated cards, while their existing
+ * `--liquid-glass-overlay-opacity` token provides more contrast against
+ * dark-mode imagery.
  */
 @layer components {
     /* glass-feature-card: `.glass-surface-card` already provides the base
@@ -465,13 +475,14 @@
                 transparent
             );
         border-radius: 999px;
+        /* This label is a descendant of the pane that parallax-transforms on
+           energetic hover/focus. Keep its high-contrast fill, but never add a
+           backdrop-filter inside that animated transform ancestry. */
         background: color-mix(
             in srgb,
-            var(--theme-surface, #f3fbfa) 88%,
+            var(--theme-surface, #f3fbfa) 96%,
             transparent
         );
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
         font-weight: 800;
         color: var(--theme-foreground, #10202a);
     }
@@ -530,24 +541,18 @@
         }
     }
 
-    /* refraction-grid: backdrop-filter blur/saturate supplies the shared
-       glass stack while the source media stays crisp and recognisable. */
+    /* Refraction-grid tiles are intentionally paint-only. A content editor can
+       add any number of tiles, so a per-tile backdrop-filter would create an
+       unbounded number of composited sampling layers. The denser translucent
+       fill preserves the glass hierarchy while the source media remains crisp
+       and recognisable. */
     .refraction-grid-tile {
         border-radius: var(--theme-radius-value, 1rem);
-        backdrop-filter: blur(var(--liquid-glass-refraction-blur, 6px))
-            saturate(140%);
-        -webkit-backdrop-filter: blur(var(--liquid-glass-refraction-blur, 6px))
-            saturate(140%);
         background-color: color-mix(
             in srgb,
-            var(--theme-surface, #f3fbfa) 82%,
+            var(--theme-surface, #f3fbfa) 90%,
             transparent
         );
-    }
-    @supports not (backdrop-filter: blur(1px)) {
-        .refraction-grid-tile {
-            background-color: var(--theme-surface, #f3fbfa);
-        }
     }
     .refraction-grid-tile-body {
         padding: 1rem 1.25rem 1.25rem;
@@ -610,6 +615,14 @@
         outline: none;
     }
 
+    .liquid-glass-shell
+        :where(a, button, input, summary, [tabindex]):focus-visible {
+        box-shadow:
+            0 0 0 3px var(--theme-surface),
+            0 0 0 6px var(--theme-primary);
+        outline: none;
+    }
+
     .liquid-glass-footer__home {
         align-items: center;
         border: 1px solid
@@ -638,14 +651,10 @@
     }
 }
 
-/* Dark-mode inversion for the refraction treatment ("less blur, more
-   contrast" per the programme doc): Foundation's shared dark-mode toggle
-   sets `.dark` on the root html element (see
-   theme-foundation/resources/views/components/app/head/tokens.blade.php);
-   reduce the refraction blur radius under it so the grid reads crisper and
-   higher-contrast in dark mode, while `--theme-surface`/`--theme-foreground`
-   (already token-driven everywhere above) supply the contrast change via
-   Foundation's existing dark token swap. */
-.dark {
-    --liquid-glass-refraction-blur: 3px;
+/* Foundation's root dark-mode toggle keeps standalone glass surfaces a little
+   crisper while its existing theme tokens supply the higher-contrast colours.
+   The selector targets the actual filtered surfaces, not an unused inherited
+   variable left over from the removed refraction-grid filter. */
+:root.dark .glass-surface {
+    --liquid-glass-surface-blur: 4px;
 }

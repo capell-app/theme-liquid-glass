@@ -19,7 +19,7 @@
     brand mark, in the same translucent glass idiom as the rest of the theme.
 --}}
 <header
-    class="liquid-glass-shell glass-surface sticky top-0 z-30 border-b border-(--theme-foreground)/10 bg-(--theme-surface)/65"
+    class="liquid-glass-shell liquid-glass-chrome sticky top-0 z-30 border-b border-(--theme-foreground)/10"
 >
     <div
         class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-5 sm:px-6 lg:px-8"

@@ -77,6 +77,6 @@ return [
     'layered_depth_hero_summary' => 'Foreground, midground, and backdrop panes layer with genuine depth — parallax only at the most energetic motion tier, a static composition everywhere else.',
     'refraction_grid_eyebrow' => 'Refraction',
     'refraction_grid_heading' => 'A grid that bends the light behind it',
-    'refraction_grid_summary' => 'Blur and saturation combine into a subtle refraction treatment across every tile in the grid.',
+    'refraction_grid_summary' => 'Denser translucent surfaces and layered borders create a subtle refraction treatment while every image stays crisp.',
     'floating_glass_nav_label' => 'Section shortcuts',
 ];

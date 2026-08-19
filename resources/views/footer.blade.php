@@ -16,7 +16,7 @@
     rest of the theme.
 --}}
 <footer
-    class="glass-surface border-t border-(--theme-foreground)/10 bg-(--theme-surface)/70 px-5 py-12 sm:px-6 lg:px-8"
+    class="liquid-glass-chrome border-t border-(--theme-foreground)/10 px-5 py-12 sm:px-6 lg:px-8"
 >
     <h2 class="sr-only">
         {{ __('capell-theme-liquid-glass::generic.footer') }}

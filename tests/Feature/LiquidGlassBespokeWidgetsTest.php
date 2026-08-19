@@ -123,6 +123,7 @@ it('renders real header and footer chrome on the seeded homepage through the hea
         ->toContain('<header')
         ->toContain('<footer')
         ->toContain('id="main-content"')
+        ->toContain('liquid-glass-chrome')
         ->toContain('liquid-glass-brand')
         ->toContain('liquid-glass-brand__mark')
         ->toContain('liquid-glass-footer__home')
@@ -369,20 +370,49 @@ it('renders the layered-depth-hero widget with a static resting depth stack and 
     CapellCore::clearPackages();
 });
 
-it('keeps layered depth pane labels inside the foreground composition', function (): void {
+it('bounds Liquid Glass blur layers outside chrome, tile grids, and transformed panes', function (): void {
     $styles = file_get_contents(dirname(__DIR__, 2) . '/resources/css/theme-liquid-glass.css');
+    $header = file_get_contents(dirname(__DIR__, 2) . '/resources/views/header/index.blade.php');
+    $footer = file_get_contents(dirname(__DIR__, 2) . '/resources/views/footer.blade.php');
+    $surfaceBlurByDepth = [
+        'restrained' => '4px',
+        'balanced' => '6px',
+        'prismatic' => '8px',
+    ];
+
+    foreach ($surfaceBlurByDepth as $depth => $blur) {
+        expect($styles)->toMatch(sprintf(
+            '/@container style\(--theme-glass-depth:\s*%s\)\s*\{\s*\.glass-surface\s*\{\s*--liquid-glass-surface-blur:\s*%s;/s',
+            $depth,
+            preg_quote($blur, '/'),
+        ));
+    }
 
     expect($styles)->not->toBeFalse()
         ->and($styles)->toContain('z-index: calc(10 + var(--layered-depth-hero-pane-index, 0));')
         ->and($styles)->not->toContain('translate3d(')
         ->and($styles)->not->toContain('perspective: 1200px;')
         ->and($styles)->not->toMatch('/\.refraction-grid-tile img\s*\{[^}]*filter:/s')
+        ->and($styles)->not->toContain('blur(16px)')
+        ->and($styles)->not->toMatch('/container-type:\s*style/')
+        ->and($styles)->toMatch('/\.glass-surface\s*\{[^}]*--liquid-glass-surface-blur:\s*6px;[^}]*backdrop-filter:\s*blur\(var\(--liquid-glass-surface-blur\)\);/s')
+        ->and($styles)->toMatch('/\.liquid-glass-chrome\s*\{[^}]*background-color:\s*color-mix\(/s')
+        ->and($styles)->toMatch('/:root\.dark\s+\.glass-surface\s*\{\s*--liquid-glass-surface-blur:\s*4px;/s')
+        ->and($styles)->not->toContain('--liquid-glass-refraction-blur')
+        ->and($styles)->not->toMatch('/\.refraction-grid-tile\s*\{[^}]*backdrop-filter:/s')
+        ->and($styles)->not->toMatch('/\.layered-depth-hero-pane-label\s*\{[^}]*backdrop-filter:/s')
         ->and($styles)->toMatch('/\.layered-depth-hero-pane-label\s*\{[^}]*position:\s*absolute;/s')
         ->and($styles)->toMatch('/\.layered-depth-hero-pane-label\s*\{[^}]*inset-block-end:/s')
-        ->and($styles)->toContain('.layered-depth-hero-pane:last-child .layered-depth-hero-pane-label');
+        ->and($styles)->toContain('.layered-depth-hero-pane:last-child .layered-depth-hero-pane-label')
+        ->and($header)->toBeString()
+        ->and($header)->toContain('liquid-glass-chrome')
+        ->and($header)->not->toContain('glass-surface')
+        ->and($footer)->toBeString()
+        ->and($footer)->toContain('liquid-glass-chrome')
+        ->and($footer)->not->toContain('glass-surface');
 });
 
-it('renders the refraction-grid widget with backdrop-filter treatment and both variants', function (): void {
+it('renders the paint-only refraction-grid widget with both variants', function (): void {
     bootLiquidGlassThemeForBespokeWidgetTests();
 
     $tiles = [
@@ -409,6 +439,8 @@ it('renders the refraction-grid widget with backdrop-filter treatment and both v
 
     expect($evenHtml)
         ->toContain('Marlow Studio launch')
+        ->toContain('Denser translucent surfaces and layered borders create a subtle refraction treatment while every image stays crisp.')
+        ->not->toContain('Blur and saturation combine into a subtle refraction treatment across every tile in the grid.')
         ->toContain('data-variant="even"')
         ->not->toContain('capell-app/theme-liquid-glass');
 
