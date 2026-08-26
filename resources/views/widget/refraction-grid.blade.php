@@ -15,10 +15,18 @@
       around it — same markup and data, a genuinely different layout.
 --}}
 @php
+    use Capell\Core\Support\Security\PublicUrlSanitizer;
+
     $eyebrow = (string) ($widget->getMeta('eyebrow') ?? __('capell-theme-liquid-glass::generic.refraction_grid_eyebrow'));
     $heading = (string) ($widget->getMeta('heading') ?? __('capell-theme-liquid-glass::generic.refraction_grid_heading'));
     $summary = $widget->getMeta('summary') ?? __('capell-theme-liquid-glass::generic.refraction_grid_summary');
     $tiles = is_array($widget->getMeta('tiles')) ? $widget->getMeta('tiles') : [];
+    $tiles = array_map(static function ($tile) {
+        $tile = (array) $tile;
+        $tile['image'] = PublicUrlSanitizer::sanitize(data_get($tile, 'image'));
+
+        return $tile;
+    }, $tiles);
     $variant = (string) ($widget->getMeta('variant') ?? 'even');
 @endphp
 

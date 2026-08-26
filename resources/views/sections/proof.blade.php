@@ -1,4 +1,6 @@
 @php
+    use Capell\Core\Support\Security\PublicUrlSanitizer;
+
     $items = $section->items !== []
         ? $section->items
         : [
@@ -21,6 +23,11 @@
                 'role' => __('capell-theme-liquid-glass::generic.proof_role_tokens'),
             ],
         ];
+    $items = array_map(static function (array $item): array {
+        $item['image'] = PublicUrlSanitizer::sanitize($item['image'] ?? null);
+
+        return $item;
+    }, $items);
 @endphp
 
 <section

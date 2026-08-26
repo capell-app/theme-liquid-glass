@@ -1,4 +1,6 @@
 @php
+    use Capell\Core\Support\Security\PublicUrlSanitizer;
+
     $variantLabel = match ($variant ?? null) {
         'faq' => __('capell-theme-liquid-glass::generic.variant_faq'),
         'media' => __('capell-theme-liquid-glass::generic.variant_media'),
@@ -9,6 +11,12 @@
     $heading ??= '';
     $summary ??= null;
     $items ??= [];
+    $items = array_map(static function (array $item): array {
+        $item['image'] = PublicUrlSanitizer::sanitize($item['image'] ?? null);
+        $item['url'] = PublicUrlSanitizer::sanitize($item['url'] ?? null);
+
+        return $item;
+    }, $items);
 @endphp
 
 <section class="liquid-glass-section px-5 py-16 sm:px-6 lg:px-8">

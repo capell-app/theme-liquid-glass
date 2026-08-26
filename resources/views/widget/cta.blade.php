@@ -1,4 +1,6 @@
 @php
+    use Capell\Core\Support\Security\PublicUrlSanitizer;
+
     $heading = (string) ($widget->getMeta('heading') ?? '');
     $summary = $widget->getMeta('summary');
     $actions = is_array($widget->getMeta('actions')) ? $widget->getMeta('actions') : [];
@@ -9,6 +11,12 @@
             ['label' => __('capell-theme-liquid-glass::generic.cta_secondary_action'), 'url' => '#proof', 'style' => 'secondary'],
         ];
     }
+
+    $actions = array_map(static function (array $action): array {
+        $action['url'] = PublicUrlSanitizer::sanitize($action['url'] ?? null) ?? '#';
+
+        return $action;
+    }, $actions);
 @endphp
 
 <section class="px-5 py-16 sm:px-6 lg:px-8">

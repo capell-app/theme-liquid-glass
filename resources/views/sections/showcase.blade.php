@@ -1,5 +1,12 @@
 @php
+    use Capell\Core\Support\Security\PublicUrlSanitizer;
+
     $items = $section->items !== [] ? $section->items : [];
+    $items = array_map(static function (array $item): array {
+        $item['image'] = PublicUrlSanitizer::sanitize($item['image'] ?? null);
+
+        return $item;
+    }, $items);
 @endphp
 
 <section class="liquid-glass-section px-5 py-16 sm:px-6 lg:px-8">

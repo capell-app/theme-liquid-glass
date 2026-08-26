@@ -18,9 +18,18 @@
       compact footprint.
 --}}
 @php
+    use Capell\Core\Support\Security\PublicUrlSanitizer;
+
     $label = (string) ($widget->getMeta('label') ?? __('capell-theme-liquid-glass::generic.floating_glass_nav_label'));
     $items = is_array($widget->getMeta('items')) ? $widget->getMeta('items') : [];
     $variant = (string) ($widget->getMeta('variant') ?? 'pill');
+
+    $items = array_map(static function ($item) {
+        $item = is_array($item) ? $item : (array) $item;
+        $item['url'] = PublicUrlSanitizer::sanitize(data_get($item, 'url')) ?? '#';
+
+        return $item;
+    }, $items);
 @endphp
 
 <nav
@@ -33,7 +42,7 @@
 >
     @foreach ($items as $item)
         <a
-            href="{{ data_get($item, 'url', '#') }}"
+            href="{{ $item['url'] }}"
             class="inline-flex min-h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-bold text-(--theme-foreground) hover:bg-(--theme-foreground)/10"
         >
             {{ data_get($item, 'label', '') }}

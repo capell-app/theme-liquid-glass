@@ -1,10 +1,17 @@
 @php
+    use Capell\Core\Support\Security\PublicUrlSanitizer;
+
     $actions = is_array($section->actions) && $section->actions !== []
         ? $section->actions
         : [
             ['label' => __('capell-theme-liquid-glass::generic.cta_primary_action'), 'url' => '#main-content', 'style' => 'primary'],
             ['label' => __('capell-theme-liquid-glass::generic.cta_secondary_action'), 'url' => '#proof', 'style' => 'secondary'],
         ];
+    $actions = array_map(static function (array $action): array {
+        $action['url'] = PublicUrlSanitizer::sanitize($action['url'] ?? null) ?? '#';
+
+        return $action;
+    }, $actions);
 @endphp
 
 <section class="liquid-glass-section px-5 py-16 sm:px-6 lg:px-8">

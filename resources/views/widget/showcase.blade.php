@@ -1,8 +1,15 @@
 @php
+    use Capell\Core\Support\Security\PublicUrlSanitizer;
+
     $eyebrow = (string) ($widget->getMeta('eyebrow') ?? '');
     $heading = (string) ($widget->getMeta('heading') ?? '');
     $summary = $widget->getMeta('summary');
     $items = is_array($widget->getMeta('items')) ? $widget->getMeta('items') : [];
+    $items = array_map(static function (array $item): array {
+        $item['image'] = PublicUrlSanitizer::sanitize($item['image'] ?? null);
+
+        return $item;
+    }, $items);
 @endphp
 
 <section class="px-5 py-16 sm:px-6 lg:px-8">

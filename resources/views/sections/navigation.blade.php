@@ -1,3 +1,14 @@
+@php
+    use Capell\Core\Support\Security\PublicUrlSanitizer;
+
+    $navItems = array_map(static function (array $item): array {
+        $item['url'] = PublicUrlSanitizer::sanitize($item['url'] ?? null) ?? '#';
+
+        return $item;
+    }, (array) $section->items);
+    $safeCtaUrl = PublicUrlSanitizer::sanitize($section->ctaUrl);
+@endphp
+
 <nav
     class="theme-navigation liquid-glass-nav"
     aria-label="{{ __('capell-theme-liquid-glass::generic.main_navigation') }}"
@@ -13,7 +24,7 @@
         </a>
 
         <div class="hidden items-center gap-7 text-sm font-semibold md:flex">
-            @foreach ($section->items as $item)
+            @foreach ($navItems as $item)
                 <a
                     href="{{ $item['url'] }}"
                     class="liquid-glass-nav-link"
@@ -24,9 +35,9 @@
         </div>
 
         <div class="flex items-center gap-3">
-            @if ($section->ctaLabel && $section->ctaUrl)
+            @if ($section->ctaLabel && $safeCtaUrl)
                 <a
-                    href="{{ $section->ctaUrl }}"
+                    href="{{ $safeCtaUrl }}"
                     class="liquid-glass-button hidden sm:inline-flex"
                 >
                     {{ $section->ctaLabel }}
@@ -38,7 +49,7 @@
                     {{ __('capell-theme-liquid-glass::generic.menu') }}
                 </summary>
                 <div class="liquid-glass-menu">
-                    @foreach ($section->items as $item)
+                    @foreach ($navItems as $item)
                         <a
                             href="{{ $item['url'] }}"
                             class="liquid-glass-nav-link"
@@ -47,9 +58,9 @@
                         </a>
                     @endforeach
 
-                    @if ($section->ctaLabel && $section->ctaUrl)
+                    @if ($section->ctaLabel && $safeCtaUrl)
                         <a
-                            href="{{ $section->ctaUrl }}"
+                            href="{{ $safeCtaUrl }}"
                             class="liquid-glass-button"
                         >
                             {{ $section->ctaLabel }}

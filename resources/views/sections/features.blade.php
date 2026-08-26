@@ -1,4 +1,6 @@
 @php
+    use Capell\Core\Support\Security\PublicUrlSanitizer;
+
     $features = $section->features !== []
         ? $section->features
         : [
@@ -18,6 +20,11 @@
                 'type' => __('capell-theme-liquid-glass::generic.feature_tokens_type'),
             ],
         ];
+    $features = array_map(static function (array $feature): array {
+        $feature['image'] = PublicUrlSanitizer::sanitize($feature['image'] ?? null);
+
+        return $feature;
+    }, $features);
 @endphp
 
 <section

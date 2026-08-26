@@ -1,10 +1,18 @@
 @php
+    use Capell\Core\Support\Security\PublicUrlSanitizer;
+
     $actions = $section->actions !== []
         ? $section->actions
         : [
             ['label' => __('capell-theme-liquid-glass::generic.hero_primary_action'), 'url' => '#main-content', 'style' => 'primary'],
             ['label' => __('capell-theme-liquid-glass::generic.hero_secondary_action'), 'url' => '#proof', 'style' => 'secondary'],
         ];
+    $actions = array_map(static function (array $action): array {
+        $action['url'] = PublicUrlSanitizer::sanitize($action['url'] ?? null) ?? '#';
+
+        return $action;
+    }, $actions);
+    $safeMediaUrl = PublicUrlSanitizer::sanitize($section->mediaUrl);
     $stats = data_get($section, 'stats', [
         [
             'label' => __('capell-theme-liquid-glass::generic.hero_stat_surfaces_label'),
@@ -73,9 +81,9 @@
         </div>
 
         <div class="liquid-glass-hero-media">
-            @if ($section->mediaUrl)
+            @if ($safeMediaUrl)
                 <img
-                    src="{{ $section->mediaUrl }}"
+                    src="{{ $safeMediaUrl }}"
                     alt="{{ $section->mediaAlt ?: __('capell-theme-liquid-glass::generic.hero_media_alt') }}"
                     width="1200"
                     height="900"

@@ -38,6 +38,8 @@
       without any pane offset at all (e.g. a narrow container).
 --}}
 @php
+    use Capell\Core\Support\Security\PublicUrlSanitizer;
+
     $eyebrow = (string) ($widget->getMeta('eyebrow') ?? __('capell-theme-liquid-glass::generic.layered_depth_hero_eyebrow'));
     $heading = (string) ($widget->getMeta('heading') ?? __('capell-theme-liquid-glass::generic.layered_depth_hero_heading'));
     $summary = $widget->getMeta('summary') ?? __('capell-theme-liquid-glass::generic.layered_depth_hero_summary');
@@ -76,7 +78,7 @@
             @foreach ($panes as $pane)
                 @php
                     $depthIndex = $loop->index;
-                    $paneImage = data_get($pane, 'image');
+                    $paneImage = PublicUrlSanitizer::sanitize(data_get($pane, 'image'));
                 @endphp
 
                 <div
