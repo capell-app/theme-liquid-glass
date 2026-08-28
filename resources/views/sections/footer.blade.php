@@ -1,17 +1,3 @@
-@php
-    use Capell\Core\Support\Security\PublicUrlSanitizer;
-
-    $columns = array_map(static function (array $column): array {
-        $column['links'] = array_map(static function (array $link): array {
-            $link['url'] = PublicUrlSanitizer::sanitize($link['url'] ?? null) ?? '#';
-
-            return $link;
-        }, (array) ($column['links'] ?? []));
-
-        return $column;
-    }, (array) $section->columns);
-@endphp
-
 <footer class="theme-footer liquid-glass-footer px-5 py-12 sm:px-6 lg:px-8">
     <h2 class="sr-only">
         {{ __('capell-theme-liquid-glass::generic.footer') }}
@@ -28,7 +14,7 @@
         </div>
 
         <div class="grid gap-6 sm:grid-cols-3">
-            @foreach ($columns as $column)
+            @foreach ((array) $section->columns as $column)
                 <div class="liquid-glass-footer-column">
                     <h3 class="text-sm font-bold text-[var(--theme-primary)]">
                         {{ $column['heading'] }}
@@ -36,10 +22,10 @@
                     <ul
                         class="mt-3 space-y-2 text-sm text-[color-mix(in_srgb,var(--liquid-glass-foreground)_70%,transparent)]"
                     >
-                        @foreach ($column['links'] as $link)
+                        @foreach ((array) ($column['links'] ?? []) as $link)
                             <li>
                                 <a
-                                    href="{{ $link['url'] }}"
+                                    href="{{ \Capell\Core\Support\Security\PublicUrlSanitizer::sanitize($link['url'] ?? null) ?? '#' }}"
                                     class="hover:text-[var(--liquid-glass-foreground)]"
                                 >
                                     {{ $link['label'] }}
