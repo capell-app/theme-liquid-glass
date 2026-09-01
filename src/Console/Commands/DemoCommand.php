@@ -6,13 +6,16 @@ namespace Capell\ThemeLiquidGlass\Console\Commands;
 
 use Capell\FoundationTheme\Contracts\InstallsThemeDemo;
 use Capell\FoundationTheme\Data\ThemeDemoInstallData;
+use Capell\FoundationTheme\Support\Demo\InteractsWithThemeDemoProfile;
 use Capell\ThemeLiquidGlass\Actions\InstallLiquidGlassThemeDemoAction;
 use Illuminate\Console\Command;
 use RuntimeException;
 
 final class DemoCommand extends Command
 {
-    protected $signature = 'capell:theme-liquid-glass-demo {--url=} {--languages=} {--sites=} {--force}';
+    use InteractsWithThemeDemoProfile;
+
+    protected $signature = 'capell:theme-liquid-glass-demo {--url=} {--languages=} {--sites=} {--force} {--profile=}';
 
     protected $description = 'Install Liquid Glass theme demo content.';
 
@@ -23,6 +26,7 @@ final class DemoCommand extends Command
             languageCodes: $this->parseCsvOption('languages'),
             baseUrl: $this->resolveBaseUrl(),
             force: (bool) $this->option('force'),
+            profile: $this->profileOption(),
         ));
     }
 
@@ -76,7 +80,7 @@ final class DemoCommand extends Command
 
     private function installer(): InstallsThemeDemo
     {
-        $installer = app(InstallLiquidGlassThemeDemoAction::class);
+        $installer = resolve(InstallLiquidGlassThemeDemoAction::class);
 
         if (! $installer instanceof InstallsThemeDemo) {
             throw new RuntimeException('Theme Liquid Glass demo installer is not registered.');
