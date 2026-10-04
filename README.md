@@ -10,8 +10,6 @@ Theme Liquid Glass adds translucent layers, depth, refraction grids, and floatin
 
 When selected, Layout Builder pages render with the theme's glass-layered visual system while preserving the existing content structure.
 
-Evidence: [`src/LiquidGlassThemeServiceProvider.php`](src/LiquidGlassThemeServiceProvider.php), [`resources/views/widget/layered-depth-hero.blade.php`](resources/views/widget/layered-depth-hero.blade.php), [`resources/views/widget/refraction-grid.blade.php`](resources/views/widget/refraction-grid.blade.php), [`resources/views/widget/floating-glass-nav.blade.php`](resources/views/widget/floating-glass-nav.blade.php), [`capell.json`](capell.json), [`tests/Feature/LiquidGlassBespokeWidgetsTest.php`](tests/Feature/LiquidGlassBespokeWidgetsTest.php), [`tests/Feature/LiquidGlassVisualProofTest.php`](tests/Feature/LiquidGlassVisualProofTest.php).
-
 Status details:
 
 - Status: Available
@@ -26,8 +24,6 @@ Status details:
 **For developers:** Typed widget keys and a layout-native provider connect bespoke presentation to the shared Layout Builder container pipeline.
 
 **For teams:** Design teams can apply a consistent glass treatment across hero, grid, and navigation sections without relocating content into theme-specific storage.
-
-Evidence: [`src/LiquidGlassThemeServiceProvider.php`](src/LiquidGlassThemeServiceProvider.php), [`src/Enums/WidgetComponentEnum.php`](src/Enums/WidgetComponentEnum.php), [`tests/Unit/LiquidGlassThemeDefinitionTest.php`](tests/Unit/LiquidGlassThemeDefinitionTest.php), [`resources/views/widget/layered-depth-hero.blade.php`](resources/views/widget/layered-depth-hero.blade.php), [`resources/views/widget/refraction-grid.blade.php`](resources/views/widget/refraction-grid.blade.php), [`resources/views/widget/floating-glass-nav.blade.php`](resources/views/widget/floating-glass-nav.blade.php).
 
 ## Screens And Workflow
 
@@ -148,6 +144,5 @@ This theme has no schema impact. It relies on core Capell site, page, locale, an
 - [Capell documentation design system](../../docs/DESIGN_SYSTEM.md)
 - [Capell and package ERD notes](../../docs/erd/capell-and-package-erds.md)
 - Related packages: [Theme Foundation](../theme-foundation/README.md), [Layout Builder](../layout-builder/README.md).
-- Focused tests: `vendor/bin/pest packages/theme-liquid-glass/tests --configuration=phpunit.xml`.
 
 <!-- prettier-ignore-end -->
