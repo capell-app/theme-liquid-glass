@@ -16,14 +16,14 @@ use Capell\Core\ThemeStudio\Data\ThemeFrontendBuildAssetsData;
 use Capell\Core\ThemeStudio\Data\ThemePresetData;
 use Capell\Core\ThemeStudio\Theme\ThemeRegistry;
 use Capell\FoundationTheme\Support\Editor\StandardThemeEditorSchema;
+use Capell\FoundationTheme\Support\Providers\AbstractThemeServiceProvider;
 use Capell\FoundationTheme\Support\Providers\RegistersLayoutNativeThemeDefaults;
-use Capell\ThemeLiquidGlass\Console\Commands\DemoCommand;
 use Capell\ThemeLiquidGlass\Enums\WidgetComponentEnum;
+use Capell\ThemeLiquidGlass\Providers\ConsoleServiceProvider;
 use Capell\ThemeLiquidGlass\Support\Interceptors\Themes\LiquidGlassThemeInterceptor;
-use Illuminate\Support\ServiceProvider;
 use Override;
 
-class LiquidGlassThemeServiceProvider extends ServiceProvider
+class LiquidGlassThemeServiceProvider extends AbstractThemeServiceProvider
 {
     use RegistersLayoutNativeThemeDefaults;
 
@@ -129,6 +129,8 @@ class LiquidGlassThemeServiceProvider extends ServiceProvider
                     ],
                 ),
             ],
+            assets: [],
+            runtime: FrontendRuntime::Blade,
             frontend: [
                 'editor' => StandardThemeEditorSchema::withExtraTokens(
                     groups: ['identity' => ['glassDepth']],
@@ -140,29 +142,27 @@ class LiquidGlassThemeServiceProvider extends ServiceProvider
                     condition: self::CSS_CONDITION,
                 ),
             ],
-            assets: [],
-            runtime: FrontendRuntime::Blade,
             extends: 'default',
         );
     }
 
     #[Override]
-    public function register(): void {}
-
-    public function boot(ThemeRegistry $registry): void
+    public function register(): void
     {
-        if ($this->app->runningInConsole()) {
-            $this->commands([DemoCommand::class]);
+        parent::register();
 
+        $this->app->register(ConsoleServiceProvider::class);
+
+        if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__ . '/../docs/assets/marketplace/extension-card.svg' => public_path(ltrim(self::PUBLIC_PREVIEW_IMAGE, '/')),
             ], 'capell-theme-liquid-glass-assets');
         }
+    }
 
-        if (! CapellCore::isPackageInstalled(self::$packageName)) {
-            return;
-        }
-
+    #[Override]
+    protected function bootTheme(ThemeRegistry $registry): void
+    {
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'capell-theme-liquid-glass');
 
         // See RegistersLayoutNativeThemeDefaults::registerThemeViewNamespace()'s

@@ -48,6 +48,7 @@ Desktop, tablet, and mobile variants remain defined in the screenshot contract; 
 ### Service providers
 
 - `Capell\ThemeLiquidGlass\LiquidGlassThemeServiceProvider`
+- `Capell\ThemeLiquidGlass\Providers\ConsoleServiceProvider`
 
 ### Actions
 

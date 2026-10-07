@@ -15,22 +15,10 @@ contracts.
 - [Root README](../README.md)
 - [Marketplace assets](assets/marketplace/)
 
-## Verification
+## Demo content
 
-Run focused tests from the repository root:
-
-```bash
-vendor/bin/pest packages/theme-liquid-glass/tests --configuration=phpunit.xml
-```
-
-Run the optional demo command only from an installed Capell host app:
+Run the optional demo command from your installed Capell application:
 
 ```bash
 php artisan capell:theme-liquid-glass-demo
-```
-
-Run public-output safety before changing Blade views:
-
-```bash
-vendor/bin/pest packages/theme-liquid-glass/tests/Unit/PublicOutputSafetyTest.php --configuration=phpunit.xml
 ```
