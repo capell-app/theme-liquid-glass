@@ -283,7 +283,8 @@
             "waitFor": "#main",
             "colorSchemes": ["light", "dark"],
             "viewport": "desktop",
-            "fullPage": true
+            "fullPage": true,
+            "expectedState": "empty"
         },
         {
             "id": "liquid-glass-empty-tablet",
@@ -302,7 +303,8 @@
             "waitFor": "#main",
             "colorSchemes": ["light", "dark"],
             "viewport": "tablet",
-            "fullPage": true
+            "fullPage": true,
+            "expectedState": "empty"
         },
         {
             "id": "liquid-glass-empty-mobile",
@@ -321,7 +323,8 @@
             "waitFor": "#main",
             "colorSchemes": ["light", "dark"],
             "viewport": "mobile",
-            "fullPage": true
+            "fullPage": true,
+            "expectedState": "empty"
         },
         {
             "id": "liquid-glass-not-found",
@@ -340,7 +343,8 @@
             "waitFor": "#main",
             "colorSchemes": ["light", "dark"],
             "viewport": "desktop",
-            "fullPage": true
+            "fullPage": true,
+            "expectedState": "not-found"
         },
         {
             "id": "liquid-glass-not-found-tablet",
@@ -359,7 +363,8 @@
             "waitFor": "#main",
             "colorSchemes": ["light", "dark"],
             "viewport": "tablet",
-            "fullPage": true
+            "fullPage": true,
+            "expectedState": "not-found"
         },
         {
             "id": "liquid-glass-not-found-mobile",
@@ -378,7 +383,8 @@
             "waitFor": "#main",
             "colorSchemes": ["light", "dark"],
             "viewport": "mobile",
-            "fullPage": true
+            "fullPage": true,
+            "expectedState": "not-found"
         },
         {
             "id": "liquid-glass-cta",

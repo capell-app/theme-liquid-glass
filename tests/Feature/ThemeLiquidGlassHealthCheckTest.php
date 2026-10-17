@@ -10,12 +10,15 @@ use Capell\ThemeLiquidGlass\LiquidGlassThemeServiceProvider;
 
 beforeEach(function (): void {
     CapellCore::clearPackages();
+    CapellCore::forcePackageInstalled('capell-app/theme-foundation');
     CapellCore::forcePackageInstalled(LiquidGlassThemeServiceProvider::$packageName);
 
     $registry = resolve(ThemeRegistry::class);
     $registry->reset();
 
-    (new LiquidGlassThemeServiceProvider($this->app))->boot($registry);
+    $provider = new LiquidGlassThemeServiceProvider($this->app);
+    $provider->register();
+    $provider->boot($registry);
 });
 
 afterEach(function (): void {

@@ -70,10 +70,12 @@ it('captures commercial screenshot proof from the real seeded routes', function 
 
 it('registers Liquid Glass as definition-only with no legacy renderer', function (): void {
     CapellCore::clearPackages();
+    CapellCore::forcePackageInstalled('capell-app/theme-foundation');
     CapellCore::forcePackageInstalled(LiquidGlassThemeServiceProvider::$packageName);
 
-    $registry = new ThemeRegistry;
+    $registry = resolve(ThemeRegistry::class);
     $provider = new LiquidGlassThemeServiceProvider(app());
+    $provider->register();
     $provider->boot($registry);
 
     expect($registry->has(LiquidGlassThemeServiceProvider::THEME_KEY))->toBeTrue();
@@ -83,10 +85,12 @@ it('registers Liquid Glass as definition-only with no legacy renderer', function
 
 it('registers Liquid Glass theme assets when the package is installed', function (): void {
     CapellCore::clearPackages();
+    CapellCore::forcePackageInstalled('capell-app/theme-foundation');
     CapellCore::forcePackageInstalled(LiquidGlassThemeServiceProvider::$packageName);
 
-    $registry = new ThemeRegistry;
+    $registry = resolve(ThemeRegistry::class);
     $provider = new LiquidGlassThemeServiceProvider($this->app);
+    $provider->register();
     $provider->boot($registry);
 
     $packageImports = CapellCore::getVendorAssetsForType(VendorAssetEnum::TailwindImport)

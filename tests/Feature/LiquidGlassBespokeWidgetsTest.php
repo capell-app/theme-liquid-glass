@@ -12,11 +12,13 @@ use Capell\FoundationTheme\Data\ThemeDemoInstallData;
 use Capell\FoundationTheme\Support\Demo\ThemeDemoPageInstaller;
 use Capell\LayoutBuilder\Models\Widget;
 use Capell\LayoutBuilder\Support\Creator\WidgetCreator;
+use Capell\Tests\Support\RenderedDocument;
 use Capell\ThemeLiquidGlass\Enums\WidgetComponentEnum;
 use Capell\ThemeLiquidGlass\LiquidGlassThemeServiceProvider;
 use Capell\ThemeLiquidGlass\Support\Demo\LiquidGlassDemoContent;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\View;
+use Livewire\Blaze\Blaze;
 
 use function Pest\Laravel\get;
 
@@ -36,6 +38,7 @@ use function Pest\Laravel\get;
 
 function bootLiquidGlassThemeForBespokeWidgetTests(): void
 {
+    CapellCore::forcePackageInstalled('capell-app/theme-foundation');
     CapellCore::forcePackageInstalled(LiquidGlassThemeServiceProvider::$packageName);
 
     View::addNamespace('capell-theme-liquid-glass', dirname(__DIR__, 2) . '/resources/views');
@@ -70,21 +73,12 @@ it('sets header_file and footer_file defaults on a seeded Liquid Glass Theme via
     resolve(ThemeRegistry::class)->reset();
 });
 
-/*
- * NOTE: this only asserts header/footer chrome, not layout-builder widget
- * content, in the real HTTP response. A pre-existing, unrelated gap in
- * `Capell\Frontend\Support\Render\BladeFrontendResponseRenderer::layoutBuilderSlot()`
- * (confirmed independently of this task — reproduces with the existing
- * `layoutNativeThemeCreatePage()` helper too, for the shared `page-content`
- * widget, not just Liquid Glass's bespoke ones) means layout-builder
- * container widgets do not currently render at all through a real,
- * non-Livewire HTTP hit for ANY layout-native theme — flagged separately for
- * a dedicated fix rather than worked around here. Widget rendering itself
- * (real seeded copy through the real Blade view) is proven directly below
- * instead, by rendering each bespoke widget's view with a real `Widget`
- * model.
- */
+// Keep the real theme chrome seam enabled here. The Foundation HTTP regression
+// covers layout-builder widget content; the direct renders below cover each
+// bespoke widget's copy and variants.
 it('renders real header and footer chrome on the seeded homepage through the header_file/footer_file seam', function (): void {
+    expect(Blaze::isEnabled())->toBeTrue();
+
     bootLiquidGlassThemeForBespokeWidgetTests();
 
     ThemeDemoPageInstaller::run(
@@ -111,10 +105,24 @@ it('renders real header and footer chrome on the seeded homepage through the hea
     $response = get($pageUrl->full_url);
 
     $response->assertOk();
+    expect(Blaze::isEnabled())->toBeTrue();
+
+    // Reuse the same compiled views after the installer previews and first hit.
+    get($pageUrl->full_url)->assertOk()->assertSee('Liquid Glass Chrome Render Test');
+    expect(Blaze::isEnabled())->toBeTrue();
 
     $html = $response->getContent();
 
     expect($html)->toBeString();
+
+    throw_unless(is_string($html), RuntimeException::class, 'Expected a rendered homepage.');
+    $document = new RenderedDocument($html);
+    foreach (['header', 'footer'] as $landmark) {
+        $chrome = $document->element('//' . $landmark);
+        $classes = preg_split('/\s+/', trim($chrome->getAttribute('class'))) ?: [];
+        expect($classes)->toContain('liquid-glass-chrome')
+            ->not->toContain('glass-surface');
+    }
 
     // Header/footer chrome rendered through the real header_file/footer_file seam
     // (LiquidGlassThemeInterceptor -> Theme::meta -> x-capell::layout.index's
@@ -130,7 +138,8 @@ it('renders real header and footer chrome on the seeded homepage through the hea
         ->toContain('All rights reserved')
         ->toContain('Liquid Glass Chrome Render Test')
         ->not->toContain('capell-app/theme-liquid-glass')
-        ->not->toContain('authoring');
+        ->not->toContain('authoring')
+        ->not->toContain('$__blaze');
 
     CapellCore::clearPackages();
     resolve(ThemeRegistry::class)->reset();
@@ -211,9 +220,7 @@ it('creates distinctly-keyed cta widgets per surface so copy does not clobber ac
 
     throw_unless($homepageCta instanceof Widget && $contactCta instanceof Widget, RuntimeException::class, 'Expected distinct seeded CTA widgets.');
 
-    expect($homepageCta)->toBeInstanceOf(Widget::class)
-        ->and($contactCta)->toBeInstanceOf(Widget::class)
-        ->and($homepageCta->meta['heading'] ?? null)->toBe('Bring your pages onto the glass')
+    expect($homepageCta->meta['heading'] ?? null)->toBe('Bring your pages onto the glass')
         ->and($contactCta->meta['heading'] ?? null)->toBe('Bring your pages onto the glass')
         ->and($homepageCta->getKey())->not->toBe($contactCta->getKey())
         ->and($homepageComponents)->toContain(
@@ -372,8 +379,6 @@ it('renders the layered-depth-hero widget with a static resting depth stack and 
 
 it('bounds Liquid Glass blur layers outside chrome, tile grids, and transformed panes', function (): void {
     $styles = file_get_contents(dirname(__DIR__, 2) . '/resources/css/theme-liquid-glass.css');
-    $header = file_get_contents(dirname(__DIR__, 2) . '/resources/views/header/index.blade.php');
-    $footer = file_get_contents(dirname(__DIR__, 2) . '/resources/views/footer.blade.php');
     $surfaceBlurByDepth = [
         'restrained' => '4px',
         'balanced' => '6px',
@@ -403,13 +408,7 @@ it('bounds Liquid Glass blur layers outside chrome, tile grids, and transformed 
         ->and($styles)->not->toMatch('/\.layered-depth-hero-pane-label\s*\{[^}]*backdrop-filter:/s')
         ->and($styles)->toMatch('/\.layered-depth-hero-pane-label\s*\{[^}]*position:\s*absolute;/s')
         ->and($styles)->toMatch('/\.layered-depth-hero-pane-label\s*\{[^}]*inset-block-end:/s')
-        ->and($styles)->toContain('.layered-depth-hero-pane:last-child .layered-depth-hero-pane-label')
-        ->and($header)->toBeString()
-        ->and($header)->toContain('liquid-glass-chrome')
-        ->and($header)->not->toContain('glass-surface')
-        ->and($footer)->toBeString()
-        ->and($footer)->toContain('liquid-glass-chrome')
-        ->and($footer)->not->toContain('glass-surface');
+        ->and($styles)->toContain('.layered-depth-hero-pane:last-child .layered-depth-hero-pane-label');
 });
 
 it('renders the paint-only refraction-grid widget with both variants', function (): void {
@@ -519,8 +518,7 @@ it('creates a bespoke content widget through WidgetCreator with caller-supplied 
         meta: ['heading' => 'Test heading', 'summary' => 'Test summary'],
     );
 
-    expect($widget)->toBeInstanceOf(Widget::class)
-        ->and($widget->key)->toBe('liquid-glass-cta-standalone-test-1')
+    expect($widget->key)->toBe('liquid-glass-cta-standalone-test-1')
         ->and($widget->component)->toBe(WidgetComponentEnum::Cta->value)
         ->and($widget->meta['heading'] ?? null)->toBe('Test heading')
         ->and($widget->meta['summary'] ?? null)->toBe('Test summary');
