@@ -16,7 +16,7 @@
     <div class="mx-auto max-w-7xl">
         <div class="max-w-3xl">
             @if ($eyebrow !== '')
-                <p class="text-xs font-black tracking-[0.08em] text-(--theme-primary) uppercase">{{ $eyebrow }}</p>
+                <p class="text-xs font-black tracking-[0.08em] liquid-glass-accent uppercase">{{ $eyebrow }}</p>
             @endif
 
             <h2
@@ -48,7 +48,7 @@
                     @endif
 
                     <div class="glass-surface-body">
-                        <p class="text-sm font-bold tracking-wide text-(--theme-primary) uppercase">
+                        <p class="text-sm font-bold tracking-wide liquid-glass-accent uppercase">
                             {{ $item['discipline'] ?? '' }}
                         </p>
                         <h3
@@ -58,7 +58,7 @@
                         </h3>
                         <p class="mt-4 text-sm leading-7 text-(--theme-foreground)/70">{{ $item['summary'] ?? '' }}</p>
                         @if (! empty($item['metric']))
-                            <p class="mt-5 text-3xl font-black text-(--theme-primary)">
+                            <p class="mt-5 text-3xl font-black liquid-glass-accent">
                                 {{ $item['metric'] }}
                                 <span
                                     class="block text-xs font-bold tracking-wide text-(--theme-foreground)/55 uppercase"

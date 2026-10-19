@@ -63,6 +63,8 @@ it('captures commercial screenshot proof from the real seeded routes', function 
                 ['type' => 'scrollIntoView', 'selector' => '.layered-depth-hero-pane:last-child'],
                 ['type' => 'scrollIntoView', 'selector' => '.refraction-grid'],
                 ['type' => 'scrollIntoView', 'selector' => '.liquid-glass-footer__home'],
+                ['type' => 'press', 'selector' => 'body', 'value' => 'Home'],
+                ['type' => 'waitForTimeout', 'timeout' => 1000],
             ]);
         }
     }
@@ -296,7 +298,7 @@ it('preserves the real, previously-authored hero copy per surface for later widg
     expect($content->heroCopy('unknown-surface'))->toBe([]);
 });
 
-it('preserves the empty surface\'s real, previously-authored inline empty-state listing copy for later widget wiring', function (): void {
+it("preserves the empty surface's real, previously-authored inline empty-state listing copy for later widget wiring", function (): void {
     $content = new LiquidGlassDemoContent;
 
     $emptyStateListing = $content->emptyStateListingCopy();

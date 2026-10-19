@@ -24,7 +24,7 @@
         <div
             class="glass-surface glass-surface-card bg-linear-to-br from-(--theme-primary)/18 to-(--theme-accent)/14 text-center"
         >
-            <p class="inline-flex items-center justify-center text-xs font-black tracking-[0.08em] text-(--theme-primary) uppercase">
+            <p class="inline-flex items-center justify-center text-xs font-black tracking-[0.08em] liquid-glass-accent uppercase">
                 {{ __('capell-theme-liquid-glass::generic.cta_eyebrow') }}
             </p>
 

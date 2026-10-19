@@ -25,10 +25,22 @@
                     "type": "scrollIntoView",
                     "selector": ".layered-depth-hero-pane:last-child"
                 },
-                { "type": "scrollIntoView", "selector": ".refraction-grid" },
+                {
+                    "type": "scrollIntoView",
+                    "selector": ".refraction-grid"
+                },
                 {
                     "type": "scrollIntoView",
                     "selector": ".liquid-glass-footer__home"
+                },
+                {
+                    "type": "press",
+                    "selector": "body",
+                    "value": "Home"
+                },
+                {
+                    "type": "waitForTimeout",
+                    "timeout": 1000
                 }
             ],
             "colorSchemes": ["light", "dark"],
@@ -37,7 +49,7 @@
         },
         {
             "id": "liquid-glass-homepage-tablet",
-            "title": "Liquid Glass Homepage — Tablet",
+            "title": "Liquid Glass Homepage \u2014 Tablet",
             "surface": "frontend",
             "targetType": "frontend-url",
             "target": "/theme-liquid-glass",
@@ -55,10 +67,22 @@
                     "type": "scrollIntoView",
                     "selector": ".layered-depth-hero-pane:last-child"
                 },
-                { "type": "scrollIntoView", "selector": ".refraction-grid" },
+                {
+                    "type": "scrollIntoView",
+                    "selector": ".refraction-grid"
+                },
                 {
                     "type": "scrollIntoView",
                     "selector": ".liquid-glass-footer__home"
+                },
+                {
+                    "type": "press",
+                    "selector": "body",
+                    "value": "Home"
+                },
+                {
+                    "type": "waitForTimeout",
+                    "timeout": 1000
                 }
             ],
             "colorSchemes": ["light", "dark"],
@@ -67,7 +91,7 @@
         },
         {
             "id": "liquid-glass-homepage-mobile",
-            "title": "Liquid Glass Homepage — Mobile",
+            "title": "Liquid Glass Homepage \u2014 Mobile",
             "surface": "frontend",
             "targetType": "frontend-url",
             "target": "/theme-liquid-glass",
@@ -85,10 +109,22 @@
                     "type": "scrollIntoView",
                     "selector": ".layered-depth-hero-pane:last-child"
                 },
-                { "type": "scrollIntoView", "selector": ".refraction-grid" },
+                {
+                    "type": "scrollIntoView",
+                    "selector": ".refraction-grid"
+                },
                 {
                     "type": "scrollIntoView",
                     "selector": ".liquid-glass-footer__home"
+                },
+                {
+                    "type": "press",
+                    "selector": "body",
+                    "value": "Home"
+                },
+                {
+                    "type": "waitForTimeout",
+                    "timeout": 1000
                 }
             ],
             "colorSchemes": ["light", "dark"],
@@ -116,7 +152,7 @@
         },
         {
             "id": "liquid-glass-directory-tablet",
-            "title": "Liquid Glass Directory — Tablet",
+            "title": "Liquid Glass Directory \u2014 Tablet",
             "surface": "frontend",
             "targetType": "frontend-url",
             "target": "/theme-liquid-glass-directory",
@@ -135,7 +171,7 @@
         },
         {
             "id": "liquid-glass-directory-mobile",
-            "title": "Liquid Glass Directory — Mobile",
+            "title": "Liquid Glass Directory \u2014 Mobile",
             "surface": "frontend",
             "targetType": "frontend-url",
             "target": "/theme-liquid-glass-directory",
@@ -173,7 +209,7 @@
         },
         {
             "id": "liquid-glass-detail-tablet",
-            "title": "Liquid Glass Detail Article — Tablet",
+            "title": "Liquid Glass Detail Article \u2014 Tablet",
             "surface": "frontend",
             "targetType": "frontend-url",
             "target": "/theme-liquid-glass-detail",
@@ -192,7 +228,7 @@
         },
         {
             "id": "liquid-glass-detail-mobile",
-            "title": "Liquid Glass Detail Article — Mobile",
+            "title": "Liquid Glass Detail Article \u2014 Mobile",
             "surface": "frontend",
             "targetType": "frontend-url",
             "target": "/theme-liquid-glass-detail",
@@ -230,7 +266,7 @@
         },
         {
             "id": "liquid-glass-contact-tablet",
-            "title": "Liquid Glass Contact — Tablet",
+            "title": "Liquid Glass Contact \u2014 Tablet",
             "surface": "frontend",
             "targetType": "frontend-url",
             "target": "/theme-liquid-glass-contact",
@@ -249,7 +285,7 @@
         },
         {
             "id": "liquid-glass-contact-mobile",
-            "title": "Liquid Glass Contact — Mobile",
+            "title": "Liquid Glass Contact \u2014 Mobile",
             "surface": "frontend",
             "targetType": "frontend-url",
             "target": "/theme-liquid-glass-contact",
@@ -288,7 +324,7 @@
         },
         {
             "id": "liquid-glass-empty-tablet",
-            "title": "Liquid Glass Empty State — Tablet",
+            "title": "Liquid Glass Empty State \u2014 Tablet",
             "surface": "frontend",
             "targetType": "frontend-url",
             "target": "/theme-liquid-glass-empty",
@@ -308,7 +344,7 @@
         },
         {
             "id": "liquid-glass-empty-mobile",
-            "title": "Liquid Glass Empty State — Mobile",
+            "title": "Liquid Glass Empty State \u2014 Mobile",
             "surface": "frontend",
             "targetType": "frontend-url",
             "target": "/theme-liquid-glass-empty",
@@ -348,7 +384,7 @@
         },
         {
             "id": "liquid-glass-not-found-tablet",
-            "title": "Liquid Glass Page Not Found — Tablet",
+            "title": "Liquid Glass Page Not Found \u2014 Tablet",
             "surface": "frontend",
             "targetType": "frontend-url",
             "target": "/theme-liquid-glass-404",
@@ -368,7 +404,7 @@
         },
         {
             "id": "liquid-glass-not-found-mobile",
-            "title": "Liquid Glass Page Not Found — Mobile",
+            "title": "Liquid Glass Page Not Found \u2014 Mobile",
             "surface": "frontend",
             "targetType": "frontend-url",
             "target": "/theme-liquid-glass-404",
@@ -407,7 +443,7 @@
         },
         {
             "id": "liquid-glass-cta-tablet",
-            "title": "Liquid Glass Call To Action — Tablet",
+            "title": "Liquid Glass Call To Action \u2014 Tablet",
             "surface": "frontend",
             "targetType": "frontend-url",
             "target": "/theme-liquid-glass-cta",
@@ -426,7 +462,7 @@
         },
         {
             "id": "liquid-glass-cta-mobile",
-            "title": "Liquid Glass Call To Action — Mobile",
+            "title": "Liquid Glass Call To Action \u2014 Mobile",
             "surface": "frontend",
             "targetType": "frontend-url",
             "target": "/theme-liquid-glass-cta",

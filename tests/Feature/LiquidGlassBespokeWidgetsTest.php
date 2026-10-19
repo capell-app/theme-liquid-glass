@@ -98,6 +98,7 @@ it('renders real header and footer chrome on the seeded homepage through the hea
         ->firstOrFail();
 
     $homepage->loadMissing(['pageUrl.siteDomain', 'translations']);
+
     $pageUrl = $homepage->pageUrl;
 
     throw_unless($pageUrl instanceof PageUrl, RuntimeException::class, 'Expected the seeded homepage to have a URL.');
@@ -105,6 +106,7 @@ it('renders real header and footer chrome on the seeded homepage through the hea
     $response = get($pageUrl->full_url);
 
     $response->assertOk();
+
     expect(Blaze::isEnabled())->toBeTrue();
 
     // Reuse the same compiled views after the installer previews and first hit.
@@ -524,4 +526,41 @@ it('creates a bespoke content widget through WidgetCreator with caller-supplied 
         ->and($widget->meta['summary'] ?? null)->toBe('Test summary');
 
     CapellCore::clearPackages();
+});
+
+it('offers an email enquiry from the real contact route instead of linking back to itself', function (): void {
+    bootLiquidGlassThemeForBespokeWidgetTests();
+
+    ThemeDemoPageInstaller::run(
+        data: new ThemeDemoInstallData(
+            siteNames: ['Liquid Glass Enquiry Test'],
+            languageCodes: ['en'],
+            baseUrl: 'https://liquid-glass.enquiry-test.test',
+        ),
+        themeKey: LiquidGlassThemeServiceProvider::THEME_KEY,
+        themeName: 'Liquid Glass',
+        contentProvider: new LiquidGlassDemoContent,
+    );
+
+    $contact = Page::query()
+        ->where('meta->theme_demo->theme_key', LiquidGlassThemeServiceProvider::THEME_KEY)
+        ->where('meta->theme_demo->surface', 'contact')
+        ->firstOrFail();
+    $contact->loadMissing('pageUrl');
+
+    $url = $contact->pageUrl;
+    throw_unless($url instanceof PageUrl, RuntimeException::class, 'Expected the seeded contact page to have a URL.');
+
+    $response = get($url->full_url);
+    $response->assertOk();
+
+    $html = $response->getContent();
+    throw_unless(is_string($html), RuntimeException::class, 'Expected rendered contact HTML.');
+    $document = new RenderedDocument($html);
+
+    expect($document->element('//main//a[normalize-space()="Get in touch"]')->getAttribute('href'))
+        ->toBe('mailto:studio@liquidglass.example');
+
+    CapellCore::clearPackages();
+    resolve(ThemeRegistry::class)->reset();
 });

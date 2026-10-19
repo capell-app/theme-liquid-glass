@@ -58,6 +58,14 @@
  */
 
 @layer components {
+    .liquid-glass-accent {
+        color: color-mix(
+            in srgb,
+            var(--theme-primary) 30%,
+            var(--theme-foreground) 70%
+        );
+    }
+
     /*
      * Bounded backdrop-filter treatment for standalone content surfaces only.
      * Applied via `class="glass-surface"` to widget cards and the compact
@@ -409,6 +417,12 @@
         border-radius: var(--theme-radius-value, 1rem);
     }
     .translucent-stat-band-figure {
+        --foundation-body-fg: var(--theme-foreground);
+        --foundation-muted-fg: color-mix(
+            in srgb,
+            var(--theme-foreground) 80%,
+            transparent
+        );
         padding-inline: 0.5rem;
     }
 

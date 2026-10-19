@@ -35,7 +35,7 @@
     <div class="mx-auto max-w-7xl">
         <div class="max-w-3xl">
             @if ($eyebrow !== '')
-                <p class="text-xs font-black tracking-[0.08em] text-(--theme-primary) uppercase">{{ $eyebrow }}</p>
+                <p class="text-xs font-black tracking-[0.08em] liquid-glass-accent uppercase">{{ $eyebrow }}</p>
             @endif
 
             <h2
@@ -62,7 +62,7 @@
                     ])
                     data-variant="{{ $cardVariant }}"
                 >
-                    <p class="text-sm font-bold tracking-wide text-(--theme-primary) uppercase">
+                    <p class="text-sm font-bold tracking-wide liquid-glass-accent uppercase">
                         {{ data_get($item, 'eyebrow', '') }}
                     </p>
                     <h3
@@ -75,7 +75,7 @@
                     </p>
 
                     @if (filled(data_get($item, 'metric')))
-                        <p class="mt-5 text-3xl font-black text-(--theme-primary)">
+                        <p class="mt-5 text-3xl font-black liquid-glass-accent">
                             {{ data_get($item, 'metric') }}
                             <span
                                 class="block text-xs font-bold tracking-wide text-(--theme-foreground)/55 uppercase"

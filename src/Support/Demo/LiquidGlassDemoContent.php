@@ -11,6 +11,7 @@ use Capell\FoundationTheme\Support\Demo\ThemeDemoMedia;
 use Capell\FoundationTheme\Support\Demo\ThemeDemoPageDefinition;
 use Capell\ThemeLiquidGlass\Enums\WidgetComponentEnum;
 use Capell\ThemeLiquidGlass\LiquidGlassThemeServiceProvider;
+use Override;
 
 /**
  * Complete, vertical-authentic demo content for the Liquid Glass theme.
@@ -76,18 +77,17 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
     /**
      * @return array<int, ThemeDemoPageDefinition>
      */
+    #[Override]
     public function definitions(string $themeKey, string $themeName, string $baseUrl): array
     {
-        $media = ThemeDemoMedia::groupedForTheme($themeKey);
-
         return [
-            $this->homepage($themeKey, $media),
-            $this->directory($themeKey, $media),
-            $this->detail($themeKey, $media),
-            $this->contact($themeKey, $media),
-            $this->empty($themeKey, $media),
-            $this->notFound($themeKey, $media),
-            $this->cta($themeKey, $media),
+            $this->homepage($themeKey),
+            $this->directory($themeKey),
+            $this->detail($themeKey),
+            $this->contact($themeKey),
+            $this->empty($themeKey),
+            $this->notFound($themeKey),
+            $this->cta($themeKey),
         ];
     }
 
@@ -214,6 +214,7 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
                 $this->ctaSection(
                     heading: 'Bring your pages onto the glass',
                     summary: 'A warm, focused call to action that stays native to the translucent theme.',
+                    contactUrl: 'mailto:studio@liquidglass.example',
                 ),
             ],
             'empty' => [
@@ -368,10 +369,7 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
         ];
     }
 
-    /**
-     * @param  array{hero: list<string>, listing: list<string>, detail: list<string>, proof: list<string>, contact: list<string>, cta: list<string>}  $media
-     */
-    private function homepage(string $themeKey, array $media): ThemeDemoPageDefinition
+    private function homepage(string $themeKey): ThemeDemoPageDefinition
     {
         return new ThemeDemoPageDefinition(
             surface: 'homepage',
@@ -394,10 +392,7 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
         );
     }
 
-    /**
-     * @param  array{hero: list<string>, listing: list<string>, detail: list<string>, proof: list<string>, contact: list<string>, cta: list<string>}  $media
-     */
-    private function directory(string $themeKey, array $media): ThemeDemoPageDefinition
+    private function directory(string $themeKey): ThemeDemoPageDefinition
     {
         return new ThemeDemoPageDefinition(
             surface: 'directory',
@@ -419,10 +414,7 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
         );
     }
 
-    /**
-     * @param  array{hero: list<string>, listing: list<string>, detail: list<string>, proof: list<string>, contact: list<string>, cta: list<string>}  $media
-     */
-    private function detail(string $themeKey, array $media): ThemeDemoPageDefinition
+    private function detail(string $themeKey): ThemeDemoPageDefinition
     {
         return new ThemeDemoPageDefinition(
             surface: 'detail',
@@ -443,10 +435,7 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
         );
     }
 
-    /**
-     * @param  array{hero: list<string>, listing: list<string>, detail: list<string>, proof: list<string>, contact: list<string>, cta: list<string>}  $media
-     */
-    private function contact(string $themeKey, array $media): ThemeDemoPageDefinition
+    private function contact(string $themeKey): ThemeDemoPageDefinition
     {
         return new ThemeDemoPageDefinition(
             surface: 'contact',
@@ -468,10 +457,7 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
         );
     }
 
-    /**
-     * @param  array{hero: list<string>, listing: list<string>, detail: list<string>, proof: list<string>, contact: list<string>, cta: list<string>}  $media
-     */
-    private function empty(string $themeKey, array $media): ThemeDemoPageDefinition
+    private function empty(string $themeKey): ThemeDemoPageDefinition
     {
         return new ThemeDemoPageDefinition(
             surface: 'empty',
@@ -492,10 +478,7 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
         );
     }
 
-    /**
-     * @param  array{hero: list<string>, listing: list<string>, detail: list<string>, proof: list<string>, contact: list<string>, cta: list<string>}  $media
-     */
-    private function notFound(string $themeKey, array $media): ThemeDemoPageDefinition
+    private function notFound(string $themeKey): ThemeDemoPageDefinition
     {
         return new ThemeDemoPageDefinition(
             surface: 'not-found',
@@ -518,10 +501,7 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
         );
     }
 
-    /**
-     * @param  array{hero: list<string>, listing: list<string>, detail: list<string>, proof: list<string>, contact: list<string>, cta: list<string>}  $media
-     */
-    private function cta(string $themeKey, array $media): ThemeDemoPageDefinition
+    private function cta(string $themeKey): ThemeDemoPageDefinition
     {
         return new ThemeDemoPageDefinition(
             surface: 'cta',
@@ -873,7 +853,7 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
     /**
      * @return array<string, mixed>
      */
-    private function ctaSection(string $heading, string $summary): array
+    private function ctaSection(string $heading, string $summary, string $contactUrl = '/theme-liquid-glass-contact'): array
     {
         return [
             'type' => 'cta',
@@ -881,7 +861,7 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
             'summary' => $summary,
             'actions' => [
                 ['label' => 'View examples', 'url' => '/theme-liquid-glass-directory', 'style' => 'primary'],
-                ['label' => 'Get in touch', 'url' => '/theme-liquid-glass-contact', 'style' => 'secondary'],
+                ['label' => 'Get in touch', 'url' => $contactUrl, 'style' => 'secondary'],
             ],
         ];
     }
