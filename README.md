@@ -8,7 +8,7 @@ Theme Liquid Glass is an **Available**, **No schema impact** Capell theme in the
 
 Theme Liquid Glass adds translucent layers, depth, refraction grids, and floating navigation to Capell page presentation. Capell and Layout Builder retain ownership of the page data.
 
-When selected, Layout Builder pages render with the theme's glass-layered visual system while preserving the existing content structure.
+Use Preview Theme Liquid Glass on existing content before Apply Theme Liquid Glass, which changes the selected site's public design; reapply its previous theme to restore that selection. Shared Theme Studio settings saves can affect public pages. For fictional demo content, name a disposable target with --sites and review --url and --languages; unscoped setup refuses existing sites, scoped repeats preserve site configuration unless --force deliberately replaces its theme, enabled state, requested site translations and domains, while demo pages, widgets and demo layouts are rewritten on scoped repeats.
 
 Status details:
 
@@ -131,8 +131,14 @@ This theme has no schema impact. It relies on core Capell site, page, locale, an
 ## Quick Start
 
 1. Install the package: `composer require capell-app/theme-liquid-glass`.
-2. See it working: run `php artisan capell:theme-liquid-glass-demo`.
-3. Open `/theme-liquid-glass` and confirm the public output renders without admin state.
+2. See it working on a disposable site: run `php artisan capell:theme-liquid-glass-demo --sites="Theme demo"`. Choose a new site name for your demo; keep customer sites for the Preview → Apply workflow above.
+3. Run `php artisan list` and verify the package command signatures are registered.
+
+## Upgrading
+
+No manual steps between minor versions.
+
+Read [CHANGELOG.md](CHANGELOG.md) before upgrading.
 
 ## Next Steps
 

@@ -27,6 +27,10 @@ use Capell\Core\Models\Theme;
  */
 final class LiquidGlassThemeInterceptor implements ThemeInterceptorInterface
 {
+    public const string HEADER = 'capell-theme-liquid-glass::header.index';
+
+    public const string FOOTER = 'capell-theme-liquid-glass::footer';
+
     public function beforeCreate(array $data): array
     {
         if (! isset($data['meta']) || ! is_array($data['meta'])) {
@@ -34,8 +38,8 @@ final class LiquidGlassThemeInterceptor implements ThemeInterceptorInterface
         }
 
         $data['meta'] = array_merge([
-            'header_file' => 'capell-theme-liquid-glass::header.index',
-            'footer_file' => 'capell-theme-liquid-glass::footer',
+            'header_file' => self::HEADER,
+            'footer_file' => self::FOOTER,
         ], $data['meta']);
 
         return $data;

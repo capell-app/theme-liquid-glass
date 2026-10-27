@@ -6,6 +6,7 @@ namespace Capell\ThemeLiquidGlass\Health;
 
 use Capell\Core\Contracts\Extensions\ChecksExtensionHealth;
 use Capell\Core\Data\Diagnostics\DoctorCheckResultData;
+use Capell\Core\ThemeStudio\Data\ThemeFrontendBuildAssetsData;
 use Capell\Core\ThemeStudio\Theme\ThemeRegistry;
 use Capell\ThemeLiquidGlass\LiquidGlassThemeServiceProvider;
 use Illuminate\Support\Collection;
@@ -75,7 +76,7 @@ final class ThemeLiquidGlassHealthCheck implements ChecksExtensionHealth
         $missingAssetFiles = $this->missingRequiredAssetFiles($requiredAssetFiles);
 
         return new DoctorCheckResultData(
-            label: 'Theme Liquid Glass assets',
+            label: 'Theme Liquid Glass: public files present',
             passed: $missingAssetFiles === [],
             message: $missingAssetFiles === []
                 ? 'All Theme Liquid Glass package assets are present.'
@@ -83,6 +84,7 @@ final class ThemeLiquidGlassHealthCheck implements ChecksExtensionHealth
             remediation: $missingAssetFiles === []
                 ? null
                 : 'Restore the missing CSS or asset files before enabling Theme Liquid Glass.',
+            id: 'legacy.theme.liquid.glass.assets',
         );
     }
 
@@ -94,12 +96,12 @@ final class ThemeLiquidGlassHealthCheck implements ChecksExtensionHealth
             && $definition->package === LiquidGlassThemeServiceProvider::$packageName
             && $definition->extends === 'default'
             && $definition->assets === []
-            && $frontendBuildAssets !== null
+            && $frontendBuildAssets instanceof ThemeFrontendBuildAssetsData
             && $frontendBuildAssets->cssSource === 'resources/css/theme-liquid-glass.css'
             && $frontendBuildAssets->cssBuildInput === 'resources/css/capell/themes/liquid-glass.css';
 
         return new DoctorCheckResultData(
-            label: 'Theme Liquid Glass renderer alignment',
+            label: 'Theme Liquid Glass: public renderer configured',
             passed: $valid,
             message: $valid
                 ? 'Theme definition, inherited renderer, and split CSS registration are aligned.'
@@ -107,6 +109,7 @@ final class ThemeLiquidGlassHealthCheck implements ChecksExtensionHealth
             remediation: $valid
                 ? null
                 : 'Align LiquidGlassThemeServiceProvider::definition(), capell.json, and the registered split CSS asset.',
+            id: 'legacy.theme.liquid.glass.renderer.alignment',
         );
     }
 
@@ -115,7 +118,7 @@ final class ThemeLiquidGlassHealthCheck implements ChecksExtensionHealth
         $registered = $this->isThemeStudioDefinitionRegistered();
 
         return new DoctorCheckResultData(
-            label: 'Theme Liquid Glass Studio definition',
+            label: 'Theme Liquid Glass: theme registered',
             passed: $registered,
             message: $registered
                 ? 'The Liquid Glass Theme Studio definition is registered and available for rendering.'
@@ -123,6 +126,7 @@ final class ThemeLiquidGlassHealthCheck implements ChecksExtensionHealth
             remediation: $registered
                 ? null
                 : 'Ensure LiquidGlassThemeServiceProvider boots and registers the Liquid Glass theme with the ThemeRegistry.',
+            id: 'legacy.theme.liquid.glass.studio.definition',
         );
     }
 
@@ -134,7 +138,7 @@ final class ThemeLiquidGlassHealthCheck implements ChecksExtensionHealth
         $missingViewFiles = $this->missingRequiredViewFiles($requiredViewFiles);
 
         return new DoctorCheckResultData(
-            label: 'Theme Liquid Glass Blade views',
+            label: 'Theme Liquid Glass: page templates available',
             passed: $missingViewFiles === [],
             message: $missingViewFiles === []
                 ? 'All Theme Liquid Glass page and section Blade views are present.'
@@ -142,6 +146,7 @@ final class ThemeLiquidGlassHealthCheck implements ChecksExtensionHealth
             remediation: $missingViewFiles === []
                 ? null
                 : 'Restore the missing package Blade files before enabling Theme Liquid Glass.',
+            id: 'legacy.theme.liquid.glass.blade.views',
         );
     }
 
@@ -153,7 +158,7 @@ final class ThemeLiquidGlassHealthCheck implements ChecksExtensionHealth
         $missingScreenshotFiles = $this->missingMarketplaceScreenshotFiles($screenshotPaths);
 
         return new DoctorCheckResultData(
-            label: 'Theme Liquid Glass marketplace screenshots',
+            label: 'Theme Liquid Glass: marketplace screenshots present',
             passed: $missingScreenshotFiles === [],
             message: $missingScreenshotFiles === []
                 ? 'Every marketplace screenshot path points at a committed package file.'
@@ -161,6 +166,7 @@ final class ThemeLiquidGlassHealthCheck implements ChecksExtensionHealth
             remediation: $missingScreenshotFiles === []
                 ? null
                 : 'Update capell.json to reference committed screenshots or add the missing media files.',
+            id: 'legacy.theme.liquid.glass.marketplace.screenshots',
         );
     }
 

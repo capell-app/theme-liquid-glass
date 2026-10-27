@@ -9,11 +9,12 @@
         ]
     },
     "surfaceOutcome": {
-        "text": "When selected, Layout Builder pages render with the theme's glass-layered visual system while preserving the existing content structure.",
+        "text": "Use Preview Theme Liquid Glass on existing content before Apply Theme Liquid Glass, which changes the selected site's public design; reapply its previous theme to restore that selection. Shared Theme Studio settings saves can affect public pages. For fictional demo content, name a disposable target with --sites and review --url and --languages; unscoped setup refuses existing sites, scoped repeats preserve site configuration unless --force deliberately replaces its theme, enabled state, requested site translations and domains, while demo pages, widgets and demo layouts are rewritten on scoped repeats.",
         "evidence": [
             "capell.json",
             "tests/Feature/LiquidGlassBespokeWidgetsTest.php",
-            "tests/Feature/LiquidGlassVisualProofTest.php"
+            "tests/Feature/LiquidGlassVisualProofTest.php",
+            "docs/overview.admin.md"
         ]
     },
     "whyItMatters": {

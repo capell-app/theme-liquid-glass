@@ -338,5 +338,6 @@ class LiquidGlassThemeServiceProvider extends AbstractThemeServiceProvider
     private function registerModelInterceptors(): void
     {
         CapellCore::registerModelInterceptor(Theme::class, interceptorClass: LiquidGlassThemeInterceptor::class, key: self::THEME_KEY);
+        $this->registerThemeChrome(self::THEME_KEY, LiquidGlassThemeInterceptor::HEADER, LiquidGlassThemeInterceptor::FOOTER);
     }
 }
