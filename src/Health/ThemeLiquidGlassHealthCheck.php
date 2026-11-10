@@ -232,6 +232,7 @@ final class ThemeLiquidGlassHealthCheck implements ChecksExtensionHealth
             return [];
         }
 
+        // capell-security-scan: local-stream reads this theme package's own manifest file
         $manifest = json_decode((string) file_get_contents($manifestPath), associative: true);
         $screenshots = is_array($manifest) ? data_get($manifest, 'marketplace.screenshots', []) : [];
 

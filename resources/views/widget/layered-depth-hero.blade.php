@@ -55,7 +55,6 @@
         'layered-depth-hero relative px-5 py-16 sm:px-6 lg:px-8',
         'layered-depth-hero--flat' => $variant === 'flat-fallback',
     ])
-    data-variant="{{ $variant }}"
 >
     <div class="relative mx-auto max-w-7xl">
         <div class="max-w-3xl">
@@ -87,10 +86,11 @@
                     data-pane-depth="{{ $depthIndex }}"
                 >
                     @if (filled($paneImage) && $loop->last)
-                        <img
-                            src="{{ $paneImage }}"
+                        <x-capell::image-source
+                            :image="$paneImage"
                             alt="{{ data_get($pane, 'imageAlt', '') }}"
-                            loading="lazy"
+                            loading="eager"
+                            fetchpriority="high"
                             decoding="async"
                             width="640"
                             height="420"

@@ -81,10 +81,10 @@
             "plaintextJustifications": []
         },
         "publicOutput": {
-            "cacheSafe": true,
             "forbidAuthoringSurface": true,
             "forbidSecrets": true,
-            "forbidPublicBladeQueries": true
+            "forbidPublicBladeQueries": true,
+            "cacheSafe": true
         },
         "externalHttpClients": {
             "requiresTimeouts": false,
@@ -155,6 +155,22 @@
     "marketplace": {
         "summary": "A free glass interface theme for modern Capell sites with translucent panels, sharp content rhythm, and three token-driven presets.",
         "description": "Theme Liquid Glass gives Capell sites a free modern glass interface with translucent panels, crisp typography, and warm accent actions. Three presets cover bright product launches, editorial glass pages, and darker graphite surfaces while staying fully driven by Theme Studio tokens. It renders through the shared layout-builder container pipeline, keeps public output cache-safe and editor-free, and adds a polished alternative to the Foundation and Corporate free lanes.",
+        "problem": "Site owners who want a translucent visual style need to build that presentation themselves.",
+        "outcome": "A site has a glass-style presentation governed by its Theme Studio settings.",
+        "faq": [
+            {
+                "question": "How does Liquid Glass style pages?",
+                "answer": "It adds translucent layers and refraction grids with floating navigation."
+            },
+            {
+                "question": "Can Liquid Glass be previewed before applying it?",
+                "answer": "Yes. Preview the theme on existing content before applying it to the selected site."
+            },
+            {
+                "question": "Will Liquid Glass let me restore the previous theme?",
+                "answer": "Reapply the site’s previous theme to restore its selection. Shared Theme Studio settings saves can affect public pages."
+            }
+        ],
         "screenshots": [
             {
                 "path": "docs/assets/marketplace/extension-card.svg",

@@ -55,8 +55,8 @@
             @foreach ($items as $item)
                 <figure class="liquid-glass-panel p-6">
                     @if (! empty($item['image']))
-                        <img
-                            src="{{ $item['image'] }}"
+                        <x-capell::image-source
+                            :image="$item['image']"
                             alt="{{ $item['name'] ?? $item['logo'] ?? __('capell-theme-liquid-glass::generic.proof_image_alt') }}"
                             width="720"
                             height="480"

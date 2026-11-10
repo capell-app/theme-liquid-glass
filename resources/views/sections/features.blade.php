@@ -60,8 +60,8 @@
                     </p>
 
                     @if (! empty($feature['image']))
-                        <img
-                            src="{{ $feature['image'] }}"
+                        <x-capell::image-source
+                            :image="$feature['image']"
                             alt=""
                             width="720"
                             height="520"

@@ -82,8 +82,8 @@
 
         <div class="liquid-glass-hero-media">
             @if ($safeMediaUrl)
-                <img
-                    src="{{ $safeMediaUrl }}"
+                <x-capell::image-source
+                    :image="$safeMediaUrl"
                     alt="{{ $section->mediaAlt ?: __('capell-theme-liquid-glass::generic.hero_media_alt') }}"
                     width="1200"
                     height="900"

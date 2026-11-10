@@ -60,7 +60,6 @@
                         'glass-surface glass-surface-card glass-feature-card overflow-hidden border border-(--theme-foreground)/10 bg-(--theme-surface)/80',
                         'glass-feature-card--spotlight' => $cardVariant === 'spotlight',
                     ])
-                    data-variant="{{ $cardVariant }}"
                 >
                     <p class="text-sm font-bold tracking-wide liquid-glass-accent uppercase">
                         {{ data_get($item, 'eyebrow', '') }}

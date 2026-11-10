@@ -36,8 +36,8 @@
                     class="glass-surface glass-surface-card glass-surface-card--flush overflow-hidden border border-(--theme-foreground)/10 bg-(--theme-surface)/80"
                 >
                     @if (! empty($item['image']))
-                        <img
-                            src="{{ $item['image'] }}"
+                        <x-capell::image-source
+                            :image="$item['image']"
                             alt="{{ $item['imageAlt'] ?? '' }}"
                             width="720"
                             height="520"

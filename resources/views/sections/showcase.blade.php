@@ -31,8 +31,8 @@
             @foreach ($items as $item)
                 <article class="liquid-glass-panel overflow-hidden">
                     @if (! empty($item['image']))
-                        <img
-                            src="{{ $item['image'] }}"
+                        <x-capell::image-source
+                            :image="$item['image']"
                             alt="{{ $item['imageAlt'] ?? '' }}"
                             width="720"
                             height="520"

@@ -184,6 +184,8 @@ it('renders each bespoke widget view with real seeded copy and expected content 
     expect($ctaHtml)
         ->toContain('Bring your pages onto the glass')
         ->toContain('A warm, focused call to action that stays native to the translucent theme.')
+        ->not->toContain('internal-review')
+        ->not->toContain('data-variant=')
         ->not->toContain('capell-app/theme-liquid-glass');
 
     expect($showcaseHtml)
@@ -272,7 +274,7 @@ it('renders the glass-feature-card widget with real payload and both variant sta
     bootLiquidGlassThemeForBespokeWidgetTests();
 
     $items = [
-        ['eyebrow' => 'Surface', 'title' => 'Frosted panels with depth', 'summary' => 'Layered translucency keeps headings crisp on any backdrop.', 'metric' => '99%', 'metricLabel' => 'Legibility score'],
+        ['variant' => 'internal-review', 'eyebrow' => 'Surface', 'title' => 'Frosted panels with depth', 'summary' => 'Layered translucency keeps headings crisp on any backdrop.', 'metric' => '99%', 'metricLabel' => 'Legibility score'],
         ['eyebrow' => 'Rhythm', 'title' => 'A steady section cadence', 'summary' => 'Every panel shares spacing so pages read with calm momentum.', 'variant' => 'spotlight'],
     ];
 
@@ -288,8 +290,8 @@ it('renders the glass-feature-card widget with real payload and both variant sta
     expect($html)
         ->toContain('A feature card built from layered light')
         ->toContain('Frosted panels with depth')
-        ->toContain('data-variant="standard"')
-        ->toContain('data-variant="spotlight"')
+        ->toContain('glass-feature-card')
+        ->toContain('glass-feature-card--spotlight')
         ->toContain('glass-feature-card--spotlight')
         ->not->toContain('capell-app/theme-liquid-glass');
 
@@ -324,11 +326,11 @@ it('renders the translucent-stat-band widget with the count-up-stat primitive an
     expect($bandHtml)
         ->toContain('data-count-up="4200"')
         ->toContain('Glass panels shipped')
-        ->toContain('data-variant="band"')
+        ->toContain('bg-(--theme-surface)/70')
         ->not->toContain('capell-app/theme-liquid-glass');
 
     expect($panelHtml)
-        ->toContain('data-variant="panel"')
+        ->toContain('glass-surface-card')
         ->toContain('glass-surface-card');
 
     CapellCore::clearPackages();
@@ -338,9 +340,9 @@ it('renders the layered-depth-hero widget with a static resting depth stack and 
     bootLiquidGlassThemeForBespokeWidgetTests();
 
     $panes = [
-        ['label' => 'Backdrop', 'image' => 'https://example.test/backdrop.jpg', 'imageAlt' => 'Backdrop pane'],
-        ['label' => 'Midground', 'image' => 'https://example.test/midground.jpg', 'imageAlt' => 'Midground pane'],
-        ['label' => 'Foreground', 'image' => 'https://example.test/foreground.jpg', 'imageAlt' => 'Foreground pane'],
+        ['label' => 'Backdrop', 'image' => 'https://images.unsplash.com/backdrop.jpg', 'imageAlt' => 'Backdrop pane'],
+        ['label' => 'Midground', 'image' => 'https://images.unsplash.com/midground.jpg', 'imageAlt' => 'Midground pane'],
+        ['label' => 'Foreground', 'image' => 'https://images.unsplash.com/foreground.jpg', 'imageAlt' => 'Foreground pane'],
     ];
 
     $layeredWidget = resolve(WidgetCreator::class)->bespokeContentWidget(
@@ -363,7 +365,7 @@ it('renders the layered-depth-hero widget with a static resting depth stack and 
         ->toContain('A composition with real z-depth')
         ->toContain('data-pane-depth="0"')
         ->toContain('data-pane-depth="2"')
-        ->toContain('data-variant="layered"')
+        ->toContain('layered-depth-hero')
         ->not->toContain('glass-surface layered-depth-hero-pane')
         ->not->toContain('pointermove')
         ->not->toContain('<script')
@@ -373,7 +375,7 @@ it('renders the layered-depth-hero widget with a static resting depth stack and 
         ->and($layeredHtml)->toContain('Foreground pane');
 
     expect($flatHtml)
-        ->toContain('data-variant="flat-fallback"')
+        ->toContain('layered-depth-hero--flat')
         ->toContain('layered-depth-hero--flat');
 
     CapellCore::clearPackages();
@@ -417,9 +419,9 @@ it('renders the paint-only refraction-grid widget with both variants', function 
     bootLiquidGlassThemeForBespokeWidgetTests();
 
     $tiles = [
-        ['title' => 'Marlow Studio launch', 'summary' => 'A service launch rebuilt on the glass rhythm.', 'image' => 'https://example.test/one.jpg'],
-        ['title' => 'Tideline Labs', 'summary' => 'Faster page builds on translucent panels.', 'image' => 'https://example.test/two.jpg'],
-        ['title' => 'Northglass', 'summary' => 'Bespoke brand tints across every panel.', 'image' => 'https://example.test/three.jpg'],
+        ['title' => 'Marlow Studio launch', 'summary' => 'A service launch rebuilt on the glass rhythm.', 'image' => 'https://images.unsplash.com/one.jpg'],
+        ['title' => 'Tideline Labs', 'summary' => 'Faster page builds on translucent panels.', 'image' => 'https://images.unsplash.com/two.jpg'],
+        ['title' => 'Northglass', 'summary' => 'Bespoke brand tints across every panel.', 'image' => 'https://images.unsplash.com/three.jpg'],
     ];
 
     $evenWidget = resolve(WidgetCreator::class)->bespokeContentWidget(
@@ -442,11 +444,11 @@ it('renders the paint-only refraction-grid widget with both variants', function 
         ->toContain('Marlow Studio launch')
         ->toContain('Denser translucent surfaces and layered borders create a subtle refraction treatment while every image stays crisp.')
         ->not->toContain('Blur and saturation combine into a subtle refraction treatment across every tile in the grid.')
-        ->toContain('data-variant="even"')
+        ->toContain('refraction-grid')
         ->not->toContain('capell-app/theme-liquid-glass');
 
     expect($featuredHtml)
-        ->toContain('data-variant="featured"')
+        ->toContain('refraction-grid--featured')
         ->toContain('refraction-grid-tile--lead');
 
     CapellCore::clearPackages();
@@ -465,7 +467,7 @@ it('renders the floating-glass-nav widget as a plain anchor list with both varia
         key: 'liquid-glass-floating-glass-nav-render-test-1',
         name: 'Floating glass nav render test',
         component: WidgetComponentEnum::FloatingGlassNav->value,
-        meta: ['items' => $items],
+        meta: ['items' => $items, 'variant' => 'internal-review'],
     );
     $barWidget = resolve(WidgetCreator::class)->bespokeContentWidget(
         key: 'liquid-glass-floating-glass-nav-render-test-2',
@@ -479,13 +481,15 @@ it('renders the floating-glass-nav widget as a plain anchor list with both varia
 
     expect($pillHtml)
         ->toContain('href="#features"')
-        ->toContain('data-variant="pill"')
+        ->toContain('floating-glass-nav')
         ->toContain('<nav')
+        ->not->toContain('internal-review')
+        ->not->toContain('data-variant=')
         ->not->toContain('<script')
         ->not->toContain('capell-app/theme-liquid-glass');
 
     expect($barHtml)
-        ->toContain('data-variant="bar"')
+        ->toContain('floating-glass-nav--bar')
         ->toContain('floating-glass-nav--bar');
 
     CapellCore::clearPackages();

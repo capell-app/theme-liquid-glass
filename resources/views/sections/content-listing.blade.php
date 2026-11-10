@@ -44,8 +44,8 @@
                     @foreach ($items as $item)
                         <article class="liquid-glass-card">
                             @if (! empty($item['image']))
-                                <img
-                                    src="{{ $item['image'] }}"
+                                <x-capell::image-source
+                                    :image="$item['image']"
                                     alt=""
                                     width="720"
                                     height="480"

@@ -2,104 +2,52 @@
 
 <!-- prettier-ignore-start -->
 
-## What This Plugin Adds
-
-Theme Liquid Glass is an **Available**, **No schema impact** Capell theme in the **Capell Themes** product group. It ships as `capell-app/theme-liquid-glass` and extends these surfaces: frontend.
+## What It Does
 
 Theme Liquid Glass adds translucent layers, depth, refraction grids, and floating navigation to Capell page presentation. Capell and Layout Builder retain ownership of the page data.
 
+- **Price and availability:** Check current availability and price on the [Capell Marketplace listing](https://capell.app/extensions/theme-liquid-glass).
+- **Licence:** Published under MIT in `composer.json`.
+- **Requires:** `PHP ^8.4`, `capell-app/core ^1.0.72`, `capell-app/theme-foundation ^1.0`, `capell-app/frontend ^1.0`, `capell-app/layout-builder ^1.0`.
+- **Install:** `composer require capell-app/theme-liquid-glass`.
+
 Use Preview Theme Liquid Glass on existing content before Apply Theme Liquid Glass, which changes the selected site's public design; reapply its previous theme to restore that selection. Shared Theme Studio settings saves can affect public pages. For fictional demo content, name a disposable target with --sites and review --url and --languages; unscoped setup refuses existing sites, scoped repeats preserve site configuration unless --force deliberately replaces its theme, enabled state, requested site translations and domains, while demo pages, widgets and demo layouts are rewritten on scoped repeats.
 
-Status details:
-
-- Status: Available
-- Tier: free
-- Bundle: themes
-- Composer package: `capell-app/theme-liquid-glass`
-- Namespace: `Capell\ThemeLiquidGlass`
-- Theme key: `liquid-glass`
-
-## Why It Matters
+## Who It Is For
 
 **For developers:** Typed widget keys and a layout-native provider connect bespoke presentation to the shared Layout Builder container pipeline.
 
 **For teams:** Design teams can apply a consistent glass treatment across hero, grid, and navigation sections without relocating content into theme-specific storage.
 
-## Screens And Workflow
+## Quick Start
 
-Screenshot contract: `docs/screenshots.json`.
+1. Install the package: `composer require capell-app/theme-liquid-glass`.
+2. See it working on a disposable site: run `php artisan capell:theme-liquid-glass-demo --sites="Theme demo"`. Choose a new site name for your demo; keep customer sites for the Preview → Apply workflow above.
+3. Run `php artisan list` and verify the package command signatures are registered.
+
+## Configure
+
+- **Commands:** `php artisan capell:theme-liquid-glass-demo`.
+
+## Limits And Pitfalls
+
+- Install the required Capell packages at the versions in `composer.json`: `capell-app/core ^1.0.72`, `capell-app/theme-foundation ^1.0`, `capell-app/frontend ^1.0`, `capell-app/layout-builder ^1.0`.
+- Keep public Blade and cached HTML free of authoring markers, model IDs, permissions, signed editor URLs, and lazy database queries.
+- Custom write integrations must preserve invalidation for `theme-liquid-glass` cache tags.
+
+## Screens And Workflow
 
 ![Liquid Glass Homepage](docs/screenshots/liquid-glass-homepage.webp)
 
 ![Liquid Glass Directory](docs/screenshots/liquid-glass-directory.webp)
 
-Desktop, tablet, and mobile variants remain defined in the screenshot contract; this list groups them by workflow.
-
-- Liquid Glass Homepage (frontend, required evidence).
-- Liquid Glass Directory (frontend, required evidence).
-- Liquid Glass Detail Article (frontend, required evidence).
-- Liquid Glass Contact (frontend, required evidence).
-- Liquid Glass Empty State (frontend, required evidence).
-- Liquid Glass Page Not Found (frontend, supplementary evidence).
-- Liquid Glass Call To Action (frontend, supplementary evidence).
-
-## Technical Shape
-
-### Service providers
-
-- `Capell\ThemeLiquidGlass\LiquidGlassThemeServiceProvider`
-- `Capell\ThemeLiquidGlass\Providers\ConsoleServiceProvider`
-
-### Actions
-
-- `InstallLiquidGlassThemeDemoAction`
-
-### Command signatures
-
-- `capell:theme-liquid-glass-demo`
-
-### Console command classes
-
-- `DemoCommand`
-
-### Manifest contributions
-
-- `admin-page: Capell\ThemeLiquidGlass\Manifest\ThemeManagementPageContribution`
-
-### Health checks
-
-- `Capell\ThemeLiquidGlass\Health\ThemeLiquidGlassHealthCheck`
-
-### Blade views
-
-- `packages/theme-liquid-glass/resources/views/footer.blade.php`
-- `packages/theme-liquid-glass/resources/views/header/index.blade.php`
-- `packages/theme-liquid-glass/resources/views/sections/content-listing.blade.php`
-- `packages/theme-liquid-glass/resources/views/sections/cta.blade.php`
-- `packages/theme-liquid-glass/resources/views/sections/features.blade.php`
-- `packages/theme-liquid-glass/resources/views/sections/footer.blade.php`
-- `packages/theme-liquid-glass/resources/views/sections/hero.blade.php`
-- `packages/theme-liquid-glass/resources/views/sections/navigation.blade.php`
-- `packages/theme-liquid-glass/resources/views/sections/presets.blade.php`
-- `packages/theme-liquid-glass/resources/views/sections/proof.blade.php`
-- `packages/theme-liquid-glass/resources/views/sections/showcase.blade.php`
-- `packages/theme-liquid-glass/resources/views/widget/cta.blade.php`
-- `packages/theme-liquid-glass/resources/views/widget/floating-glass-nav.blade.php`
-- `packages/theme-liquid-glass/resources/views/widget/glass-feature-card.blade.php`
-- `packages/theme-liquid-glass/resources/views/widget/layered-depth-hero.blade.php`
-- `packages/theme-liquid-glass/resources/views/widget/presets.blade.php`
-- `packages/theme-liquid-glass/resources/views/widget/refraction-grid.blade.php`
-- `packages/theme-liquid-glass/resources/views/widget/showcase.blade.php`
-- `packages/theme-liquid-glass/resources/views/widget/translucent-stat-band.blade.php`
-
-### Cache tags
-
-- `theme-liquid-glass`
-
-
-## Data Model
-
-This theme has no schema impact. It relies on core Capell site, page, locale, and theme records instead of declaring package-owned tables.
+- Liquid Glass Homepage (frontend).
+- Liquid Glass Directory (frontend).
+- Liquid Glass Detail Article (frontend).
+- Liquid Glass Contact (frontend).
+- Liquid Glass Empty State (frontend).
+- Liquid Glass Page Not Found (frontend).
+- Liquid Glass Call To Action (frontend).
 
 ## Install Impact
 
@@ -115,24 +63,12 @@ This theme has no schema impact. It relies on core Capell site, page, locale, an
 - Cache tags: `theme-liquid-glass`.
 - Commands: `capell:theme-liquid-glass-demo`.
 
-## Common Pitfalls
-
-- Keep required Capell packages on compatible v4 releases: `capell-app/core`, `capell-app/theme-foundation`, `capell-app/frontend`, `capell-app/layout-builder`.
-- Keep public Blade and cached HTML free of authoring markers, model IDs, permissions, signed editor URLs, and lazy database queries.
-- Custom write integrations must preserve invalidation for `theme-liquid-glass` cache tags.
-
 ## Troubleshooting
 
 | Symptom | Likely cause | Check | Fix |
 | --- | --- | --- | --- |
 | Package surface is missing after install | Provider or manifest is not loaded | Confirm `capell.json`, package `composer.json`, and provider registration | Reinstall the package, refresh Composer autoload, and clear host caches |
 | Public output leaks unexpected state | Render data, cache variation, or authoring boundary has regressed | Check public Blade, cache tags, and public-output safety tests | Move data loading out of Blade and rerun the package public-output tests |
-
-## Quick Start
-
-1. Install the package: `composer require capell-app/theme-liquid-glass`.
-2. See it working on a disposable site: run `php artisan capell:theme-liquid-glass-demo --sites="Theme demo"`. Choose a new site name for your demo; keep customer sites for the Preview → Apply workflow above.
-3. Run `php artisan list` and verify the package command signatures are registered.
 
 ## Upgrading
 
@@ -145,11 +81,11 @@ Read [CHANGELOG.md](CHANGELOG.md) before upgrading.
 - [Package docs](docs/README.md)
 - [Overview](docs/overview.md)
 - [Troubleshooting](#troubleshooting)
-- [Screenshot contract](docs/screenshots.json)
+- [Developer reference](docs/reference.md)
 - [Marketplace assets](docs/assets/marketplace/)
 - [Capell content language plan](../../docs/CONTENT_LANGUAGE_PLAN.md)
 - [Capell documentation design system](../../docs/DESIGN_SYSTEM.md)
 - [Capell and package ERD notes](../../docs/erd/capell-and-package-erds.md)
-- Related packages: [Theme Foundation](../theme-foundation/README.md), [Layout Builder](../layout-builder/README.md).
+- Related packages: [Foundation Theme](../theme-foundation/README.md), [Layout Builder](../layout-builder/README.md).
 
 <!-- prettier-ignore-end -->

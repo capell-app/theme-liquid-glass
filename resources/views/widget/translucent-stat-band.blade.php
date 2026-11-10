@@ -55,7 +55,6 @@
                 'glass-surface-card border border-(--theme-foreground)/10 bg-(--theme-surface)/80' => $variant === 'panel',
                 'bg-(--theme-surface)/70 px-6 py-8' => $variant === 'band',
             ])
-            data-variant="{{ $variant }}"
         >
             @foreach ($stats as $stat)
                 <x-capell-theme-foundation::display.count-up-stat

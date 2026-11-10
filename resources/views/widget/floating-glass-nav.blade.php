@@ -38,7 +38,6 @@
         'floating-glass-nav--bar w-full justify-start' => $variant === 'bar',
     ])
     aria-label="{{ $label }}"
-    data-variant="{{ $variant }}"
 >
     @foreach ($items as $item)
         <a

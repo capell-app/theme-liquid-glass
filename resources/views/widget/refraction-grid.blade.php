@@ -53,7 +53,6 @@
                 'refraction-grid mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3',
                 'refraction-grid--featured' => $variant === 'featured',
             ])
-            data-variant="{{ $variant }}"
         >
             @foreach ($tiles as $tile)
                 <article
@@ -63,8 +62,8 @@
                 ])
                 >
                     @if (filled(data_get($tile, 'image')))
-                        <img
-                            src="{{ data_get($tile, 'image') }}"
+                        <x-capell::image-source
+                            :image="data_get($tile, 'image')"
                             alt="{{ data_get($tile, 'imageAlt', '') }}"
                             loading="lazy"
                             decoding="async"
