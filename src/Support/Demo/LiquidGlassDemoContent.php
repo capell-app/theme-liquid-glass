@@ -108,6 +108,7 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
     public function sectionCopy(string $surface): array
     {
         $media = ThemeDemoMedia::groupedForTheme(LiquidGlassThemeServiceProvider::THEME_KEY);
+        $pool = ThemeDemoMedia::distinctPool(LiquidGlassThemeServiceProvider::THEME_KEY);
 
         return match ($surface) {
             'homepage' => [
@@ -129,9 +130,9 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
                     'summary' => 'Three translucent panes create depth while keeping the content readable and motion optional.',
                     'variant' => 'layered',
                     'panes' => [
-                        ['label' => 'Backdrop', 'image' => $media['hero'][0], 'imageAlt' => 'Soft glass backdrop'],
-                        ['label' => 'Product layer', 'image' => $media['detail'][0], 'imageAlt' => 'Product interface through glass'],
-                        ['label' => 'Action layer', 'image' => $media['proof'][0], 'imageAlt' => 'Focused glass action panel'],
+                        ['label' => 'Backdrop', 'image' => $pool[0], 'imageAlt' => 'Soft glass backdrop'],
+                        ['label' => 'Product layer', 'image' => $pool[1], 'imageAlt' => 'Product interface through glass'],
+                        ['label' => 'Action layer', 'image' => $pool[2], 'imageAlt' => 'Focused glass action panel'],
                     ],
                 ],
                 [
@@ -153,9 +154,9 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
                     'heading' => 'Proof that reads through the glass',
                     'variant' => 'band',
                     'stats' => [
-                        ['value' => 7, 'label' => 'canonical surfaces'],
-                        ['value' => 3, 'label' => 'curated presets'],
-                        ['value' => 0, 'label' => 'required motion'],
+                        ['value' => 'Readable', 'label' => 'at every glass depth'],
+                        ['value' => 'Static', 'label' => 'by default, with motion optional'],
+                        ['value' => 'Tokenised', 'label' => 'through Theme Studio presets'],
                     ],
                 ],
                 [
@@ -164,19 +165,19 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
                     'heading' => 'Media stays recognisable inside the treatment',
                     'variant' => 'featured',
                     'tiles' => [
-                        ['title' => 'Launch story', 'summary' => 'A lead image with controlled depth.', 'image' => $media['listing'][0], 'imageAlt' => 'Launch story preview'],
-                        ['title' => 'Product detail', 'summary' => 'Dense information remains crisp.', 'image' => $media['detail'][0], 'imageAlt' => 'Product detail preview'],
-                        ['title' => 'Conversion path', 'summary' => 'Actions retain strong contrast.', 'image' => $media['cta'][0], 'imageAlt' => 'Conversion path preview'],
+                        ['title' => 'Launch story', 'summary' => 'A lead image with controlled depth.', 'image' => $pool[3], 'imageAlt' => 'Launch story preview'],
+                        ['title' => 'Product detail', 'summary' => 'Dense information remains crisp.', 'image' => $pool[4], 'imageAlt' => 'Product detail preview'],
+                        ['title' => 'Conversion path', 'summary' => 'Actions retain strong contrast.', 'image' => $pool[5], 'imageAlt' => 'Conversion path preview'],
                     ],
                 ],
                 $this->featuresSection(),
-                $this->showcaseSection($media),
+                $this->showcaseSection(ThemeDemoMedia::window(LiquidGlassThemeServiceProvider::THEME_KEY, 6, 3)),
                 $this->presetsSection(),
                 $this->proofSection(),
                 $this->contentListingSection(
                     heading: 'Browse content cards without leaving the glass',
                     summary: 'Translucent result cards keep listings legible and structured while the theme stays free of content records.',
-                    media: $media,
+                    media: ThemeDemoMedia::window(LiquidGlassThemeServiceProvider::THEME_KEY, 9, 3),
                 ),
                 $this->ctaSection(
                     heading: 'Bring your pages onto the glass',
@@ -523,6 +524,21 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
     }
 
     /**
+     * The hero owns the page's only h1, so the shared page-content widget
+     * keeps the portable copy but must not repeat the title after a hero.
+     *
+     * @return array{widget_key: string, occurrence: int, meta: array{page_content: list<string>}}
+     */
+    private function pageContentWidgetReference(bool $afterHero): array
+    {
+        return [
+            'widget_key' => 'page-content',
+            'occurrence' => 1,
+            'meta' => ['page_content' => $afterHero ? ['content'] : ['title', 'content']],
+        ];
+    }
+
+    /**
      * The layout-builder container payload for a Liquid Glass demo surface: a
      * single 'main' container carrying the shared `page-content` widget
      * (so the seeded page's own title/content, kept per-surface above,
@@ -535,15 +551,23 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
      */
     private function containers(string $surface): array
     {
-        $widgets = [
-            ['widget_key' => 'page-content', 'occurrence' => 1],
-        ];
+        $widgets = [];
+        $pageContentInserted = false;
 
         foreach ($this->bespokeSectionsForSurface($surface) as $bespokeSection) {
             $widgets[] = [
                 'widget_key' => $bespokeSection['key'],
                 'occurrence' => 1,
             ];
+
+            if (($bespokeSection['meta']['type'] ?? null) === 'layered-depth-hero' && ! $pageContentInserted) {
+                $widgets[] = $this->pageContentWidgetReference(afterHero: true);
+                $pageContentInserted = true;
+            }
+        }
+
+        if (! $pageContentInserted) {
+            array_unshift($widgets, $this->pageContentWidgetReference(afterHero: false));
         }
 
         return [
@@ -693,6 +717,7 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
     {
         return [
             'type' => 'features',
+            'eyebrow' => 'Features',
             'heading' => 'Surfaces that stay legible through the glass',
             'summary' => 'Translucent panels keep structure, rhythm, and contrast intact across every public page.',
             'features' => [
@@ -729,9 +754,9 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
         )));
 
         $entries = [
-            ['discipline' => 'Launch page', 'title' => 'Marlow Studio launch', 'summary' => 'A service launch rebuilt on the glass section rhythm in a single sprint, with depth and full legibility.', 'metric' => '+34%', 'metricLabel' => 'More launches shipped'],
-            ['discipline' => 'Service page', 'title' => 'Tideline Labs service site', 'summary' => 'A shared section rhythm meant new pages dropped in without redesign, all on translucent panels.', 'metric' => '2x', 'metricLabel' => 'Faster page builds'],
-            ['discipline' => 'Brand surface', 'title' => 'Northglass product pages', 'summary' => 'Brand tints flowed through every panel, so the glass theme felt bespoke rather than templated.', 'metric' => '4.9/5', 'metricLabel' => 'Reported polish'],
+            ['discipline' => 'Launch page', 'title' => 'Marlow Studio launch', 'summary' => 'A service launch rebuilt on the glass section rhythm in a single sprint, with depth and full legibility.'],
+            ['discipline' => 'Service page', 'title' => 'Tideline Labs service site', 'summary' => 'A shared section rhythm meant new pages dropped in without redesign, all on translucent panels.'],
+            ['discipline' => 'Brand surface', 'title' => 'Northglass product pages', 'summary' => 'Brand tints flowed through every panel, so the glass theme felt bespoke rather than templated.'],
         ];
 
         $items = [];
@@ -793,23 +818,24 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
     {
         return [
             'type' => 'proof',
+            'eyebrow' => 'Proof',
             'heading' => 'Teams that ship on the glass',
-            'summary' => 'Outcome metrics and operator quotes show the theme holding up across real launch and service pages.',
+            'summary' => 'Operator quotes show the theme holding up across launch and service pages.',
             'items' => [
                 [
-                    'metric' => '+34% launches',
+                    'metric' => 'Launch page',
                     'quote' => 'The glass panels gave our launch page depth without losing legibility.',
                     'name' => 'Marlow Studio',
                     'role' => 'Head of Web',
                 ],
                 [
-                    'metric' => '2x faster builds',
+                    'metric' => 'Service site',
                     'quote' => 'A shared section rhythm meant new pages dropped in without redesign.',
                     'name' => 'Tideline Labs',
                     'role' => 'Design Lead',
                 ],
                 [
-                    'metric' => '4.9/5 polish',
+                    'metric' => 'Brand surface',
                     'quote' => 'Brand tints flowed through every panel, so the theme felt bespoke.',
                     'name' => 'Northglass',
                     'role' => 'Product Marketing',
@@ -857,6 +883,7 @@ final class LiquidGlassDemoContent implements ProvidesThemeDemoContent
     {
         return [
             'type' => 'cta',
+            'eyebrow' => 'Get started',
             'heading' => $heading,
             'summary' => $summary,
             'actions' => [

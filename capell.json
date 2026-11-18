@@ -6,7 +6,7 @@
     "kind": "theme",
     "capellApiVersion": "^1.0",
     "version": "1.0.0",
-    "description": "Present Capell pages with translucent layers, depth, refraction grids and floating navigation through the shared Layout Builder pipeline.",
+    "description": "Three looks called Clarity, Prism and Graphite, and eight extra blocks, most of them on frosted see-through panels.",
     "product": {
         "group": "Capell Themes",
         "tier": "free",
@@ -62,7 +62,7 @@
     },
     "settings": [],
     "permissions": [],
-    "capabilities": ["theme-liquid-glass", "theme-liquid-glass-frontend"],
+    "capabilities": [],
     "security": {
         "riskTier": "low",
         "publicSurface": {
@@ -153,58 +153,111 @@
         "privateDocsRequested": false
     },
     "marketplace": {
-        "summary": "A free glass interface theme for modern Capell sites with translucent panels, sharp content rhythm, and three token-driven presets.",
-        "description": "Theme Liquid Glass gives Capell sites a free modern glass interface with translucent panels, crisp typography, and warm accent actions. Three presets cover bright product launches, editorial glass pages, and darker graphite surfaces while staying fully driven by Theme Studio tokens. It renders through the shared layout-builder container pipeline, keeps public output cache-safe and editor-free, and adds a polished alternative to the Foundation and Corporate free lanes.",
-        "problem": "Site owners who want a translucent visual style need to build that presentation themselves.",
-        "outcome": "A site has a glass-style presentation governed by its Theme Studio settings.",
+        "summary": "Pale mint, pale blue or near-black pages, with frosted cards, counting figures and shortcut links in the theme's own blocks.",
+        "description": "Pick one of three looks, pale mint, pale blue or near-black, and add frosted-panel blocks for calls to action, showcases and counting figures. Editors add each block's wording in the widget editor, and the theme needs the Foundation theme and Layout Builder installed first.",
+        "problem": "Our pages feel flat and I want a layered, soft look without commissioning a custom design.",
+        "outcome": "Your pages get frosted cards, figures and shortcut links, with a soft blur behind them, in the colours you picked.",
         "faq": [
             {
-                "question": "How does Liquid Glass style pages?",
-                "answer": "It adds translucent layers and refraction grids with floating navigation."
+                "question": "What else do I need installed before I use Liquid Glass?",
+                "answer": "You need the Foundation theme and Layout Builder, the page builder you place blocks with. Sections that come from Foundation keep their ordinary look and do not get the frosted panels."
             },
             {
-                "question": "Can Liquid Glass be previewed before applying it?",
-                "answer": "Yes. Preview the theme on existing content before applying it to the selected site."
+                "question": "Can I try it before visitors see it?",
+                "answer": "Yes. A private preview shows your own pages in the theme, and visitors keep seeing the current theme until you apply it."
             },
             {
-                "question": "Will Liquid Glass let me restore the previous theme?",
-                "answer": "Reapply the site’s previous theme to restore its selection. Shared Theme Studio settings saves can affect public pages."
+                "question": "What do the blocks show before I write their wording?",
+                "answer": "Four of the blocks show built-in sample headings until you fill in your own wording in the editing form. The footer builds its copyright line from your site title and the year."
+            },
+            {
+                "question": "Does Liquid Glass have a dark version?",
+                "answer": "Yes, for visitors whose device is set to dark. The header and the panels in the eight blocks turn dark in all three looks."
             }
         ],
         "screenshots": [
             {
                 "path": "docs/assets/marketplace/extension-card.svg",
-                "alt": "Theme Liquid Glass marketplace card.",
-                "caption": "Theme Liquid Glass free theme card."
+                "alt": "An abstract card with a frosted white panel, a teal bar, grey text lines, an orange button and a round shape on pale mint",
+                "caption": "A preview card for the theme, drawn as shapes with no page content."
             },
             {
                 "path": "docs/screenshots/liquid-glass-homepage.webp",
-                "alt": "Theme Liquid Glass homepage rendered through the package theme shell.",
-                "caption": "Runner-backed homepage preview with layered glass panels."
+                "alt": "A launch page on pale mint with frosted cards, a large photo of two people at laptops, a figures strip and project cards",
+                "caption": "The home page uses see-through panels, a figures strip and a call to action."
             },
             {
                 "path": "docs/screenshots/liquid-glass-directory.webp",
-                "alt": "Theme Liquid Glass directory rendered with layered content cards.",
-                "caption": "Runner-backed directory with layered glass panels."
+                "alt": "A page of three project cards with photos, short summaries and one large figure each, above a grey-blue call to action band",
+                "caption": "Cards sit on soft panels, each with a photo, a summary and one figure."
             },
             {
                 "path": "docs/screenshots/liquid-glass-detail.webp",
-                "alt": "Theme Liquid Glass detail page rendered with translucent content cards.",
-                "caption": "Runner-backed detail preview with translucent cards."
+                "alt": "A page of three project cards with photos and figures above a grey-blue call to action band and a footer",
+                "caption": "A second content page built from the same card block, with the same call to action below."
             },
             {
                 "path": "docs/screenshots/liquid-glass-empty.webp",
-                "alt": "Theme Liquid Glass empty state rendered inside a clear glass panel.",
-                "caption": "Runner-backed empty-state proof with a clear recovery path."
+                "alt": "A page headed No results with a short line of text above a grey-blue call to action band and a footer",
+                "caption": "What visitors see when a filtered list has nothing in it."
             },
             {
                 "path": "docs/screenshots/liquid-glass-contact.webp",
-                "alt": "Theme Liquid Glass contact page rendered with conversion-focused actions.",
-                "caption": "Runner-backed contact preview with conversion-focused actions."
+                "alt": "A page headed Get in touch with a short line of text above a grey-blue call to action band with two buttons and a footer",
+                "caption": "A contact page that points visitors to two buttons and has no form of its own."
             }
         ],
         "categories": ["frontend", "themes"]
     },
     "extends": "default",
-    "themeKey": "liquid-glass"
+    "themeKey": "liquid-glass",
+    "contributionTraceability": {
+        "contributions": [
+            {
+                "type": "content-widget",
+                "key": "renderable:layout-widget:capell.widget.liquid-glass.cta",
+                "providerBucket": "runtime"
+            },
+            {
+                "type": "content-widget",
+                "key": "renderable:layout-widget:capell.widget.liquid-glass.floating-glass-nav",
+                "providerBucket": "runtime"
+            },
+            {
+                "type": "content-widget",
+                "key": "renderable:layout-widget:capell.widget.liquid-glass.glass-feature-card",
+                "providerBucket": "runtime"
+            },
+            {
+                "type": "content-widget",
+                "key": "renderable:layout-widget:capell.widget.liquid-glass.layered-depth-hero",
+                "providerBucket": "runtime"
+            },
+            {
+                "type": "content-widget",
+                "key": "renderable:layout-widget:capell.widget.liquid-glass.presets",
+                "providerBucket": "runtime"
+            },
+            {
+                "type": "content-widget",
+                "key": "renderable:layout-widget:capell.widget.liquid-glass.refraction-grid",
+                "providerBucket": "runtime"
+            },
+            {
+                "type": "content-widget",
+                "key": "renderable:layout-widget:capell.widget.liquid-glass.showcase",
+                "providerBucket": "runtime"
+            },
+            {
+                "type": "content-widget",
+                "key": "renderable:layout-widget:capell.widget.liquid-glass.translucent-stat-band",
+                "providerBucket": "runtime"
+            },
+            {
+                "type": "model",
+                "key": "model-interceptor:Capell\\Core\\Models\\Theme:Capell\\ThemeLiquidGlass\\Support\\Interceptors\\Themes\\LiquidGlassThemeInterceptor:liquid-glass",
+                "providerBucket": "runtime"
+            }
+        ]
+    }
 }

@@ -45,6 +45,11 @@
     $summary = $widget->getMeta('summary') ?? __('capell-theme-liquid-glass::generic.layered_depth_hero_summary');
     $panes = is_array($widget->getMeta('panes')) ? $widget->getMeta('panes') : [];
     $variant = (string) ($widget->getMeta('variant') ?? 'layered');
+    // The front pane carries the one image. `frontImage` is what the editing
+    // form writes; earlier content kept it on the last pane, so that still works.
+    $lastPane = $panes === [] ? [] : (array) end($panes);
+    $frontImage = PublicUrlSanitizer::sanitize($widget->getMeta('frontImage') ?? data_get($lastPane, 'image'));
+    $frontImageAlt = (string) ($widget->getMeta('frontImageAlt') ?? data_get($lastPane, 'imageAlt', ''));
 @endphp
 
 <section
@@ -62,11 +67,11 @@
                 <p class="text-xs font-black tracking-[0.08em] liquid-glass-accent uppercase">{{ $eyebrow }}</p>
             @endif
 
-            <h2
+            <{{ $headingLevel ?? 'h1' }}
                 class="mt-4 text-4xl leading-tight font-black text-balance text-(--theme-foreground) sm:text-5xl"
             >
                 {{ $heading }}
-            </h2>
+            </{{ $headingLevel ?? 'h1' }}>
 
             @if ($summary)
                 <p class="mt-5 text-lg leading-8 text-(--theme-foreground)/75">{{ $summary }}</p>
@@ -77,7 +82,6 @@
             @foreach ($panes as $pane)
                 @php
                     $depthIndex = $loop->index;
-                    $paneImage = PublicUrlSanitizer::sanitize(data_get($pane, 'image'));
                 @endphp
 
                 <div
@@ -85,10 +89,10 @@
                     style="--layered-depth-hero-pane-index: {{ $depthIndex }}"
                     data-pane-depth="{{ $depthIndex }}"
                 >
-                    @if (filled($paneImage) && $loop->last)
+                    @if (filled($frontImage) && $loop->last)
                         <x-capell::image-source
-                            :image="$paneImage"
-                            alt="{{ data_get($pane, 'imageAlt', '') }}"
+                            :image="$frontImage"
+                            alt="{{ $frontImageAlt }}"
                             loading="eager"
                             fetchpriority="high"
                             decoding="async"

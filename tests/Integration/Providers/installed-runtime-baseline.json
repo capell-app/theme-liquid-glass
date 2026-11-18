@@ -4,16 +4,29 @@
     "scenarios": {
         "default": {
             "source": {
-                "ref": "HEAD",
-                "commit": "adac26b4ce1e9e1de545f68a1ff272ff73111696",
+                "ref": "cef2c3faa2d893daa0d20741aa403d8907aaa1cc",
+                "commit": "cef2c3faa2d893daa0d20741aa403d8907aaa1cc",
                 "providers": {
-                    "LiquidGlassThemeServiceProvider.php": "112de5dae2bfa240ff0f86d5f201a58e1ea4c31e2b53afd58339a96f828fc5b2",
+                    "LiquidGlassThemeServiceProvider.php": "fdd70c2b9449e2ce5dfc90c1d7676ea813bfcb0a9f53ff30dbebc3ffcf5db562",
                     "Providers/ConsoleServiceProvider.php": "6c11ed9272cf82b6994afe86a34ed04f90686292b6ed2d40ea5722834d4278ff"
                 },
                 "configure": null
             },
             "disabledContributions": [],
             "surfaces": {
+                "bindings": {
+                    "Capell\\ThemeLiquidGlass\\Filament\\Extenders\\GlassBlockSchemaExtender": {
+                        "concrete": [
+                            "<vendor>/laravel/framework/src/Illuminate/Container/Container.php",
+                            "Illuminate\\Container\\Container( $container,  $parameters): bound=Illuminate\\Foundation\\Application",
+                            {
+                                "abstract": "Capell\\ThemeLiquidGlass\\Filament\\Extenders\\GlassBlockSchemaExtender",
+                                "concrete": "Capell\\ThemeLiquidGlass\\Filament\\Extenders\\GlassBlockSchemaExtender"
+                            }
+                        ],
+                        "shared": true
+                    }
+                },
                 "commands": {
                     "capell:theme-liquid-glass-demo": "Capell\\ThemeLiquidGlass\\Console\\Commands\\DemoCommand"
                 },
@@ -425,8 +438,11 @@
                                             {
                                                 "description": "Bright glass surfaces, teal structure, and warm action accents.",
                                                 "key": "clarity",
+                                                "layout": null,
                                                 "name": "Clarity",
                                                 "previewImage": "/vendor/capell/themes/liquid-glass.svg",
+                                                "sectionVariants": [],
+                                                "typePairing": null,
                                                 "values": {
                                                     "accentColor": "#f97316",
                                                     "bodyFont": "inter",
@@ -446,7 +462,8 @@
                                                     "radius": "xl",
                                                     "spacing": "balanced",
                                                     "surfaceColor": "#f3fbfa"
-                                                }
+                                                },
+                                                "version": 1
                                             }
                                         ],
                                         [
@@ -454,8 +471,11 @@
                                             {
                                                 "description": "Fresh cyan glass, rose highlights, and spacious editorial cards.",
                                                 "key": "prism",
+                                                "layout": null,
                                                 "name": "Prism",
                                                 "previewImage": "/vendor/capell/themes/liquid-glass.svg",
+                                                "sectionVariants": [],
+                                                "typePairing": null,
                                                 "values": {
                                                     "accentColor": "#db2777",
                                                     "bodyFont": "inter",
@@ -475,7 +495,8 @@
                                                     "radius": "xl",
                                                     "spacing": "spacious",
                                                     "surfaceColor": "#edf7fb"
-                                                }
+                                                },
+                                                "version": 1
                                             }
                                         ],
                                         [
@@ -483,8 +504,11 @@
                                             {
                                                 "description": "Dark glass panels with amber contrast and compact information density.",
                                                 "key": "graphite",
+                                                "layout": null,
                                                 "name": "Graphite",
                                                 "previewImage": "/vendor/capell/themes/liquid-glass.svg",
+                                                "sectionVariants": [],
+                                                "typePairing": null,
                                                 "values": {
                                                     "accentColor": "#f59e0b",
                                                     "bodyFont": "inter",
@@ -504,7 +528,8 @@
                                                     "radius": "lg",
                                                     "spacing": "balanced",
                                                     "surfaceColor": "#151917"
-                                                }
+                                                },
+                                                "version": 1
                                             }
                                         ]
                                     ],
@@ -622,6 +647,16 @@
                         }
                     ]
                 ],
+                "tagged-consumers": {
+                    "capell.widget_schema.extenders": [
+                        "Capell\\ThemeLiquidGlass\\Filament\\Extenders\\GlassBlockSchemaExtender"
+                    ]
+                },
+                "tags": {
+                    "capell.widget_schema.extenders": [
+                        "Capell\\ThemeLiquidGlass\\Filament\\Extenders\\GlassBlockSchemaExtender"
+                    ]
+                },
                 "vendor-assets": [
                     [
                         "Capell\\Core\\Data\\VendorAssetData",
@@ -645,9 +680,7 @@
                     ]
                 ],
                 "views": {
-                    "capell-theme-liquid-glass": [
-                        "<package>/src/../resources/views"
-                    ]
+                    "capell-theme-liquid-glass": ["<package>/resources/views"]
                 }
             },
             "uninstalledSurfaces": {

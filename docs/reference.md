@@ -6,7 +6,7 @@ Developer reference for `capell-app/theme-liquid-glass`. Start with the [README]
 
 ## Package Details
 
-Theme Liquid Glass is an **Available**, **No schema impact** Capell theme in the **Capell Themes** product group. It ships as `capell-app/theme-liquid-glass` and extends these surfaces: frontend.
+Theme Liquid Glass is an **Available** Capell theme in the **Capell Themes** product group. It ships as `capell-app/theme-liquid-glass` and extends these surfaces: frontend.
 
 - Status: Available
 - Tier: free
@@ -21,6 +21,10 @@ Theme Liquid Glass is an **Available**, **No schema impact** Capell theme in the
 
 - `Capell\ThemeLiquidGlass\LiquidGlassThemeServiceProvider`
 - `Capell\ThemeLiquidGlass\Providers\ConsoleServiceProvider`
+
+### Filament classes
+
+- `GlassBlockSchemaExtender`
 
 ### Actions
 
@@ -46,15 +50,6 @@ Theme Liquid Glass is an **Available**, **No schema impact** Capell theme in the
 
 - `packages/theme-liquid-glass/resources/views/footer.blade.php`
 - `packages/theme-liquid-glass/resources/views/header/index.blade.php`
-- `packages/theme-liquid-glass/resources/views/sections/content-listing.blade.php`
-- `packages/theme-liquid-glass/resources/views/sections/cta.blade.php`
-- `packages/theme-liquid-glass/resources/views/sections/features.blade.php`
-- `packages/theme-liquid-glass/resources/views/sections/footer.blade.php`
-- `packages/theme-liquid-glass/resources/views/sections/hero.blade.php`
-- `packages/theme-liquid-glass/resources/views/sections/navigation.blade.php`
-- `packages/theme-liquid-glass/resources/views/sections/presets.blade.php`
-- `packages/theme-liquid-glass/resources/views/sections/proof.blade.php`
-- `packages/theme-liquid-glass/resources/views/sections/showcase.blade.php`
 - `packages/theme-liquid-glass/resources/views/widget/cta.blade.php`
 - `packages/theme-liquid-glass/resources/views/widget/floating-glass-nav.blade.php`
 - `packages/theme-liquid-glass/resources/views/widget/glass-feature-card.blade.php`

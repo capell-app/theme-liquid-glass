@@ -28,9 +28,6 @@
         >
             <div>
                 <p class="text-2xl font-black text-(--theme-foreground)">{{ $siteTitle }}</p>
-                <p class="mt-2 max-w-xl text-sm leading-6 text-(--theme-foreground)/65">
-                    {{ __('capell-theme-liquid-glass::generic.footer_tagline') }}
-                </p>
             </div>
 
             <a

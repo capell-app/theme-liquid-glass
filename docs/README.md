@@ -11,7 +11,7 @@ contracts.
 
 - [Overview](overview.md)
 - [Credits and acknowledgements](credits-and-acknowledgements.md)
-- [Screenshot contract](screenshots.json)
+- [Screenshots](screenshots.json)
 - [Root README](../README.md)
 - [Marketplace assets](assets/marketplace/)
 

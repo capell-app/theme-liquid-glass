@@ -1,22 +1,4 @@
 {
-    "whatThisPluginAdds": {
-        "text": "Theme Liquid Glass adds translucent layers, depth, refraction grids, and floating navigation to Capell page presentation. Capell and Layout Builder retain ownership of the page data.",
-        "evidence": [
-            "src/LiquidGlassThemeServiceProvider.php",
-            "resources/views/widget/layered-depth-hero.blade.php",
-            "resources/views/widget/refraction-grid.blade.php",
-            "resources/views/widget/floating-glass-nav.blade.php"
-        ]
-    },
-    "surfaceOutcome": {
-        "text": "Use Preview Theme Liquid Glass on existing content before Apply Theme Liquid Glass, which changes the selected site's public design; reapply its previous theme to restore that selection. Shared Theme Studio settings saves can affect public pages. For fictional demo content, name a disposable target with --sites and review --url and --languages; unscoped setup refuses existing sites, scoped repeats preserve site configuration unless --force deliberately replaces its theme, enabled state, requested site translations and domains, while demo pages, widgets and demo layouts are rewritten on scoped repeats.",
-        "evidence": [
-            "capell.json",
-            "tests/Feature/LiquidGlassBespokeWidgetsTest.php",
-            "tests/Feature/LiquidGlassVisualProofTest.php",
-            "docs/overview.admin.md"
-        ]
-    },
     "whyItMatters": {
         "developers": {
             "text": "Typed widget keys and a layout-native provider connect bespoke presentation to the shared Layout Builder container pipeline.",
@@ -24,14 +6,6 @@
                 "src/LiquidGlassThemeServiceProvider.php",
                 "src/Enums/WidgetComponentEnum.php",
                 "tests/Unit/LiquidGlassThemeDefinitionTest.php"
-            ]
-        },
-        "teams": {
-            "text": "Design teams can apply a consistent glass treatment across hero, grid, and navigation sections without relocating content into theme-specific storage.",
-            "evidence": [
-                "resources/views/widget/layered-depth-hero.blade.php",
-                "resources/views/widget/refraction-grid.blade.php",
-                "resources/views/widget/floating-glass-nav.blade.php"
             ]
         }
     }

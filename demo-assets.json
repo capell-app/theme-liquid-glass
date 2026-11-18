@@ -1,0 +1,20 @@
+{
+    "assets": [
+        {
+            "id": "first-screen/liquid-glass",
+            "file": "publishes/demo-media/first-screen.webp",
+            "role": "first-screen",
+            "width": 1600,
+            "height": 900,
+            "sha256": "1d7ff0db67dce07ce35db76d0f369108bae558acc93d5a7a9ac8d5979a251dd7",
+            "licence": "Capell-owned original artwork",
+            "rights": "Generated for Capell demo content. Capell holds all rights; no third-party licence applies.",
+            "provenance": {
+                "provider": "codex",
+                "model": "codex image_generation",
+                "prompt": "layered translucent glass panels refracting soft colour; wide hero image. Original editorial photograph-style image. Natural light, considered composition, a quiet area for overlaid copy. No text, lettering, logos, watermarks, signage, readable screens, brand marks or recognisable real people.",
+                "generatedAt": "2026-11-15"
+            }
+        }
+    ]
+}

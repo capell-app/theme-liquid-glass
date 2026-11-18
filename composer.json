@@ -1,6 +1,6 @@
 {
     "name": "capell-app/theme-liquid-glass",
-    "description": "A free Liquid Glass website theme for modern Capell sites with translucent surfaces, crisp content rhythm, and three polished presets.",
+    "description": "Frosted-panel theme for Capell sites with three looks, Clarity, Prism and Graphite, and eight extra blocks.",
     "type": "library",
     "license": "MIT",
     "require": {

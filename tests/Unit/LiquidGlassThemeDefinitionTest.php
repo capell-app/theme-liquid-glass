@@ -138,9 +138,9 @@ it('seeds real Layout containers and a page-content Widget through ThemeDemoPage
         ->and($layout->containers)->toBe([
             'main' => [
                 'widgets' => [
-                    ['widget_key' => 'page-content', 'occurrence' => 1],
                     ['widget_key' => 'liquid-glass-floating-glass-nav-homepage-1', 'occurrence' => 1],
                     ['widget_key' => 'liquid-glass-layered-depth-hero-homepage-1', 'occurrence' => 1],
+                    ['widget_key' => 'page-content', 'occurrence' => 1, 'meta' => ['page_content' => ['content']]],
                     ['widget_key' => 'liquid-glass-glass-feature-card-homepage-1', 'occurrence' => 1],
                     ['widget_key' => 'liquid-glass-translucent-stat-band-homepage-1', 'occurrence' => 1],
                     ['widget_key' => 'liquid-glass-refraction-grid-homepage-1', 'occurrence' => 1],

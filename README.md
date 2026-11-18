@@ -2,28 +2,28 @@
 
 <!-- prettier-ignore-start -->
 
-## What It Does
+Cards, figures and a floating row of shortcut links sit on frosted, see-through panels, and the page behind them shows through as a soft blur. You pick one of three looks. Clarity is teal and orange on a pale mint page. Prism is cyan and pink on pale blue, with larger headings and more room around things. Graphite is slate and amber on near-black.
 
-Theme Liquid Glass adds translucent layers, depth, refraction grids, and floating navigation to Capell page presentation. Capell and Layout Builder retain ownership of the page data.
+Six of the theme's eight extra blocks, the ready-made sections you place on a page, use those panels. They include a call to action and a showcase of cards with images. A strip of figures counts up once.
+
+Editors fill in each block's wording in an editing form in the widget editor. Until the wording is filled in, four of them show built-in sample headings. The footer shows the site name and a copyright line built from the site title and the year. Sections shared from Foundation do not get the blur. The theme needs the Foundation theme and Layout Builder, the page builder, installed.
+
+On a device set to dark, the header and the panels in the eight blocks turn dark in all three looks. Before you apply the theme to the live site, you can preview it privately on your own pages.
 
 - **Price and availability:** Check current availability and price on the [Capell Marketplace listing](https://capell.app/extensions/theme-liquid-glass).
 - **Licence:** Published under MIT in `composer.json`.
 - **Requires:** `PHP ^8.4`, `capell-app/core ^1.0.72`, `capell-app/theme-foundation ^1.0`, `capell-app/frontend ^1.0`, `capell-app/layout-builder ^1.0`.
 - **Install:** `composer require capell-app/theme-liquid-glass`.
 
-Use Preview Theme Liquid Glass on existing content before Apply Theme Liquid Glass, which changes the selected site's public design; reapply its previous theme to restore that selection. Shared Theme Studio settings saves can affect public pages. For fictional demo content, name a disposable target with --sites and review --url and --languages; unscoped setup refuses existing sites, scoped repeats preserve site configuration unless --force deliberately replaces its theme, enabled state, requested site translations and domains, while demo pages, widgets and demo layouts are rewritten on scoped repeats.
-
-## Who It Is For
-
-**For developers:** Typed widget keys and a layout-native provider connect bespoke presentation to the shared Layout Builder container pipeline.
-
-**For teams:** Design teams can apply a consistent glass treatment across hero, grid, and navigation sections without relocating content into theme-specific storage.
-
 ## Quick Start
 
 1. Install the package: `composer require capell-app/theme-liquid-glass`.
 2. See it working on a disposable site: run `php artisan capell:theme-liquid-glass-demo --sites="Theme demo"`. Choose a new site name for your demo; keep customer sites for the Preview → Apply workflow above.
 3. Run `php artisan list` and verify the package command signatures are registered.
+
+## For Developers
+
+Typed widget keys and a layout-native provider connect bespoke presentation to the shared Layout Builder container pipeline.
 
 ## Configure
 

@@ -18,7 +18,9 @@ use Capell\Core\ThemeStudio\Theme\ThemeRegistry;
 use Capell\FoundationTheme\Support\Editor\StandardThemeEditorSchema;
 use Capell\FoundationTheme\Support\Providers\AbstractThemeServiceProvider;
 use Capell\FoundationTheme\Support\Providers\RegistersLayoutNativeThemeDefaults;
+use Capell\LayoutBuilder\Contracts\Extenders\WidgetSchemaExtender;
 use Capell\ThemeLiquidGlass\Enums\WidgetComponentEnum;
+use Capell\ThemeLiquidGlass\Filament\Extenders\GlassBlockSchemaExtender;
 use Capell\ThemeLiquidGlass\Providers\ConsoleServiceProvider;
 use Capell\ThemeLiquidGlass\Support\Interceptors\Themes\LiquidGlassThemeInterceptor;
 use Override;
@@ -178,6 +180,7 @@ class LiquidGlassThemeServiceProvider extends AbstractThemeServiceProvider
         $this->registerVendorCssAssets();
         $this->registerLayoutAreas();
         $this->registerBespokeWidgetRenderables();
+        $this->registerBlockEditingForms();
         $this->registerModelInterceptors();
 
         // Definition-only registration: Liquid Glass no longer ships a
@@ -186,6 +189,19 @@ class LiquidGlassThemeServiceProvider extends AbstractThemeServiceProvider
         // instead of this package's own page shell, so
         // ThemeRegistry::has(self::THEME_KEY) is false from here on.
         $registry->register(definition: self::definition());
+    }
+
+    /**
+     * Gives the eight Liquid Glass blocks their editing forms in the widget editor.
+     */
+    private function registerBlockEditingForms(): void
+    {
+        if ($this->app->bound(GlassBlockSchemaExtender::class)) {
+            return;
+        }
+
+        $this->app->singleton(GlassBlockSchemaExtender::class);
+        $this->app->tag(GlassBlockSchemaExtender::class, WidgetSchemaExtender::TAG);
     }
 
     private function registerVendorCssAssets(): void

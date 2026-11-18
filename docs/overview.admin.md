@@ -22,7 +22,6 @@ To recover the previous design, reopen the previous theme's management entry, se
 ## Good to know
 
 - Built on **Foundation Theme** - install that first.
-- A free, polished alternative to the Foundation and Corporate looks.
 - Private theme preview keeps the current site theme selected until you choose **Apply**.
 
 ## Try fictional demo content safely

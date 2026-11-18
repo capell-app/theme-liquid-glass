@@ -1,0 +1,81 @@
+[
+    {
+        "claim": "Cards, figures and a floating row of shortcut links sit on frosted see-through panels with a soft blur (6px backdrop blur on .glass-surface)",
+        "evidence": [
+            "resources/css/theme-liquid-glass.css",
+            "resources/views/widget/glass-feature-card.blade.php",
+            "resources/views/widget/translucent-stat-band.blade.php",
+            "resources/views/widget/floating-glass-nav.blade.php"
+        ]
+    },
+    {
+        "claim": "Three looks: Clarity teal and orange on pale mint; Prism cyan and pink on pale blue with larger headings and more spacing; Graphite slate and amber on near-black",
+        "evidence": ["src/LiquidGlassThemeServiceProvider.php"]
+    },
+    {
+        "claim": "Eight extra blocks, six of which use the frosted panel (depth hero and refraction grid use translucent panes and tiles without blur)",
+        "evidence": [
+            "src/Enums/WidgetComponentEnum.php",
+            "resources/views/widget/cta.blade.php",
+            "resources/views/widget/showcase.blade.php",
+            "resources/views/widget/presets.blade.php",
+            "resources/views/widget/layered-depth-hero.blade.php",
+            "resources/views/widget/refraction-grid.blade.php"
+        ]
+    },
+    {
+        "claim": "Blocks include a call to action and a showcase of cards with images",
+        "evidence": [
+            "resources/views/widget/cta.blade.php",
+            "resources/views/widget/showcase.blade.php"
+        ]
+    },
+    {
+        "claim": "A strip of figures counts up once (count-up module is in theme-foundation; this block renders its markup)",
+        "evidence": ["resources/views/widget/translucent-stat-band.blade.php"]
+    },
+    {
+        "claim": "Editors fill in each block's wording in an editing form in the widget editor, for its heading, summary, items, images, links and style",
+        "evidence": [
+            "src/Filament/Extenders/GlassBlockSchemaExtender.php",
+            "src/LiquidGlassThemeServiceProvider.php",
+            "resources/lang/en/blocks.php"
+        ]
+    },
+    {
+        "claim": "Four blocks show built-in sample headings when their wording is empty",
+        "evidence": [
+            "resources/views/widget/glass-feature-card.blade.php",
+            "resources/views/widget/translucent-stat-band.blade.php",
+            "resources/views/widget/layered-depth-hero.blade.php",
+            "resources/views/widget/refraction-grid.blade.php",
+            "resources/lang/en/generic.php"
+        ]
+    },
+    {
+        "claim": "The footer shows the site name and a copyright line built from the site title and the year",
+        "evidence": [
+            "resources/views/footer.blade.php",
+            "resources/lang/en/generic.php"
+        ]
+    },
+    {
+        "claim": "Sections shared from Foundation do not get the blur (blur only on .glass-surface; header and footer use the opaque chrome surface)",
+        "evidence": ["resources/css/theme-liquid-glass.css"]
+    },
+    {
+        "claim": "Needs the Foundation theme and Layout Builder installed",
+        "evidence": ["capell.json"]
+    },
+    {
+        "claim": "On a dark device the header and the block panels and tiles turn dark in all three looks (theme surface and foreground swapped)",
+        "evidence": ["resources/css/theme-liquid-glass.css"]
+    },
+    {
+        "claim": "Private preview before applying, through the Core Marketplace theme page (page class lives in Core; this package contributes the entry)",
+        "evidence": [
+            "src/Manifest/ThemeManagementPageContribution.php",
+            "capell.json"
+        ]
+    }
+]
