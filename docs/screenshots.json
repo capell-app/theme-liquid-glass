@@ -1,7 +1,8 @@
 {
     "package": "theme-liquid-glass",
     "composerName": "capell-app/theme-liquid-glass",
-    "generatedFor": "deployment-screenshot-runner",
+    "generatedFor": "shared-capell-screenshot-runner",
+    "provenancePolicy": "runner-only-v1",
     "requiresInstalledPackage": true,
     "outputDirectory": "packages/theme-liquid-glass/docs/screenshots",
     "entries": [

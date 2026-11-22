@@ -10,7 +10,7 @@ Editors fill in each block's wording in an editing form in the widget editor. Un
 
 On a device set to dark, the header and the panels in the eight blocks turn dark in all three looks. Before you apply the theme to the live site, you can preview it privately on your own pages.
 
-- **Price and availability:** Check current availability and price on the [Capell Marketplace listing](https://capell.app/extensions/theme-liquid-glass).
+- **Price and availability:** Check current availability and price on the [Capell Marketplace listing](https://capell.app/marketplace/extensions/theme-liquid-glass).
 - **Licence:** Published under MIT in `composer.json`.
 - **Requires:** `PHP ^8.4`, `capell-app/core ^1.0.72`, `capell-app/theme-foundation ^1.0`, `capell-app/frontend ^1.0`, `capell-app/layout-builder ^1.0`.
 - **Install:** `composer require capell-app/theme-liquid-glass`.
@@ -18,7 +18,7 @@ On a device set to dark, the header and the panels in the eight blocks turn dark
 ## Quick Start
 
 1. Install the package: `composer require capell-app/theme-liquid-glass`.
-2. See it working on a disposable site: run `php artisan capell:theme-liquid-glass-demo --sites="Theme demo"`. Choose a new site name for your demo; keep customer sites for the Preview → Apply workflow above.
+2. See it working on a disposable site: run `php artisan capell:theme-liquid-glass-demo --sites="Theme demo"`. Choose a new site name so the demo never touches a customer site.
 3. Run `php artisan list` and verify the package command signatures are registered.
 
 ## For Developers
