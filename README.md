@@ -10,7 +10,7 @@ Editors fill in each block's wording in an editing form in the widget editor. Un
 
 On a device set to dark, the header and the panels in the eight blocks turn dark in all three looks. Before you apply the theme to the live site, you can preview it privately on your own pages.
 
-- **Price and availability:** Check current availability and price on the [Capell Marketplace listing](https://capell.app/marketplace/extensions/theme-liquid-glass).
+- **Price and availability:** Not yet listed on the Capell Marketplace; price and availability are published with the listing.
 - **Licence:** Published under MIT in `composer.json`.
 - **Requires:** `PHP ^8.4`, `capell-app/core ^1.0.72`, `capell-app/theme-foundation ^1.0`, `capell-app/frontend ^1.0`, `capell-app/layout-builder ^1.0`.
 - **Install:** `composer require capell-app/theme-liquid-glass`.
